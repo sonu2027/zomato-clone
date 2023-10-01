@@ -1,0 +1,16 @@
+#login-status{
+    display: flex;
+    column-gap: 1rem;
+}
+
+
+@media screen and (max-width:800px){
+    #login-status{
+        column-gap: 0.5rem;
+    }  
+}
+@media screen and (max-width:768px){
+    #login-status,  #login-status div{
+        display: none;
+    }
+}
