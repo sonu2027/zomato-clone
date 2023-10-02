@@ -1,9 +1,10 @@
 import "./ProductTypesItem.css"
-function ProductTypesItem({product, img}){
+function ProductTypesItem({product, img, time}){
     return(
         <div className="product-type">
         <img src={img} alt="Image" />
-        {product}
+        {product} 
+       <div> {time}</div>
         </div>
     )
 }

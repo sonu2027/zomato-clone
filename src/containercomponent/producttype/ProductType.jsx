@@ -18,8 +18,11 @@ function ProductType() {
     const productType = ["Biryani", "Burger", "Cake", "Rolls", "Momos", "Chicken", "North Indian", "Thali", "Chowmein", "Paneer", "Dosa"]
     const productTypeImage = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11]
     return (
-        <div className="each-product">
-            {productType.map((e, i) => <ProductTypesItem key={e} product={e} img={productTypeImage[i]} />)}
+        <div id="each-project-main-div" >
+            <span>Inspiration for your first order</span>
+            <div className="each-product">
+                {productType.map((e, i) => <ProductTypesItem key={e} product={e} img={productTypeImage[i]} />)}
+            </div>
         </div>
     )
 }

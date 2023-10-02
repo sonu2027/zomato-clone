@@ -14,19 +14,36 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+#each-project-main-div {
+  background-color: #f9f8f8;
+  padding: 1rem 0;
+  /* padding: 1rem 7vw; */
+  margin-top: 1.5rem;
+}
+#each-project-main-div span{
+  font-size: 1.8rem;
+  color: rgb(34, 34, 34);
+  margin: 7vw;
+}
 
-@media screen and (max-width:975px){
-    .each-product{
-        margin: 12px 6vw;
-    }
+@media screen and (max-width: 975px) {
+  .each-product {
+    margin: 12px 6vw;
+  }
+  #each-project-main-div span{
+    margin: 6vw;
+  }
 }
-@media screen and (max-width:768px){
-    .each-product{
-        margin: 12px 2vw;
-    }
+@media screen and (max-width: 768px) {
+  .each-product {
+    margin: 12px 2vw;
+  }
+  #each-project-main-div span{
+    margin: 1vw;
+  }
 }
-@media screen and (max-width:768px){
-    .each-product{
-        column-gap: 1rem;
-    }
+@media screen and (max-width: 768px) {
+  .each-product {
+    column-gap: 1rem;
+  }
 }
