@@ -2,13 +2,19 @@ import Zomato from "../../component/zomato/Zomato"
 import Search from "../../component/search/Search"
 import LoginStatus from "../../component/loginstatus/LoginStatus"
 import "./Header.css"
+// import { useParams } from "react-router-dom"
 
-function Header(){
+function Header(props){
+
+    // const {loginStatus}=useParams()
+    const defaultValue=0
+   
     return(
         <div id="header">
-        <Zomato/>
+        <Zomato status={props.status || defaultValue}/>
         <Search/>
-        <LoginStatus/>
+        {/* login={loginStatus || defaultValue} */}
+        <LoginStatus status={props.status || defaultValue}/>
         </div>
     )
 }

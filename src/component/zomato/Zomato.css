@@ -1,5 +1,15 @@
 #zomato-button{
     display: none;
+    height: 1.6rem;
+    width: 1.6rem;
+    color: grey;
+    padding: 0.1rem;
+    border: 1px solid grey;
+    border-radius: 50%;
+    color: rgba(255, 18, 18, 0.994);
+}
+#zomato h2{
+    display: none;
 }
 
 @media screen and (max-width:768px){
@@ -13,5 +23,11 @@
         align-items: center;
         padding: 10px 1rem;
         box-shadow:  0px 0px 2px  rgb(57, 55, 55);
+    }
+    #zomato h2{
+        display: block;
+    }
+    #zomato h1{
+        display: none;
     }
 }

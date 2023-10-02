@@ -17,6 +17,7 @@
     justify-content: center;
     align-items: center;
     column-gap: 0.8rem;
+    padding-right: 5px;
 }
 #search-item input{
     width: 25vw;
@@ -37,7 +38,7 @@
     padding-left:5px ;
 }
 #location-icon{
-    color: rgb(255, 0, 0);
+    color: rgba(255, 18, 18, 0.994);
     height: 1.5rem;
     width: 1.5rem;
 }
