@@ -3,6 +3,7 @@
     justify-content: space-around;
     align-items: center;
     padding: 12px 3rem;
+    /* border: 1px solid black; */
 }
 
 @media screen and (max-width:975px){

@@ -1,0 +1,17 @@
+.product-type img{
+    height: 9rem;
+    width: 9rem;
+    border-radius: 50%;
+}
+.product-type{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width:600px) {
+    .product-type img{
+        height: 7rem;
+        width: 7rem;
+    }
+}

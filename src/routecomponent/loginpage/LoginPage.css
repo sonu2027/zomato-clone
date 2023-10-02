@@ -37,11 +37,14 @@
   background-color: rgb(222, 8, 8);
   color: #ece2e2;
 }
-#login-forn-main-div{
+#login-form-main-div{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
+}
+#cross-icon{
+  display: flex;
 }
 
 @media screen and (max-width:650px){

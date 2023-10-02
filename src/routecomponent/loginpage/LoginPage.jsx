@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import "./LoginPage.css"
+import { RxCross1 } from "react-icons/rx"
 
 function LoginPage() {
 
@@ -16,9 +17,14 @@ function LoginPage() {
     }
 
     return (
-        <div id="login-forn-main-div">
+        <div id="login-form-main-div">
             <div id="login-form">
-                <h3>Login</h3>
+                <div id="cross-icon">
+                    <h3>Login</h3>
+                    <Link to="/">
+                        <RxCross1 />
+                    </Link>
+                </div>
                 <div id="input-tag">
                     <input value={emailPhoneValue} onChange={(e) => setEmailPhoneValue(e.target.value)}
                         type="text" placeholder="Enter email or phone as admin" />
