@@ -5,31 +5,31 @@ import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icon
 import { useState } from "react"
 function LoginStatus(props) {
 
-    const [getOption, setGetOption]=useState(true)
+    const [getOption, setGetOption] = useState(true)
     return (
         <div id="login-status">
 
             {props.status ? (
                 // "Sonu"
                 <div id="after-login">
-                <span id="account">&nbsp;S&nbsp;</span>&nbsp;
-                <span>Sonu</span>
-                { getOption == true ?
-                <>
-                <MdOutlineKeyboardArrowDown onClick={()=>setGetOption(false)} className="after-login-option"/>
-                </>
-                :
-                <>
-                <MdOutlineKeyboardArrowUp onClick={()=>setGetOption(true)}
-                className="after-login-option"/>
-                <div id="option">
-                    <Link to="/">
-                    <button>Log out</button>
-                    </Link>
-                </div>
-                </>
-                }
-                {/* <MdOutlineKeyboardArrowDown className="after-login-option"/>
+                    <span id="account">&nbsp;S&nbsp;</span>&nbsp;
+                    <span>Sonu</span>
+                    {getOption == true ?
+                        <>
+                            <MdOutlineKeyboardArrowDown onClick={() => setGetOption(false)} className="after-login-option" />
+                        </>
+                        :
+                        <>
+                            <MdOutlineKeyboardArrowUp onClick={() => setGetOption(true)}
+                                className="after-login-option" />
+                            <div id="option">
+                                <Link to="/">
+                                    <button>Log out</button>
+                                </Link>
+                            </div>
+                        </>
+                    }
+                    {/* <MdOutlineKeyboardArrowDown className="after-login-option"/>
                 <MdOutlineKeyboardArrowUp className="after-login-option"/> */}
                 </div>
             ) :

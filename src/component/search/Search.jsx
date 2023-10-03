@@ -1,12 +1,14 @@
-import { CiLocationOn } from "react-icons/ci"
+// import { CiLocationOn } from "react-icons/ci"
 import { BsSearch } from "react-icons/bs"
 import "./Search.css"
+import location from "../../assets/zomato/location.jpg"
 
 function Search() {
     return (
         <div id="search-box">
             <div id="location">
-                <CiLocationOn id="location-icon" />
+                {/* <CiLocationOn id="location-icon" /> */}
+                <img id="location-icon" src={location} alt="" />
                 <div style={{ color: "grey" }}>Kolkata</div>
             </div>
             <div id="search-item">

@@ -43,6 +43,9 @@
     align-items: center;
     height: 80vh;
 }
+#login-form-main-div #login-form button:hover{
+  cursor: pointer;
+}
 #cross-icon{
   display: flex;
 }

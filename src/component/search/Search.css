@@ -39,8 +39,8 @@
 }
 #location-icon{
     color: rgba(255, 18, 18, 0.994);
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 2.2rem;
+    width: 2.5rem;
 }
 @media  screen and (max-width:768px) {
     #vertical-line,#search-item select,#search-item input{
@@ -52,7 +52,7 @@
         justify-content: space-between;
         align-items:center;
         width: 100%;
-        height: 2.5rem;
+        height: 3rem;
         box-shadow: 0 0 0px #646262;
     }
 }
