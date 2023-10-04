@@ -12,7 +12,7 @@
 }
 @media screen and (max-width:600px) {
     .product-type img{
-        height: 7rem;
-        width: 7rem;
+        height: 6rem;
+        width: 6rem;
     }
 }

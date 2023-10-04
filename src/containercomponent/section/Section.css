@@ -1,0 +1,81 @@
+#section{
+    display: flex;
+    margin: 2rem 6.5vw 1.5rem 6.5vw;
+    column-gap: 2rem;
+}
+#section #delivery, #section #dining-out,#section #night-life{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+#section #delivery span, #section #dining-out span,#section #night-life span{
+    font-size: 1.2rem;
+    /* color: rgb(63, 63, 63); */
+}
+#section #delivery img, #section #dining-out img,#section #night-life img{
+    height: 2.2rem;
+    width: 2.2rem;
+    /* border: 1px solid red; */
+    padding: 0.8rem;
+    border-radius: 50%;
+    background-color: rgb(252, 238, 192);
+}
+.hr-tag{
+    border: 1px solid rgb(244, 241, 241);
+}
+/* *, :after, :before {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+} */
+
+@media screen and (max-width:768px){
+    #section{
+        margin: 1.8rem 2vw 1.3rem 2vw;
+        column-gap: 2rem;
+    }
+}
+
+@media screen and (max-width:600px){
+    #section{
+        margin: 1.5rem 2vw 1.2rem 2vw;
+        column-gap: 1.2rem;
+    }
+    #section #delivery img, #section #dining-out img,#section #night-life img{
+        height: 1.6rem;
+        width: 1.6rem;
+        /* border: 1px solid red; */
+        padding: 0.5rem;
+        border-radius: 50%;
+        background-color: rgb(252, 238, 192);;
+    }
+    #section #delivery span, #section #dining-out span,#section #night-life span{
+        font-size: 1rem;
+    }
+    #section #delivery, #section #dining-out,#section #night-life{
+        column-gap: 0.2rem;
+    
+    }
+}
+
+@media screen and (max-width:382px){
+    #section{
+        margin: 1.5rem 2vw 1.2rem 2vw;
+        column-gap: 1.1rem;
+    }
+    #section #delivery img, #section #dining-out img,#section #night-life img{
+        height: 1.5rem;
+        width: 1.5rem;
+        /* border: 1px solid red; */
+        padding: 0.3rem;
+        border-radius: 50%;
+        background-color: rgb(252, 238, 192);;
+    }
+    #section #delivery span, #section #dining-out span,#section #night-life span{
+        font-size: 0.9rem;
+    }
+    #section #delivery, #section #dining-out,#section #night-life{
+        column-gap: 0.1rem;
+    
+    }
+}

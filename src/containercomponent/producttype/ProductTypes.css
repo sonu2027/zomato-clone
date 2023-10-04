@@ -37,13 +37,9 @@
 @media screen and (max-width: 768px) {
   .each-product {
     margin: 12px 2vw;
+    column-gap: 1rem;
   }
   #each-project-main-div span{
     margin: 1vw;
-  }
-}
-@media screen and (max-width: 768px) {
-  .each-product {
-    column-gap: 1rem;
   }
 }

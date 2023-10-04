@@ -15,7 +15,7 @@ import img10 from "../../assets/productTypesAssets/paneer.avif"
 import img11 from "../../assets/productTypesAssets/dosa.avif"
 
 function ProductType() {
-    const productType = ["Biryani", "Burger", "Cake", "Rolls", "Momos", "Chicken", "North Indian", "Thali", "Chowmein", "Paneer", "Dosa"]
+    const productType = ["Pizza","Biryani", "Burger", "Cake", "Rolls", "Momos", "Chicken", "North Indian", "Thali", "Chowmein", "Paneer", "Dosa"]
     const productTypeImage = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11]
     return (
         <div id="each-project-main-div" >
