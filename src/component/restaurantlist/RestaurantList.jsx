@@ -13,8 +13,8 @@ function RestaurantList(props) {
 
                     <div className="item2">
                         <div style={{ fontSize: "0.9rem", color: "#fff", backgroundColor: "#248544", padding: "1px 6px", borderRadius: "6px" }}>{`${props.rating}★`}</div>
-                        <div style={{ fontSize: "0.9rem", color: "gray" }}>{`₹${props.price}`}</div>
-                        <div style={{ fontSize: "0.9rem", color: "gray" }}>{props.time}</div>
+                        <div style={{ fontSize: "0.9rem", color: "gray" }}>{`₹${props.price} for one`}</div>
+                        <div style={{ fontSize: "0.9rem", color: "gray" }}>{`${props.time} min`}</div>
                     </div>
                 </div>
             </div>

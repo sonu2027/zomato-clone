@@ -10,7 +10,7 @@ function HomePage(){
     return(
         <>
         <Header status={status}/>
-        <Section/>
+        <Section />
         <ProductType/>
         <TopBrand/>
         <Restaurant/>
