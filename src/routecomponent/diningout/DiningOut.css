@@ -1,13 +1,13 @@
 .discount-image{
-    height: 30vw;
-    width: 88vw;
+    height: 22vw;
+    width: 87.5%;
     margin: 2rem 6vw 0 6vw;
 }
 
 @media screen and (max-width:768px){
     .discount-image{
         height: 30vw;
-        width: 96vw;
+        width: 95.5%;
         margin: 2rem 2vw 0 2vw;
     }
 }
