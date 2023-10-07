@@ -5,11 +5,13 @@ import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icon
 import { useState } from "react"
 function LoginStatus(props) {
 
+    console.log("status in loginstatsu: Ending here", props.status);
+
     const [getOption, setGetOption] = useState(true)
     return (
         <div id="login-status">
 
-            {props.status ? (
+            {props.status==1 ? (
                 // "Sonu"
                 <div id="after-login">
                     <span id="account">&nbsp;S&nbsp;</span>&nbsp;
@@ -23,7 +25,7 @@ function LoginStatus(props) {
                             <MdOutlineKeyboardArrowUp onClick={() => setGetOption(true)}
                                 className="after-login-option" />
                             <div id="option">
-                                <Link to="/">
+                                <Link to={`/login/loggedin/${0}`}>
                                     <button>Log out</button>
                                 </Link>
                             </div>

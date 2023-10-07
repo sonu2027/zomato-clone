@@ -5,19 +5,24 @@ import img2 from "../../assets/zomato/nightLife.webp"
 import img00 from "../../assets/zomato/delivery2.webp"
 import img11 from "../../assets/zomato/diningOut2.avif"
 import img22 from "../../assets/zomato/nightLife2.webp"
-import { Link } from "react-router-dom"
 
+import { Link } from "react-router-dom"
 import "./Section.css"
 import { useState } from "react"
-function Section() {
+
+function Section(props) {
     const [deliveryColor, setDeliveryColor] = useState(true)
     const [diningOutColor, setDiningOutColor] = useState(false)
     const [nightLifeColor, setNightLifeColor] = useState(false)
+
+    const defaultValue=0
+    console.log("status in section", props.status);
     return (
         <div id="section-main-div">
             <section id="section">
 
-                <Link to="" style={{ textDecoration: "none" }}>
+                <Link to={`/login/loggedin/${props.status || defaultValue}`}
+                style={{ textDecoration: "none" }}>
                     <div onClick={() => { setDiningOutColor(false); setDeliveryColor(true); setNightLifeColor(false) }} id="delivery">
                         {deliveryColor == true ?
                             <>
@@ -31,7 +36,7 @@ function Section() {
                     </div>
                 </Link>
 
-                <Link to="" style={{ textDecoration: "none" }}>
+                <Link to={`/diningout/${props.status || defaultValue}`} style={{ textDecoration: "none" }}>
                     <div onClick={() => { setDiningOutColor(true); setDeliveryColor(false); setNightLifeColor(false) }} id="dining-out">
                         {diningOutColor == false ?
                             <>
@@ -45,7 +50,7 @@ function Section() {
                     </div>
                 </Link>
 
-                <Link to="" style={{ textDecoration: "none" }}>
+                <Link to={`/nightlife/${props.status || defaultValue}`} style={{ textDecoration: "none" }}>
                     <div onClick={() => { setDiningOutColor(false); setDeliveryColor(false); setNightLifeColor(true) }} id="night-life">
                         {nightLifeColor == false ?
                             <>

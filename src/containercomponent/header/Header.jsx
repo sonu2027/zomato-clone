@@ -6,6 +6,8 @@ import "./Header.css"
 
 function Header(props){
 
+    console.log("status in header", props.status);
+
     // const {loginStatus}=useParams()
     const defaultValue=0
    

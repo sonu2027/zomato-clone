@@ -4,6 +4,7 @@ import { MdPersonOutline } from "react-icons/md"
 import { Link } from "react-router-dom"
 
 function Zomato(props) {
+    console.log("status in zomato", props.status);
     const [getOption, setGetOption] = useState(false)
     return (
         <div id="zomato">

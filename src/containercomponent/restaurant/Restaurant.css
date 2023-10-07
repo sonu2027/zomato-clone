@@ -50,12 +50,20 @@
   /* color: rgb(25, 25, 25); */
 }
 
+@media screen and (max-width:975px){
+  #restaurant-image-main-div span{
+    font-size: 1.6rem;
+  }
+}
 @media screen and (max-width: 768px) {
   .item-parent {
     width: 44vw;
   }
   #restaurant-image-main-div {
     margin: 2rem 1vw;
+  }
+  #restaurant-image-main-div span{
+    font-size: 1.4rem;
   }
   .restaurant-image img {
     height: 26vw;
