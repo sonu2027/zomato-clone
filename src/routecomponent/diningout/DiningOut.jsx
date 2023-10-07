@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import Restaurant from "../../containercomponent/restaurant/Restaurant"
 
 import img0 from "../../assets/diningout/95degree.avif"
-import img1 from "../../assets/diningout/baristaCoffee.avif"
+import img1 from "../../assets/diningout/baristacoffee.avif"
 import img2 from "../../assets/diningout/biryanibykilo.avif"
 import img3 from "../../assets/diningout/bunosilo.avif"
 import img4 from "../../assets/diningout/chinagreen.avif"
