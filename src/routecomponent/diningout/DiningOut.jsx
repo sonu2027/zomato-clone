@@ -32,6 +32,8 @@ import img24 from "../../assets/diningout/wowchina.avif"
 import img25 from "../../assets/diningout/wowmomo.avif"
 
 import discountImage from "../../assets/diningout/discount.avif"
+import Filter from "../../component/filters/Filter"
+import Footer from "../../component/footer/Footer"
 
 
 function DiningOut(){
@@ -46,16 +48,19 @@ function DiningOut(){
 
     const rating = [3.5, 4, 3, 4.5, 3, 3.5, 4.5, 4, 4, 3.5, 4.5, 4.5, 4.5, 2.5, 3, 4, 3.5, 4, 3.5, 4, 3, 4.5, 3, 3.5, 4.5, 4]
 
-    const price = [50 , 200 , 185 , 45 , 99 , 120 , 259 , 100 , 78 , 225 , 65 , 199 , 155 , 100 , 150 , 60 , 200 , 12550 , 200 , 185 , 45 , 99 , 120 , 259 , 100 ]
+    const price = [50 , 200 , 185 , 45 , 99 , 120 , 259 , 100 , 78 , 225 , 65 , 199 , 155 , 100 , 150 , 60 , 200 , 125,50 , 200 , 185 , 45 , 99 , 120 , 259 , 100 ]
     
-    const time = [25 , 40 , 35 , 12 , 65 , 38 , 15 , 18 ,9 , 26 , 22 , 19 , 15 , 12 , 20 , 36 , 24 , 32,25 , 40 , 35 , 12 , 65 , 38 , 15 , 18 ]
+    const distance = [5.4 , 4 , 3.3 , 1.2 , 6.5 , 3.8 , 1.5 , 1.8 ,9 , 2.6 , 2.2 , 1.9 , 1.5 , 1.2 , 2 , 3.6 , 2.4 , 3.2, 2.5 , 4 , 3.5, 9.9, 6.5, 3.8, 1.5, 1.8 ]
+    const address = ["Behela, kolkata" , "Alipore, kolkata" , "New Alipore, kolkata" ,"Encalve, Alipore, kolkata" , "Taratala, kolkata" , "Behela, kolkata" , "Encalve, Alipore, kolkata" , "Taratala, kolkata" ,"Encalve, Alipore, kolkata" , "Alipore, kolkata" , "Behela, kolkata" , "Alipore, kolkata" , "Taratala, kolkata" , "New Alipore, kolkata" , "Encalve, Alipore, kolkata" , "Taratala, kolkata" , "Behela, kolkata" ,"New Alipore, kolkata", "Behela, kolkata" ,"Encalve, Alipore, kolkata" , "Alipore, kolkata","New Alipore, kolkata", "Encalve, Alipore, kolkata", "Encalve, Alipore, kolkata", "Encalve, Alipore, kolkata", "Alipore, kolkata" ]
 
     return(
         <>
         <Header status={status} />
         <Section status={status}/>
-        <img class="discount-image" src={discountImage} alt="" />
-        <Restaurant img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} time={time} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"}/>
+        <img className="discount-image" src={discountImage} alt="" />
+        <Filter/>
+        <Restaurant img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"}/>
+        <Footer/>
         </>
     )
 }

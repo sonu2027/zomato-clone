@@ -1,0 +1,49 @@
+.filter img{
+    height: 2rem;
+    width: 1.5rem;
+}
+.filter{
+    display: flex;
+    background-color: #fff;
+    align-items: center;
+    column-gap: 0.5rem;
+    border: 1px solid #e2dede;
+    padding: 0.1rem 0.5rem;
+    border-radius: 8px;
+    color: gray;
+}
+.filter, .filter select:hover{
+    cursor: pointer;
+}
+.filter-parent{
+    display: flex;
+    /* margin: 1.5rem 6.5vw; */
+    padding: 1.5rem 6.5vw;
+    column-gap: 0.5rem;
+    position:sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+}
+.filter select{
+    border: none;
+    color: gray;
+}
+
+@media screen and (max-width:768px){
+    .filter-parent{
+        padding: 1.5rem 2.5vw;
+    }   
+}
+
+@media screen and (max-width:600px){ 
+    .filter{
+        column-gap: 0.2rem;
+        padding: 0.2rem 0.3rem;
+        border-radius: 8px;
+    }
+    .filter img{
+        height: 1.4rem;
+        width: 1.2rem;
+    }
+}

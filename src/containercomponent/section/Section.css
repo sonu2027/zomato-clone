@@ -24,10 +24,11 @@
 .hr-tag{
     border: 1px solid rgb(244, 241, 241);
 }
-/* *, :after, :before {
-    box-sizing: inherit;
-    -webkit-tap-highlight-color: transparent;
-} */
+#section-main-div{
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
 
 @media screen and (max-width:768px){
     #section{

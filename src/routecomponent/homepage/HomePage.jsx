@@ -23,6 +23,8 @@ import img14 from "../../assets/restaurant/teaJunction.avif"
 import img15 from "../../assets/restaurant/tewariBrother.avif"
 import img16 from "../../assets/restaurant/sharmaSnacks.avif"
 import img17 from "../../assets/restaurant/kreamz.avif"
+import Filter from "../../component/filters/Filter"
+import Footer from "../../component/footer/Footer"
 
 function HomePage(){
     const {status}=useParams()
@@ -44,9 +46,11 @@ function HomePage(){
         <>
         <Header status={status}/>
         <Section status={status}/>
+        <Filter/>
         <ProductType/>
         <TopBrand/>
-        <Restaurant img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} time={time} title={"Best Restaurant in Kolkata"}/>
+        <Restaurant img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} time={time} title={"Best Restaurant in Kolkata"} calling="delivery"/>
+        <Footer/>
         </>
     )
 }
