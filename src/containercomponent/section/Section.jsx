@@ -8,12 +8,8 @@ import img22 from "../../assets/zomato/nightLife2.webp"
 
 import { Link } from "react-router-dom"
 import "./Section.css"
-import { useState } from "react"
 
 function Section(props) {
-    const [deliveryColor, setDeliveryColor] = useState(true)
-    const [diningOutColor, setDiningOutColor] = useState(false)
-    const [nightLifeColor, setNightLifeColor] = useState(false)
 
     const defaultValue = 0
     console.log("status in section", props.status);
@@ -23,44 +19,44 @@ function Section(props) {
 
                 <Link to={`/login/loggedin/${props.status || defaultValue}`}
                     style={{ textDecoration: "none" }}>
-                    <div onClick={() => { setDiningOutColor(false); setDeliveryColor(true); setNightLifeColor(false) }} id="delivery">
-                        {deliveryColor == true ?
-                            < >
+                    <div id="delivery">
+                        {props.page == "delivery" ?
+                            <div className="border" style={{ borderBottom: "2px solid rgb(239, 79, 95)" }}>
                                 <img src={img0} alt="Image" />
                                 <span style={{ color: "rgb(239, 79, 95)" }}>Delivery</span>
-                            </> :
-                            <>
+                            </div> :
+                            <div className="border">
                                 <img src={img00} alt="Image" />
                                 <span style={{ color: "rgb(63, 63, 63)" }}>Delivery</span>
-                            </>}
+                            </div>}
                     </div>
                 </Link>
 
                 <Link to={`/diningout/${props.status || defaultValue}`} style={{ textDecoration: "none" }}>
-                    <div onClick={() => { setDiningOutColor(true); setDeliveryColor(false); setNightLifeColor(false) }} id="dining-out">
-                        {diningOutColor == false ?
-                            <>
-                                <img src={img11} alt="Image" />
-                                <span style={{ color: "rgb(63, 63, 63)" }}>Dining Out</span>
-                            </> :
-                            <>
+                    <div id="dining-out">
+                        {props.page == "dining-out" ?
+                            <div className="border" style={{ borderBottom: "2px solid rgb(239, 79, 95)" }}>
                                 <img src={img1} alt="Image" />
                                 <span style={{ color: "rgb(239, 79, 95)" }} >Dining Out</span>
-                            </>}
+                            </div> :
+                            <div className="border">
+                                <img src={img11} alt="Image" />
+                                <span style={{ color: "rgb(63, 63, 63)" }}>Dining Out</span>
+                            </div>}
                     </div>
                 </Link>
 
                 <Link to={`/nightlife/${props.status || defaultValue}`} style={{ textDecoration: "none" }}>
-                    <div onClick={() => { setDiningOutColor(false); setDeliveryColor(false); setNightLifeColor(true) }} id="night-life">
-                        {nightLifeColor == false ?
-                            <>
-                                <img src={img22} alt="Image" />
-                                <span style={{ color: "rgb(63, 63, 63)" }}>Nightlife</span>
-                            </> :
-                            <>
+                    <div id="night-life">
+                        {props.page == "night-life" ?
+                            <div className="border" style={{ borderBottom: "2px solid rgb(239, 79, 95)" }}>
                                 <img src={img2} alt="Image" />
                                 <span style={{ color: "rgb(239, 79, 95)" }}>Nightlife</span>
-                            </>}
+                            </div> :
+                            <div className="border">
+                                <img src={img22} alt="Image" />
+                                <span style={{ color: "rgb(63, 63, 63)" }}>Nightlife</span>
+                            </div>}
                     </div>
                 </Link>
             </section>

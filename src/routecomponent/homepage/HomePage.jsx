@@ -45,7 +45,7 @@ function HomePage(){
     return(
         <>
         <Header status={status}/>
-        <Section status={status}/>
+        <Section status={status} page={"delivery"}/>
         <Filter/>
         <ProductType/>
         <TopBrand/>

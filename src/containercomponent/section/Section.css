@@ -1,19 +1,20 @@
 #section{
     display: flex;
-    margin: 2rem 6.5vw 1.5rem 6.5vw;
+    margin: 1rem 6.5vw 0 6.5vw;
     column-gap: 2rem;
 }
-#section #delivery, #section #dining-out,#section #night-life{
+#section #delivery .border, #section #dining-out .border, #section #night-life .border{
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 0.5rem;
+    padding: 1rem 0;
 }
-#section #delivery span, #section #dining-out span,#section #night-life span{
+#section #delivery .border span, #section #dining-out .border span,#section #night-life .border span{
     font-size: 1.2rem;
     /* color: rgb(63, 63, 63); */
 }
-#section #delivery img, #section #dining-out img,#section #night-life img{
+#section #delivery .border img, #section #dining-out .border img,#section #night-life .border img{
     height: 2.2rem;
     width: 2.2rem;
     /* border: 1px solid red; */
@@ -32,17 +33,21 @@
 
 @media screen and (max-width:768px){
     #section{
-        margin: 1.8rem 2vw 1.3rem 2vw;
+        margin: 0.9rem 2vw 0 2vw;
         column-gap: 2rem;
+    }
+    #section #delivery .border, #section #dining-out .border, #section #night-life .border{
+        column-gap: 0.5rem;
+        padding: 0.9rem 0;
     }
 }
 
 @media screen and (max-width:600px){
     #section{
-        margin: 1.5rem 2vw 1.2rem 2vw;
+        margin: 0.75rem 2vw 0 2vw;
         column-gap: 1.2rem;
     }
-    #section #delivery img, #section #dining-out img,#section #night-life img{
+    #section #delivery .border img, #section #dining-out .border img,#section #night-life .border img{
         height: 1.6rem;
         width: 1.6rem;
         /* border: 1px solid red; */
@@ -50,21 +55,21 @@
         border-radius: 50%;
         background-color: rgb(252, 238, 192);;
     }
-    #section #delivery span, #section #dining-out span,#section #night-life span{
+    #section #delivery .border span, #section #dining-out .border span,#section #night-life .border span{
         font-size: 1rem;
     }
-    #section #delivery, #section #dining-out,#section #night-life{
+    #section #delivery .border, #section #dining-out .border,#section #night-life .border{
         column-gap: 0.2rem;
-    
+        padding: 0.75rem 0;
     }
 }
 
 @media screen and (max-width:382px){
     #section{
-        margin: 1.5rem 2vw 1.2rem 2vw;
+        margin: 0.65rem 2vw 0 2vw;
         column-gap: 1.1rem;
     }
-    #section #delivery img, #section #dining-out img,#section #night-life img{
+    #section #delivery .border img, #section #dining-out .border img,#section #night-life .border img{
         height: 1.5rem;
         width: 1.5rem;
         /* border: 1px solid red; */
@@ -72,11 +77,11 @@
         border-radius: 50%;
         background-color: rgb(252, 238, 192);;
     }
-    #section #delivery span, #section #dining-out span,#section #night-life span{
+    #section #delivery .border span, #section #dining-out .border span,#section #night-life .border span{
         font-size: 0.9rem;
     }
-    #section #delivery, #section #dining-out,#section #night-life{
+    #section #delivery .border, #section #dining-out .border,#section #night-life .border{
         column-gap: 0.1rem;
-    
+        padding: 0.65rem 0;
     }
 }
