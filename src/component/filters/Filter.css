@@ -28,6 +28,7 @@
 .filter select{
     border: none;
     color: gray;
+    background-color: transparent;
 }
 
 @media screen and (max-width:768px){

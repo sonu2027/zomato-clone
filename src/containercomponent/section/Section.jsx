@@ -15,23 +15,23 @@ function Section(props) {
     const [diningOutColor, setDiningOutColor] = useState(false)
     const [nightLifeColor, setNightLifeColor] = useState(false)
 
-    const defaultValue=0
+    const defaultValue = 0
     console.log("status in section", props.status);
     return (
         <div id="section-main-div">
             <section id="section">
 
                 <Link to={`/login/loggedin/${props.status || defaultValue}`}
-                style={{ textDecoration: "none" }}>
+                    style={{ textDecoration: "none" }}>
                     <div onClick={() => { setDiningOutColor(false); setDeliveryColor(true); setNightLifeColor(false) }} id="delivery">
                         {deliveryColor == true ?
-                            <>
+                            < >
                                 <img src={img0} alt="Image" />
                                 <span style={{ color: "rgb(239, 79, 95)" }}>Delivery</span>
                             </> :
                             <>
                                 <img src={img00} alt="Image" />
-                                <span style={{color: "rgb(63, 63, 63)"}}>Delivery</span>
+                                <span style={{ color: "rgb(63, 63, 63)" }}>Delivery</span>
                             </>}
                     </div>
                 </Link>
@@ -41,7 +41,7 @@ function Section(props) {
                         {diningOutColor == false ?
                             <>
                                 <img src={img11} alt="Image" />
-                                <span style={{color: "rgb(63, 63, 63)"}}>Dining Out</span>
+                                <span style={{ color: "rgb(63, 63, 63)" }}>Dining Out</span>
                             </> :
                             <>
                                 <img src={img1} alt="Image" />
@@ -55,7 +55,7 @@ function Section(props) {
                         {nightLifeColor == false ?
                             <>
                                 <img src={img22} alt="Image" />
-                                <span style={{color: "rgb(63, 63, 63)"}}>Nightlife</span>
+                                <span style={{ color: "rgb(63, 63, 63)" }}>Nightlife</span>
                             </> :
                             <>
                                 <img src={img2} alt="Image" />

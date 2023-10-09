@@ -31,9 +31,9 @@ import img23 from "../../assets/diningout/sonargao.avif"
 import img24 from "../../assets/diningout/wowchina.avif"
 import img25 from "../../assets/diningout/wowmomo.avif"
 
-import discountImage from "../../assets/diningout/discount.avif"
 import Filter from "../../component/filters/Filter"
 import Footer from "../../component/footer/Footer"
+import DiscountImage from "../../component/discountimage/DiscountImage"
 
 
 function DiningOut(){
@@ -57,8 +57,8 @@ function DiningOut(){
         <>
         <Header status={status} />
         <Section status={status}/>
-        <img className="discount-image" src={discountImage} alt="" />
         <Filter/>
+        <DiscountImage/>
         <Restaurant img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"}/>
         <Footer/>
         </>
