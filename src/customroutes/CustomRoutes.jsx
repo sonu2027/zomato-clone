@@ -3,6 +3,7 @@ import HomePage from "../routecomponent/homepage/HomePage"
 import LoginPage from "../routecomponent/loginpage/LoginPage"
 import DiningOut from "../routecomponent/diningout/DiningOut"
 import NightLife from "../routecomponent/nightlife/NightLife"
+import ProductListing from "../routecomponent/productlisting/ProductListing"
 
 function CustomRoutes(){
     return (
@@ -12,6 +13,7 @@ function CustomRoutes(){
             <Route path="/login/loggedin/:status" element={<HomePage/>} />
             <Route path="/Diningout/:status" element={<DiningOut/>}/>
             <Route path="/nightlife/:status" element={<NightLife/>}/>
+            <Route path="/login/loggedin" element={<ProductListing/>}/>
         </Routes>
     )
 }

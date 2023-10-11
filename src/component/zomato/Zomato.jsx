@@ -16,9 +16,21 @@ function Zomato(props) {
                         getOption == true ?
                             <>
                                 <MdPersonOutline onClick={() => setGetOption(false)} id="zomato-button" />
-                                <Link to="/">
+                                {/* <Link to="/">
                                     <button>Log out</button>
+                                </Link> */}
+                                <div id="option">
+                                <button className="make-border-radius-8px-top">Profile</button>
+                                <button>Notifications</button>
+                                <button>Bookmark</button>
+                                <button>Reviews</button>
+                                <button>Network</button>
+                                <button>Find Friends</button>
+                                <button>Setting</button>
+                                <Link to={`/login/loggedin/${0}`}>
+                                    <button className="make-border-radius-8px-bottom">Log out</button>
                                 </Link>
+                            </div>
                             </> :
                             <MdPersonOutline onClick={() => setGetOption(true)} id="zomato-button" />
                     }

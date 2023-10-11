@@ -49,7 +49,7 @@ function HomePage(){
         <Filter/>
         <ProductType/>
         <TopBrand/>
-        <Restaurant img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} time={time} title={"Best Restaurant in Kolkata"} calling="delivery"/>
+        <Restaurant status={status || 0} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} time={time} title={"Best Restaurant in Kolkata"} calling="delivery"/>
         <Footer/>
         </>
     )

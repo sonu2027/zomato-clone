@@ -16,13 +16,46 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 #after-login #option button:hover{
     cursor: pointer;
+    background-color: rgb(224, 222, 222);
+    overflow: hidden;
+}
+#after-login #option{
+    background-color: #fff;
+    position: absolute;
+    box-shadow: 0 0 3px grey;
+    top: 3.5rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    border-radius: 8px;
+    margin-right: 3.5rem;
+}
+#after-login #option button{
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    color: rgb(40, 39, 39);
+    width: 10rem;
+    text-align: left;
+    padding: 12px 0 12px 8px;
 }
 .after-login-option{
     height: 1.5rem;
     width: 1.5rem;
+}
+.make-border-radius-8px-top{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.make-border-radius-8px-bottom{
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 @media screen and (max-width:800px){

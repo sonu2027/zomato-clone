@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react"
 import "./LoginStatus.css"
 import { Link } from "react-router-dom"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md"
@@ -11,28 +10,35 @@ function LoginStatus(props) {
     return (
         <div id="login-status">
 
-            {props.status==1 ? (
-                // "Sonu"
+            {props.status == 1 ? (
                 <div id="after-login">
-                    <span id="account">&nbsp;S&nbsp;</span>&nbsp;
-                    <span>Sonu</span>
                     {getOption == true ?
                         <>
+                            <span onClick={() => setGetOption(false)} id="account">&nbsp;S&nbsp;</span>&nbsp;
+                            <span onClick={() => setGetOption(false)} >Sonu</span>
                             <MdOutlineKeyboardArrowDown onClick={() => setGetOption(false)} className="after-login-option" />
                         </>
                         :
                         <>
+                            <span onClick={() => setGetOption(true)}
+                                id="account">&nbsp;S&nbsp;</span>&nbsp;
+                            <span onClick={() => setGetOption(true)}>Sonu</span>
                             <MdOutlineKeyboardArrowUp onClick={() => setGetOption(true)}
                                 className="after-login-option" />
                             <div id="option">
+                                <button className="make-border-radius-8px-top">Profile</button>
+                                <button>Notifications</button>
+                                <button>Bookmark</button>
+                                <button>Reviews</button>
+                                <button>Network</button>
+                                <button>Find Friends</button>
+                                <button>Setting</button>
                                 <Link to={`/login/loggedin/${0}`}>
-                                    <button>Log out</button>
+                                    <button className="make-border-radius-8px-bottom">Log out</button>
                                 </Link>
                             </div>
                         </>
                     }
-                    {/* <MdOutlineKeyboardArrowDown className="after-login-option"/>
-                <MdOutlineKeyboardArrowUp className="after-login-option"/> */}
                 </div>
             ) :
                 (

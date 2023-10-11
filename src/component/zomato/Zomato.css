@@ -12,7 +12,55 @@
     display: none;
 }
 
+#option{
+    display: none;
+}
+
+
 @media screen and (max-width:768px){
+
+    #zomato{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #zomato #option button:hover{
+        cursor: pointer;
+        background-color: rgb(224, 222, 222);
+        overflow: hidden;
+    }
+    #zomato #option{
+        cursor: pointer;
+        background-color: #fff;
+        position: absolute;
+        box-shadow: 0 0 3px grey;
+        top: 3.5rem;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        border-radius: 8px;
+        right: 3vw;
+    }
+    #zomato #option button{
+        border: none;
+        background-color: transparent;
+        font-size: 0.9rem;
+        color: rgb(40, 39, 39);
+        width: 8rem;
+        text-align: left;
+        padding: 6px 0 6px 8px;
+    }
+    .make-border-radius-8px-top{
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .make-border-radius-8px-bottom{
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
     #zomato-button{
         display: block;
     }

@@ -59,7 +59,7 @@ function DiningOut(){
         <Section status={status} page="dining-out"/>
         <Filter/>
         <DiscountImage/>
-        <Restaurant img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"}/>
+        <Restaurant status={status} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"}/>
         <Footer/>
         </>
     )
