@@ -1,0 +1,23 @@
+.route-button button {
+  padding: 0.2rem 0.3rem 1rem 0.3rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: rgb(52, 52, 52);
+}
+.route-button {
+  padding: 0.2rem 0 0 0;
+  display: flex;
+  column-gap: 2rem;
+}
+@media screen and (max-width: 600px) {
+  .route-button {
+    /* padding: 0.2rem 0 0.7rem 0; */
+    column-gap: 0rem;
+  }
+  .route-button button {
+    padding: 0.2rem 0.3rem 0.5rem 0.3rem;
+    font-size: 1rem;
+    color: rgb(52, 52, 52);
+  }
+}

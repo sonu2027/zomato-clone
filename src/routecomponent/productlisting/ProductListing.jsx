@@ -4,6 +4,8 @@ import Header from "../../containercomponent/header/Header";
 import { MdOutlineDirections } from "react-icons/md";
 import { BsBookmarkPlus } from "react-icons/bs";
 import { PiShareFatLight } from "react-icons/pi";
+import ProductSection from "../../component/productlistingsectionbutton/ProductSection";
+import { useEffect } from "react";
 
 function ProductListing() {
     const location = useLocation()
@@ -21,6 +23,7 @@ function ProductListing() {
     const distance = queryParams.get('distance')
     const image = queryParams.get('img')
     const aboutShop = queryParams.get('aboutShop')
+    const arr=aboutShop.split(/\s*,\s*/);
 
 
     console.log("status and shopabme", status, shopName);
@@ -36,8 +39,6 @@ function ProductListing() {
                             <div className="aboutshop">
                                 <span>{shopName}</span>
                                 <div style={{ color: "rgb(105, 105, 105)" }}>{aboutShop}</div>
-                                {/* <div>{price}</div>
-                                <div>{time} </div> */}
                             </div>
                             <div className="rating">
                                 <div>{`${rating}★`}</div>
@@ -58,14 +59,8 @@ function ProductListing() {
                                 <span> Share</span>
                             </button>
                         </div>
-                        <div className="route-button">
-                            <button>Overview</button>
-                            <button>Order Online</button>
-                            <button>Reviews</button>
-                            <button>Photos</button>
-                            <button>Menu</button>
-                        </div>
-                        <hr />
+                        <ProductSection arr={arr}/>
+
                     </div>
                 </> :
                 <>
@@ -78,8 +73,6 @@ function ProductListing() {
                                 <span>{shopName}</span>
                                 <div style={{ color: "rgb(105, 105, 105)" }} >{aboutShop}</div>
                                 <div>{address}</div>
-                                {/* <div>{price} </div>
-                                <div>{distance}</div> */}
                             </div>
                             <div className="rating">
                                 <div>{`${rating}★`}</div>
@@ -100,14 +93,7 @@ function ProductListing() {
                                 <span> Share</span>
                             </button>
                         </div>
-                        <div className="route-button">
-                            <button>Overview</button>
-                            <button>Order Online</button>
-                            <button>Reviews</button>
-                            <button>Photos</button>
-                            <button>Menu</button>
-                        </div>
-                        <hr />
+                        <ProductSection arr={arr}/>
                     </div>
                 </>
             }

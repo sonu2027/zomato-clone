@@ -58,18 +58,18 @@
     width: 1.2rem;
     height: 1.2rem;
 }
-.all-about-restaurant .route-button button{
+/* .all-about-restaurant .route-button button{
     padding: 0.2rem 0.3rem;
     background-color: transparent;
     border: none;
     font-size: 1.2rem;
     color: rgb(52, 52, 52);
-}
-.all-about-restaurant .route-button{
+} */
+/* .all-about-restaurant .route-button{
     padding: 0.2rem 0 1rem 0;
     display: flex;
     column-gap: 2rem;
-}
+} */
 
 @media screen and (max-width:768px){
     .all-about-restaurant{
@@ -88,7 +88,7 @@
 }
 
 @media screen and (max-width:600px){
-    .all-about-restaurant .route-button{
+    /* .all-about-restaurant .route-button{
         padding: 0.2rem 0 0.7rem 0;
         column-gap: 0rem;
     }
@@ -96,7 +96,7 @@
         padding: 0.2rem 0.3rem;
         font-size: 1rem;
         color: rgb(52, 52, 52);
-    }
+    } */
     .all-about-restaurant .button button{
         padding: 0.2rem 0.4rem;
         border-radius: 6px;
