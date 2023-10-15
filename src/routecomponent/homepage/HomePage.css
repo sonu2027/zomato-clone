@@ -12,6 +12,15 @@
 }
 @media screen and (max-width: 768px) {
   .search-box {
-    display: none;
+    /* position: absolute; */
+    right: 0;
+    top: 12rem;
+    /* border: 1px solid rgb(198, 193, 193); */
+    /* background-color: #fff; */
+    /* z-index: 2; */
+    /* border-radius: 8px; */
+    width: 100vw;
+    /* overflow: scroll; */
+    height: 80vh;
   }
 }
