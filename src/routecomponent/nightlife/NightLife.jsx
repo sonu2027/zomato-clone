@@ -47,6 +47,8 @@ import img36 from "../../assets/nightlife/cafe.avif"
 import img37 from "../../assets/nightlife/royal.avif"
 import img38 from "../../assets/nightlife/kebab.avif"
 import Restaurant from "../../containercomponent/restaurant/Restaurant"
+import { useState } from "react"
+import "../nightlife/NightLife.css"
 
 function NightLife() {
 
@@ -90,13 +92,30 @@ function NightLife() {
 
     const { status } = useParams()
     console.log("status in night life", status);
+
+    const [inputval, setInputval] = useState("")
+
+
+    function handleSearch(e) {
+        setInputval(e.target.value)
+    }
     return (
         <>
-            <Header status={status} />
+            <Header search={handleSearch} status={status} />
+            {
+                inputval != "" ?
+                    <>
+                        <div className="search-box">
+                        <Restaurant inputvalue={inputval} status={status} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="night-life" />
+                        </div>
+                    </> :
+                    <>
+                    </>
+            }
             <Section status={status} page="night-life"/>
             <Filter />
             <DiscountImage />
-            <Restaurant status={status} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Nightlife Restaurants in Behala"}/>
+            <Restaurant inputvalue={inputval} status={status} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Nightlife Restaurants in Behala"} calling="night-life"/>
             <Footer />
         </>
     )

@@ -1,24 +1,39 @@
-// import { CiLocationOn } from "react-icons/ci"
 import { BsSearch } from "react-icons/bs"
 import "./Search.css"
 import location from "../../assets/zomato/location.jpg"
+import {useState} from "react"
 
-function Search() {
+import { RxCross1 } from "react-icons/rx"
+
+function Search(props) {
+    const [openSerach, setOpenSearch] = useState(false)
+
     return (
-        <div id="search-box">
+        <div id="search-box-main">
             <div id="location">
-                {/* <CiLocationOn id="location-icon" /> */}
                 <img id="location-icon" src={location} alt="" />
                 <div style={{ color: "grey" }}>Kolkata</div>
             </div>
             <div id="search-item">
-                <select name="" id=""></select>
-                <div id="vertical-line"></div>
-                <BsSearch style={{
+                <BsSearch onClick={()=>setOpenSearch(true)} style={{
                     color: "grey", height: "1.5rem",
                     width: "1.5rem"
                 }} />
-                <input type="search" name="" id="" placeholder="Search for restaurant, cuisine or a dish" />
+                {
+                    openSerach ?
+                        <>
+                            <div className="open-search">
+                                <div className="open-search-child">
+                                    <input onChange={props.search} type="search" placeholder="Search for restaurant, cuisine or a dish" />
+                                    <RxCross1 onClick={()=>setOpenSearch(false)}/>
+                                </div>
+                            </div>
+                        </> :
+                        <>
+                            {console.log("working")}
+                        </>
+                }
+                <input className="input-search" onChange={props.search} type="search" placeholder="Search for restaurant, cuisine or a dish" />
             </div>
         </div>
     )
