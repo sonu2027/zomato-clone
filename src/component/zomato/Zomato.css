@@ -11,6 +11,9 @@
 #zomato h2{
     display: none;
 }
+#zomato h1{
+    display: block;
+}
 
 #option{
     display: none;

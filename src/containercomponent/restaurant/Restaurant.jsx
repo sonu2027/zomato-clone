@@ -6,23 +6,52 @@ import { useEffect, useState } from "react"
 function Restaurant({ status, img, shopName, aboutShop, rating, price, time, title, calling, distance, address, inputvalue }) {
 
     const [elFound, setElFound] = useState(false)
-    const [element, setElement] = useState("")
-    const [index, setIndex] = useState(0)
-
-    function executeElement(e, i) {
-        setElement(e)
-        setIndex(i)
-        setElFound(true)
-    }
+    const [numberOfElementFound, setNumberOfElementFound] = useState([])
 
     useEffect(() => {
+        let x = false;
+        setNumberOfElementFound([])
         shopName.map((e, i) => {
-            if (e == inputvalue) {
+            // if (e.toUpperCase() == inputvalue.toUpperCase()) {
+            //     console.log("element found")
+            //     setNumberOfElementFound([i])
+            //     setElFound(true)
+            //     x = true
+            // }
+            // else if (
+            //     e.slice(0,1).toUpperCase() == inputvalue.toUpperCase() ||
+            //     e.slice(0,2).toUpperCase() == inputvalue.toUpperCase()  ||
+            //     e.slice(0,3).toUpperCase() == inputvalue.toUpperCase()  ||
+            //     e.slice(0,4).toUpperCase() == inputvalue.toUpperCase()  
+            // ) {
+            //     console.log("element found")
+            //     setNumberOfElementFound((s) => [...s, i])
+            //     x = true
+            // }
+            // else if (e.toUpperCase().startsWith(inputvalue.toUpperCase())) {
+            //     console.log("element found")
+            //     setNumberOfElementFound((s) => [...s, i])
+            //     x = true
+            // }
+            // else {
+            //     console.log("not matched any");
+            // }
+            if (e.toUpperCase().startsWith(inputvalue.toUpperCase())) {
                 console.log("element found")
-                executeElement(e, i)
+                setNumberOfElementFound((s) => [...s, i])
+                x = true
             }
         })
+        if (x == true) {
+            setElFound(true)
+        }
+        else {
+            setElFound(true)
+            setNumberOfElementFound([])
+        }
     }, [inputvalue])
+
+    console.log("numberOfElementFound", numberOfElementFound);
 
     return (
         <>
@@ -36,52 +65,64 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
                                 {
                                     calling == "delivery" ?
                                         <>
-                                            <RestaurantList
-                                                key={element}
-                                                image={img[index]}
-                                                shopName={shopName[index]}
-                                                aboutShop={aboutShop[index]}
-                                                rating={rating[index].toFixed(1)}
-                                                price={price[index]}
-                                                time={time[index]}
-                                                calling={calling}
-                                                status={status}
+                                            {
+                                                numberOfElementFound.map((e, i) =>
+                                                    <RestaurantList
+                                                        key={e}
+                                                        image={img[e]}
+                                                        shopName={shopName[e]}
+                                                        aboutShop={aboutShop[e]}
+                                                        rating={rating[e].toFixed(1)}
+                                                        price={price[e]}
+                                                        time={time[e]}
+                                                        calling={calling}
+                                                        status={status}
 
-                                            />
+                                                    />
+                                                )
+                                            }
                                         </> :
                                         <>
                                             {
                                                 calling == "dining-out" ?
                                                     <>
-                                                        <RestaurantList
-                                                            key={element}
-                                                            image={img[index]}
-                                                            shopName={shopName[index]}
-                                                            aboutShop={aboutShop[index]}
-                                                            rating={rating[index].toFixed(1)}
-                                                            price={price[index]}
-                                                            calling={calling}
-                                                            distance={distance[index]}
-                                                            address={address[index]}
-                                                            status={status}
+                                                        {
+                                                            numberOfElementFound.map((e, i) =>
+                                                                <RestaurantList
+                                                                    key={e}
+                                                                    image={img[e]}
+                                                                    shopName={shopName[e]}
+                                                                    aboutShop={aboutShop[e]}
+                                                                    rating={rating[e].toFixed(1)}
+                                                                    price={price[e]}
+                                                                    calling={calling}
+                                                                    distance={distance[e]}
+                                                                    address={address[e]}
+                                                                    status={status}
 
-                                                        />
+                                                                />
+                                                            )
+                                                        }
                                                     </> :
                                                     <>
                                                         <>
-                                                            <RestaurantList
-                                                                key={element}
-                                                                image={img[index]}
-                                                                shopName={shopName[index]}
-                                                                aboutShop={aboutShop[index]}
-                                                                rating={rating[index].toFixed(1)}
-                                                                price={price[index]}
-                                                                calling={calling}
-                                                                distance={distance[index]}
-                                                                address={address[index]}
-                                                                status={status}
+                                                            {
+                                                                numberOfElementFound.map((e, i) =>
+                                                                    <RestaurantList
+                                                                        key={e}
+                                                                        image={img[e]}
+                                                                        shopName={shopName[e]}
+                                                                        aboutShop={aboutShop[e]}
+                                                                        rating={rating[e]}
+                                                                        price={price[e]}
+                                                                        calling={calling}
+                                                                        distance={distance[e]}
+                                                                        address={address[e]}
+                                                                        status={status}
 
-                                                            />
+                                                                    />
+                                                                )
+                                                            }
                                                         </>
                                                     </>
                                             }

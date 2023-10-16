@@ -1,20 +1,10 @@
 import { BsSearch } from "react-icons/bs"
 import "./Search.css"
 import location from "../../assets/zomato/location.jpg"
-// import {useState } from "react"
 
 import { RxCross1 } from "react-icons/rx"
 
 function Search(props) {
-    // const [openSerach, setOpenSearch] = useState(false)
-
-    // useEffect(()=>{
-    //     console.log("useeffect is running");
-    //     if(props.search==""){
-    //         setOpenSearch(false)
-    //         console.log("useeffect showed action");
-    //     }
-    // })
 
     return (
         <div id="search-box-main">
@@ -28,10 +18,10 @@ function Search(props) {
                     width: "1.5rem"
                 }} />
                 {
-                    props.opensearch ?
+                    props.opensearch == true ?
                         <>
                             <div className="open-search">
-                            <RxCross1 className="cross-icon-open-search" onClick={props.deleteopensearch} />
+                                <RxCross1 className="cross-icon-open-search" onClick={props.deleteopensearch} />
                                 <div className="open-search-child">
                                     <div className="open-search-grand-child">
                                         <BsSearch style={{

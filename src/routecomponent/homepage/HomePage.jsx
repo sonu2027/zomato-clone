@@ -51,6 +51,7 @@ function HomePage() {
         setInputval(e.target.value)
     }
 
+
     return (
         <>
             <Header search={handleSearch} status={status} />
