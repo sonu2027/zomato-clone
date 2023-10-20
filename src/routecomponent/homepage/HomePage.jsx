@@ -25,9 +25,10 @@ import img16 from "../../assets/restaurant/sharmaSnacks.avif"
 import img17 from "../../assets/restaurant/kreamz.avif"
 import Filter from "../../component/filters/Filter"
 import Footer from "../../component/footer/Footer"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import "./HomePage.css"
+import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
 function HomePage() {
     const { status } = useParams()
@@ -51,16 +52,14 @@ function HomePage() {
         setInputval(e.target.value)
     }
 
-
     return (
         <>
             <Header search={handleSearch} status={status} />
-            {inputval}
             {
                 inputval != "" ?
                     <>
                         <div className="search-box">
-                            <Restaurant inputvalue={inputval} status={status || 0} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} time={time} title={"Best Restaurant in Kolkata"} calling="delivery" />
+                            <SerachRestaurant inputvalue={inputval} status={status || 0} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} time={time} title={"Best Restaurant in Kolkata"} calling="delivery" />
                         </div>
                     </> :
                     <>

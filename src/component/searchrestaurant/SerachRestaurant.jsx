@@ -1,10 +1,7 @@
-import "./Restaurant.css"
-
-import RestaurantList from "../../component/restaurantlist/RestaurantList"
+import "./SerachRestaurant.css"
 import { useEffect, useState } from "react"
-
-function Restaurant({ status, img, shopName, aboutShop, rating, price, time, title, calling, distance, address, inputvalue }) {
-
+import SearchRestaurantList from "../searchrestaurantlist/SearchRestaurantList"
+function SerachRestaurant({ status, img, shopName, aboutShop, rating, price, time, title, calling, distance, address, inputvalue }) {
     const [elFound, setElFound] = useState(false)
     const [numberOfElementFound, setNumberOfElementFound] = useState([])
 
@@ -12,30 +9,6 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
         let x = false;
         setNumberOfElementFound([])
         shopName.map((e, i) => {
-            // if (e.toUpperCase() == inputvalue.toUpperCase()) {
-            //     console.log("element found")
-            //     setNumberOfElementFound([i])
-            //     setElFound(true)
-            //     x = true
-            // }
-            // else if (
-            //     e.slice(0,1).toUpperCase() == inputvalue.toUpperCase() ||
-            //     e.slice(0,2).toUpperCase() == inputvalue.toUpperCase()  ||
-            //     e.slice(0,3).toUpperCase() == inputvalue.toUpperCase()  ||
-            //     e.slice(0,4).toUpperCase() == inputvalue.toUpperCase()  
-            // ) {
-            //     console.log("element found")
-            //     setNumberOfElementFound((s) => [...s, i])
-            //     x = true
-            // }
-            // else if (e.toUpperCase().startsWith(inputvalue.toUpperCase())) {
-            //     console.log("element found")
-            //     setNumberOfElementFound((s) => [...s, i])
-            //     x = true
-            // }
-            // else {
-            //     console.log("not matched any");
-            // }
             if (e.toUpperCase().startsWith(inputvalue.toUpperCase())) {
                 console.log("element found")
                 setNumberOfElementFound((s) => [...s, i])
@@ -55,8 +28,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
 
     return (
         <>
-            <div id="restaurant-image-main-divs">
-                <span>{title}</span>
+            <div id="restaurant-image-main-div">
                 <div className="restaurant-image">
                     {
                         elFound == true && inputvalue != "" ?
@@ -67,7 +39,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
                                         <>
                                             {
                                                 numberOfElementFound.map((e, i) =>
-                                                    <RestaurantList
+                                                    <SearchRestaurantList
                                                         key={e}
                                                         image={img[e]}
                                                         shopName={shopName[e]}
@@ -88,7 +60,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
                                                     <>
                                                         {
                                                             numberOfElementFound.map((e, i) =>
-                                                                <RestaurantList
+                                                                <SearchRestaurantList
                                                                     key={e}
                                                                     image={img[e]}
                                                                     shopName={shopName[e]}
@@ -108,7 +80,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
                                                         <>
                                                             {
                                                                 numberOfElementFound.map((e, i) =>
-                                                                    <RestaurantList
+                                                                    <SearchRestaurantList
                                                                         key={e}
                                                                         image={img[e]}
                                                                         shopName={shopName[e]}
@@ -130,32 +102,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
                                 }
                             </> :
                             <>
-                                {
-                                    calling == "delivery" ?
-                                        img.map((e, i) => <RestaurantList
-                                            key={e}
-                                            image={img[i]}
-                                            shopName={shopName[i]}
-                                            aboutShop={aboutShop[i]}
-                                            rating={rating[i].toFixed(1)}
-                                            price={price[i]}
-                                            time={time[i]}
-                                            calling={calling}
-                                            status={status}
-                                        />) :
-                                        img.map((e, i) => <RestaurantList
-                                            key={e}
-                                            image={img[i]}
-                                            shopName={shopName[i]}
-                                            aboutShop={aboutShop[i]}
-                                            rating={rating[i].toFixed(1)}
-                                            price={price[i]}
-                                            calling={calling}
-                                            distance={distance[i]}
-                                            address={address[i]}
-                                            status={status}
-                                        />)
-                                }
+                                <h1>Couldn't found any restaurant</h1>
                             </>
                     }
                 </div>
@@ -163,4 +110,4 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
         </>
     )
 }
-export default Restaurant
+export default SerachRestaurant

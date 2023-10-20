@@ -49,6 +49,7 @@ import img38 from "../../assets/nightlife/kebab.avif"
 import Restaurant from "../../containercomponent/restaurant/Restaurant"
 import { useState } from "react"
 import "../nightlife/NightLife.css"
+import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
 function NightLife() {
 
@@ -106,7 +107,7 @@ function NightLife() {
                 inputval != "" ?
                     <>
                         <div className="search-box">
-                        <Restaurant inputvalue={inputval} status={status} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="night-life" />
+                        <SerachRestaurant inputvalue={inputval} status={status} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="night-life" />
                         </div>
                     </> :
                     <>

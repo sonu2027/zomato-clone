@@ -5,8 +5,7 @@ import { MdOutlineDirections } from "react-icons/md";
 import { BsBookmarkPlus } from "react-icons/bs";
 import { PiShareFatLight } from "react-icons/pi";
 import ProductSection from "../../component/productlistingsectionbutton/ProductSection";
-// import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../homepage/HomePage.css";
 
 import img0 from "../../assets/restaurant/amburi.avif"
@@ -69,9 +68,8 @@ import Image36 from "../../assets/nightlife/cafe.avif"
 import Image37 from "../../assets/nightlife/royal.avif"
 import Image38 from "../../assets/nightlife/kebab.avif"
 
-import Restaurant from "../../containercomponent/restaurant/Restaurant";
-
-// import { Link } from "react-router-dom";
+// import Restaurant from "../../containercomponent/restaurant/Restaurant";
+import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant";
 
 function ProductListing() {
     const location = useLocation()
@@ -93,7 +91,6 @@ function ProductListing() {
 
 
     console.log("status and shopabme", status, shopName);
-    const [inputval, setInputval] = useState("")
     // const [elementFound, setElementFouns] = useState(false)
 
 
@@ -152,6 +149,7 @@ function ProductListing() {
     const NightLifedistance = [3.3, 1.2, 3.3, 1.2, 6.5, 3.8, 1.5, 1.8, 9, 2.6, 2.2, 1.9, 1.5, 1.2, 2, 3.6, 2.4, 3.2, 2.5, 4, 3.5, 4.9, 6.5, 3.8, 1.5, 1.8, 3.3, 1.2, 3.3, 1.2, 6.5, 3.8, 1.5, 1.8, 9, 2.6, 2.2, 1.9, 1.5]
     const NightLifeaddress = ["Enclave, Alipore, Kolkata", "Alipore, kolkata", "New Alipore, kolkata", "Encalve, Alipore, kolkata", "Taratala, kolkata", "Behela, kolkata", "Encalve, Alipore, kolkata", "Taratala, kolkata", "Encalve, Alipore, kolkata", "Alipore, kolkata", "Behela, kolkata", "Alipore, kolkata", "Taratala, kolkata", "New Alipore, kolkata", "Encalve, Alipore, kolkata", "Taratala, kolkata", "Behela, kolkata", "New Alipore, kolkata", "Behela, kolkata", "Encalve, Alipore, kolkata", "Alipore, kolkata", "New Alipore, kolkata", "Encalve, Alipore, kolkata", "Encalve, Alipore, kolkata", "Encalve, Alipore, kolkata", "Alipore, kolkata", "Enclave, Alipore, Kolkata", "Alipore, kolkata", "New Alipore, kolkata", "Encalve, Alipore, kolkata", "Taratala, kolkata", "Behela, kolkata", "Encalve, Alipore, kolkata", "Taratala, kolkata", "Encalve, Alipore, kolkata", "Alipore, kolkata", "Behela, kolkata", "Alipore, kolkata", "Taratala, kolkata", "Taratala, kolkata"]
 
+    const [inputval, setInputval] = useState("")
     function handleSearch(e) {
         setInputval(e.target.value)
     }
@@ -161,13 +159,12 @@ function ProductListing() {
             {calling == "delivery" ?
                 <>
                     <Header search={handleSearch} status={status} />
-                    {inputval}
                     {
                         inputval != "" ?
                             <>
                                 <div className="search-box">
                                     <div onClick={() => setInputval("")}>
-                                        <Restaurant inputvalue={inputval} status={status || 0} img={Img} shopName={ShopName} aboutShop={AboutShop} rating={Rating} price={Price} time={Time} title={"Best Restaurant in Kolkata"} calling="delivery" />
+                                        <SerachRestaurant inputvalue={inputval} status={status || 0} img={Img} shopName={ShopName} aboutShop={AboutShop} rating={Rating} price={Price} time={Time} title={"Best Restaurant in Kolkata"} calling="delivery" />
                                     </div>
                                 </div>
                             </> :
@@ -215,7 +212,7 @@ function ProductListing() {
                                         <>
                                             <div className="search-box">
                                                 <div onClick={() => setInputval("")}>
-                                                    <Restaurant inputvalue={inputval} status={status || 0} img={Img} shopName={ShopName} aboutShop={AboutShop} rating={Rating} price={Price} distance={Distance} title={"Best Restaurant in Kolkata"} address={Address} calling="dining-out" />
+                                                    <SerachRestaurant inputvalue={inputval} status={status || 0} img={Img} shopName={ShopName} aboutShop={AboutShop} rating={Rating} price={Price} distance={Distance} title={"Best Restaurant in Kolkata"} address={Address} calling="dining-out" />
                                                 </div>
                                             </div>
                                         </> :
@@ -261,7 +258,7 @@ function ProductListing() {
                                         <>
                                             <div className="search-box">
                                                 <div onClick={() => setInputval("")}>
-                                                    <Restaurant inputvalue={inputval} status={status || 0} img={NightLifeimg} shopName={NightLifeshopName} aboutShop={NightLifeaboutShop} rating={NightLiferating} price={NightLifeprice} title={"Best Restaurant in Kolkata"} calling="night-life" distance={NightLifedistance} address={NightLifeaddress} />
+                                                    <SerachRestaurant inputvalue={inputval} status={status || 0} img={NightLifeimg} shopName={NightLifeshopName} aboutShop={NightLifeaboutShop} rating={NightLiferating} price={NightLifeprice} title={"Best Restaurant in Kolkata"} calling="night-life" distance={NightLifedistance} address={NightLifeaddress} />
                                                 </div>
                                             </div>
                                         </> :

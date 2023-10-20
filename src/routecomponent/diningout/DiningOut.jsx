@@ -37,6 +37,7 @@ import Footer from "../../component/footer/Footer"
 import DiscountImage from "../../component/discountimage/DiscountImage"
 
 import "../homepage/HomePage.css"
+import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
 
 function DiningOut() {
@@ -70,7 +71,7 @@ function DiningOut() {
                 inputval != "" ?
                     <>
                         <div className="search-box">
-                        <Restaurant inputvalue={inputval} status={status} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" />
+                        <SerachRestaurant inputvalue={inputval} status={status} img={img} shopName={shopName} aboutShop={aboutShop} rating={rating} price={price} distance={distance} address={address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" />
                         </div>
                     </> :
                     <>

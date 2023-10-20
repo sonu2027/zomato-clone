@@ -11,10 +11,10 @@ function Zomato(props) {
             {props.status == 1 ? (
                 <>
                     <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/login/loggedin/${props.status}`}>
-                        <h1><i>Zomato</i></h1>
+                        <h2><i>Zomato</i></h2>
                     </Link>
                     <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/login/loggedin/${props.status}`}>
-                        <h2><i>Zomato</i></h2>
+                        <h1><i>Zomato</i></h1>
                     </Link>
                     {
                         getOption == true ?

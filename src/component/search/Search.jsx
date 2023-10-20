@@ -3,8 +3,16 @@ import "./Search.css"
 import location from "../../assets/zomato/location.jpg"
 
 import { RxCross1 } from "react-icons/rx"
+import { useState } from "react"
 
 function Search(props) {
+
+    const [openSearch, setOpenSearch] = useState(false)
+    console.log("opensearch", openSearch);
+
+    function handleEvent() {
+        setOpenSearch(false)
+    }
 
     return (
         <div id="search-box-main">
@@ -13,15 +21,11 @@ function Search(props) {
                 <div style={{ color: "grey" }}>Kolkata</div>
             </div>
             <div id="search-item">
-                <BsSearch onClick={props.setopensearch} style={{
-                    color: "grey", height: "1.5rem",
-                    width: "1.5rem"
-                }} />
                 {
-                    props.opensearch == true ?
+                    openSearch == true ?
                         <>
                             <div className="open-search">
-                                <RxCross1 className="cross-icon-open-search" onClick={props.deleteopensearch} />
+                                <RxCross1 className="cross-icon-open-search" onClick={handleEvent} />
                                 <div className="open-search-child">
                                     <div className="open-search-grand-child">
                                         <BsSearch style={{
@@ -34,7 +38,10 @@ function Search(props) {
                             </div>
                         </> :
                         <>
-                            {console.log("working")}
+                            <BsSearch onClick={() => setOpenSearch(true)} style={{
+                                color: "grey", height: "1.5rem",
+                                width: "1.5rem"
+                            }} />
                         </>
                 }
                 <input className="input-search" onChange={props.search} type="search" placeholder="Search for restaurant, cuisine or a dish" />

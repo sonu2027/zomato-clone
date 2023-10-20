@@ -1,0 +1,100 @@
+.restaurant-image {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2vw 1vw;
+  }
+  #restaurant-image-main-div {
+    margin: 2rem 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    row-gap: 2rem;
+  }
+  .restaurant-image img {
+    height: 18vw;
+    width: 27vw;
+    border-radius: 1rem;
+  }
+  #restaurant-image-main-div span {
+    font-size: 1.8rem;
+    color: rgb(34, 34, 34);
+    margin-left: 1.6vw;
+  }
+  .restaurant {
+    padding: 1vw;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #fbf8f8;
+    /* align-items:center; */
+    /* justify-content: center; */
+  }
+  .restaurant:hover {
+    box-shadow: 0 0 3px rgb(130, 129, 129);
+    cursor: pointer;
+  }
+  .item-parent {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+    width: 27vw;
+  }
+  .item-parent .item1, .item-parent .item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+  }
+  .item2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:end;
+    /* color: rgb(25, 25, 25); */
+  }
+  
+  @media screen and (max-width:975px){
+    #restaurant-image-main-div span{
+      font-size: 1.6rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .item-parent {
+      width: 44vw;
+    }
+    #restaurant-image-main-div {
+      margin: 2rem 1vw;
+    }
+    #restaurant-image-main-div span{
+      font-size: 1.4rem;
+    }
+    .restaurant-image img {
+      height: 26vw;
+      width: 44vw;
+    }
+    .restaurant-image {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 4vw 2.5vw;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .item-parent {
+      width: 92vw;
+    }
+    #restaurant-image-main-div {
+      margin: 2rem 2.5vw;
+    }
+    .restaurant-image img {
+      height: 50vw;
+      width: 92vw;
+    }
+    .restaurant-image {
+      grid-template-columns: 1fr;
+      grid-gap: 6vw;
+    }
+    .restaurant {
+      box-shadow: 0 0 3px rgb(130, 129, 129);
+    }
+  }
+  
