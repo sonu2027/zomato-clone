@@ -3,17 +3,16 @@ import "./Search.css"
 import location from "../../assets/zomato/location.jpg"
 
 import { RxCross1 } from "react-icons/rx"
-import { useState } from "react"
+import {useState } from "react"
 
 function Search(props) {
 
     const [openSearch, setOpenSearch] = useState(false)
-    console.log("opensearch", openSearch);
 
     function handleEvent() {
         setOpenSearch(false)
+        props.search("")
     }
-
     return (
         <div id="search-box-main">
             <div id="location">

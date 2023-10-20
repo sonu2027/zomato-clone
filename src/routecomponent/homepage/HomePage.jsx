@@ -49,8 +49,11 @@ function HomePage() {
     const [inputval, setInputval] = useState("")
 
     function handleSearch(e) {
-        setInputval(e.target.value)
+        if(e!=""){
+            setInputval(e.target.value)
+        }
     }
+    console.log("home page is running");
 
     return (
         <>

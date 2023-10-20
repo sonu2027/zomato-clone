@@ -5,7 +5,7 @@ import { MdOutlineDirections } from "react-icons/md";
 import { BsBookmarkPlus } from "react-icons/bs";
 import { PiShareFatLight } from "react-icons/pi";
 import ProductSection from "../../component/productlistingsectionbutton/ProductSection";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import "../homepage/HomePage.css";
 
 import img0 from "../../assets/restaurant/amburi.avif"
@@ -151,8 +151,16 @@ function ProductListing() {
 
     const [inputval, setInputval] = useState("")
     function handleSearch(e) {
-        setInputval(e.target.value)
+        if (e == "") {
+            setInputval("")
+        }
+        else {
+            setInputval(e.target.value)
+        }
     }
+
+    console.log("props.search", inputval);
+
 
     return (
         <>

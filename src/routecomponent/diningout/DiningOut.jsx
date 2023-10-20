@@ -61,7 +61,9 @@ function DiningOut() {
 
 
     function handleSearch(e) {
-        setInputval(e.target.value)
+        if(e!=""){
+            setInputval(e.target.value)
+        }
     }
 
     return (
