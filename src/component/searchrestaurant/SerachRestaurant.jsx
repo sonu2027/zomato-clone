@@ -1,7 +1,9 @@
 import "./SerachRestaurant.css"
 import { useEffect, useState } from "react"
 import SearchRestaurantList from "../searchrestaurantlist/SearchRestaurantList"
+
 function SerachRestaurant({ status, img, shopName, aboutShop, rating, price, time, title, calling, distance, address, inputvalue }) {
+    
     const [elFound, setElFound] = useState(false)
     const [numberOfElementFound, setNumberOfElementFound] = useState([])
 

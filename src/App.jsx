@@ -1,12 +1,14 @@
+import { useState } from "react"
 import "./App.css"
+import Bookmark from "./context/bookmark"
 import CustomRoutes from "./customroutes/CustomRoutes"
 
 function App() {
-
+  const [bookmarks, setBookmarks] = useState([])
   return (
-    <>
-    <CustomRoutes/>
-    </>
+    <Bookmark.Provider value={{ bookmarks, setBookmarks}}>
+      <CustomRoutes />
+    </Bookmark.Provider>
   )
 }
 

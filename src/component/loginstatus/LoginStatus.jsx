@@ -28,7 +28,9 @@ function LoginStatus(props) {
                             <div id="option">
                                 <button className="make-border-radius-8px-top">Profile</button>
                                 <button>Notifications</button>
+                                <Link to={`/login/loggedin/bookmark/${props.status}`}>
                                 <button>Bookmark</button>
+                                </Link>
                                 <button>Reviews</button>
                                 <button>Network</button>
                                 <button>Find Friends</button>
