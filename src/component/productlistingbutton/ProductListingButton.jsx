@@ -1,6 +1,9 @@
+// importing css
+import "./ProductListingButton.css"
+
 // importing icons from react-icons
 import { MdOutlineDirections } from "react-icons/md";
-import { BsBookmarkPlus } from "react-icons/bs";
+import { BsBookmarkPlus, BsFillBookmarkFill } from "react-icons/bs";
 import { PiShareFatLight } from "react-icons/pi";
 
 import { Link } from "react-router-dom";
@@ -17,8 +20,8 @@ function ProductListingButton(props) {
                 <>
                     {props.bookmarked == true ?
                         <>
-                            <button onClick={props.handleBookmark} style={{ backgroundColor: "rgb(255, 126, 139)" }}>
-                                <BsBookmarkPlus className="icon" />
+                            <button onClick={props.handleBookmark} >
+                                <BsFillBookmarkFill style={{ color: "rgb(255, 126, 139)" }} className="icon" />
                                 <span>Bookmark</span>
                             </button>
                         </> :
