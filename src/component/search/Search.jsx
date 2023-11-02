@@ -1,18 +1,23 @@
-import { BsSearch } from "react-icons/bs"
+// importing css
 import "./Search.css"
+
+// importing icons from react-icons
+import { BsSearch } from "react-icons/bs"
+import { RxCross1 } from "react-icons/rx"
+
+// importing location icon
 import location from "../../assets/zomato/location.jpg"
 
-import { RxCross1 } from "react-icons/rx"
-import {useState } from "react"
+// importing hooks
+import { useContext } from "react"
+
+// importing context api
+import openSearch from "../../context/openSearch"
 
 function Search(props) {
 
-    const [openSearch, setOpenSearch] = useState(false)
+    const { searchBox, setSearchBox } = useContext(openSearch)
 
-    function handleEvent() {
-        setOpenSearch(false)
-        props.search("")
-    }
     return (
         <div id="search-box-main">
             <div id="location">
@@ -21,10 +26,10 @@ function Search(props) {
             </div>
             <div id="search-item">
                 {
-                    openSearch == true ?
+                    searchBox == true ?
                         <>
                             <div className="open-search">
-                                <RxCross1 className="cross-icon-open-search" onClick={handleEvent} />
+                                <RxCross1 className="cross-icon-open-search" onClick={() => setSearchBox(false)} />
                                 <div className="open-search-child">
                                     <div className="open-search-grand-child">
                                         <BsSearch style={{
@@ -37,7 +42,7 @@ function Search(props) {
                             </div>
                         </> :
                         <>
-                            <BsSearch onClick={() => setOpenSearch(true)} style={{
+                            <BsSearch onClick={() => setSearchBox(true)} style={{
                                 color: "grey", height: "1.5rem",
                                 width: "1.5rem"
                             }} />

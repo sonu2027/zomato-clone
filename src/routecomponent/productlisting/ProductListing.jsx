@@ -15,7 +15,7 @@ import bookmark from "../../context/bookmark";
 import { Link } from "react-router-dom";
 
 // importing default hooks
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"
 
 // importing custom hooks
@@ -64,6 +64,14 @@ function ProductListing() {
 
     const { bookmarks, setBookmarks } = useContext(bookmark)
     const [bookmarked, setBookmarked] = useState(false)
+
+    useEffect(()=>{
+        bookmarks.map((e)=>{
+            if(e==shopName)
+                setBookmarked(true)
+        })
+    },[])
+
     function handleBookmark() {
         let foundItem = false
         if (!bookmarked) {

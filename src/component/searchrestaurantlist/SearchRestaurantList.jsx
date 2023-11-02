@@ -1,15 +1,26 @@
+// importing css
+import "./SearchRestaurantList.css"
+
+// importing components
 import Item1 from "../item1/Item1"
 import Item2 from "../item2/Item2"
-import "./SearchRestaurantList.css"
 import { Link } from "react-router-dom"
 
+// importing hooks
+import { useContext } from "react"
+
+// importing context api
+import openSearch from "../../context/openSearch"
+
 function SearchRestaurantList(props) {
-    
+
+    const { searchBox, setSearchBox } = useContext(openSearch)
+
     return (
         <>
             {
                 props.calling == "delivery" ?
-                    <div className="restaurant">
+                    <div onClick={() => setSearchBox(false)} className="restaurant">
                         <Link
                             style={{ textDecoration: "none" }}
                             to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.aboutShop}&rating=${props.rating}&price=${props.price}&time=${props.time}&calling=${props.calling}&img=${props.image}`}
@@ -33,7 +44,7 @@ function SearchRestaurantList(props) {
                         {
                             props.calling == "dining-out" ?
                                 <>
-                                    <div className="restaurant">
+                                    <div onClick={() => setSearchBox(false)} className="restaurant">
                                         <Link
                                             style={{ textDecoration: "none" }}
                                             to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.aboutShop}&rating=${props.rating}&price=${props.price}&distance=${props.distance}&calling=${props.calling}&address=${props.address}&img=${props.image}`}
@@ -55,7 +66,7 @@ function SearchRestaurantList(props) {
                                     </div>
                                 </> :
                                 <>
-                                    <div className="restaurant">
+                                    <div onClick={() => setSearchBox(false)} className="restaurant">
                                         <Link
                                             style={{ textDecoration: "none" }}
                                             to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.aboutShop}&rating=${props.rating}&price=${props.price}&distance=${props.distance}&calling=${props.calling}&address=${props.address}&img=${props.image}`}
