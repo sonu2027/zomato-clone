@@ -101,7 +101,7 @@ function useNightlifePageAsset() {
     "Octa",
     "Vaayu",
     "Trincas",
-    "Trincas",
+    "Bake Club",
     "The Bikers Cafe",
     "Lmnoq",
     "Warehouse Cafe",

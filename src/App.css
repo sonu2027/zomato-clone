@@ -6,3 +6,6 @@ body {
   font-family: sans-serif;
   /* border: 1px solid blue; */
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

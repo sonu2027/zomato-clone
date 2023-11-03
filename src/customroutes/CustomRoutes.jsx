@@ -5,6 +5,7 @@ import DiningOut from "../routecomponent/diningout/DiningOut"
 import NightLife from "../routecomponent/nightlife/NightLife"
 import ProductListing from "../routecomponent/productlisting/ProductListing"
 import BookmarkPage from "../routecomponent/Bookmark/BookmarkPage"
+import Profile from "../routecomponent/profile/Profile"
 
 function CustomRoutes(){
     return (
@@ -16,6 +17,7 @@ function CustomRoutes(){
             <Route path="/nightlife/:status" element={<NightLife/>}/>
             <Route path="/login/loggedin" element={<ProductListing/>}/>
             <Route path="/login/loggedin/bookmark/:status" element={<BookmarkPage/>}/>
+            <Route path="/login/loggedin/profile/:status" element={<Profile/>}/>
         </Routes>
     )
 }

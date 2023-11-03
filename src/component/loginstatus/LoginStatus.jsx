@@ -26,7 +26,9 @@ function LoginStatus(props) {
                             <MdOutlineKeyboardArrowUp onClick={() => setGetOption(true)}
                                 className="after-login-option" />
                             <div id="option">
+                                <Link to={`/login/loggedin/profile/${props.status}`}>
                                 <button className="make-border-radius-8px-top">Profile</button>
+                                </Link>
                                 <button>Notifications</button>
                                 <Link to={`/login/loggedin/bookmark/${props.status}`}>
                                 <button>Bookmark</button>

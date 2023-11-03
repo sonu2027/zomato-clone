@@ -73,14 +73,14 @@ function useDiningoutPageAsset() {
     "Tewari Brothers",
     "Sharma Snacks",
     "Kreamz",
-    "Mongini",
-    "Khanti Bangal",
-    "Subwa",
-    "Machhli Baba Frie",
-    "Tea Junctio",
-    "Tewari Brother",
-    "Sharma Snack",
-    "Kream",
+    "Jai Jawan",
+    "Khanti Non-Veg",
+    "Subway Restaurant",
+    "Machhli Baba",
+    "Nort Indian",
+    "The cake shop",
+    "Wow! China",
+    "Momos",
   ];
 
   const aboutShop = [
@@ -108,8 +108,8 @@ function useDiningoutPageAsset() {
     "Mishti, North Indian, South Indian, Fast Food, Shake, Street Foo",
     "Mishti, Street Food, South Indian, North India",
     "Bakery, Desserts, Street Foo",
-    "Mishti, Street Food, South Indian, North India",
-    "Bakery, Desserts, Street Foo",
+    "Chinise, chowmin",
+    "Momos, Street Food",
   ];
 
   const rating = [
