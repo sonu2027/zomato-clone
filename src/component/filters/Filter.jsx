@@ -1,9 +1,9 @@
 import "./Filter.css"
 import f1 from "../../assets/filters/filter.jpg"
-function Filter() {
+function Filter(props) {
     return (
         <div className="filter-parent">
-            <button className="filter">
+            <button onClick={props.setFilter} className="filter">
                 <img src={f1} alt="" />
                 <div>Filters</div>
             </button>
