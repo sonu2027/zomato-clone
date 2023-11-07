@@ -6,21 +6,25 @@ import applyFilter from "../../context/applyFilter"
 
 function Restaurant({ status, img, shopName, aboutShop, rating, price, time, title, calling, distance, address, inputvalue, topApply, bookmarkcontent = false }) {
 
-    console.log("status: ", status, "img: ", img, "shopNmae:", shopName, "aboutshop:", aboutShop, "Rating:", rating, "price:", price, "time:", time, "title:", title, "calling", calling, "distance:", distance, "address:", address);
+    // console.log("status: ", status, "img: ", img, "shopNmae:", shopName, "aboutshop:", aboutShop, "Rating:", rating, "price:", price, "time:", time, "title:", title, "calling", calling, "distance:", distance, "address:", address);
 
     const { apply, toApply } = useContext(applyFilter)
     const [index, setIndex] = useState([])
-    const [index2, setIndex2] = useState([])
 
     useEffect(() => {
+
         console.log("calling useEffect");
         setIndex([])
-        setIndex2([])
+        let index1 = []
+        let index2 = []
+        let index3 = []
+        let index2Execution = false
+        let index3Execution = false
+
         // filter for sort by
         if (toApply[0] == "Popularity") {
             rating.map((e, i) => {
-                setIndex((s) => [...s, i])
-                setIndex2((s) => [...s, i])
+                index1.push(i)
             })
         }
         else if (toApply[0] == "Rating: High to Low") {
@@ -38,8 +42,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
             sortRating1.map((e, i) => {
                 sortRating2.map((ele, ind) => {
                     if (ele == e && ele != -1) {
-                        setIndex((s) => [...s, ind])
-                        setIndex2((s) => [...s, ind])
+                        index1.push(ind)
                         sortRating2[ind] = -1;
                     }
                 })
@@ -60,8 +63,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
             sortTime1.map((e, i) => {
                 sortTime2.map((ele, ind) => {
                     if (ele == e && ele != -1) {
-                        setIndex((s) => [...s, ind])
-                        setIndex2((s) => [...s, ind])
+                        index1.push(ind)
                         sortTime2[ind] = -1;
                     }
                 })
@@ -83,8 +85,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
             sortCost2.map((e, i) => {
                 sortCost1.map((ele, ind) => {
                     if (ele == e && ele != -1) {
-                        setIndex((s) => [...s, ind])
-                        setIndex2((s) => [...s, ind])
+                        index1.push(ind)
                         sortCost1[ind] = -1;
                     }
                 })
@@ -106,8 +107,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
             sortCost2.map((e, i) => {
                 sortCost1.map((ele, ind) => {
                     if (ele == e && ele != -1) {
-                        setIndex((s) => [...s, ind])
-                        setIndex2((s) => [...s, ind])
+                        index1.push(ind)
                         sortCost1[ind] = -1;
                     }
                 })
@@ -129,8 +129,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
                 sortDistance1.map((e, i) => {
                     sortDistance2.map((ele, ind) => {
                         if (ele == e && ele != -1) {
-                            setIndex((s) => [...s, ind])
-                            setIndex2((s) => [...s, ind])
+                            index1.push(ind)
                             sortDistance2[ind] = -1;
                         }
                     })
@@ -138,35 +137,57 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
             }
             else {
                 rating.map((e, i) => {
-                    setIndex((s) => [...s, i])
-                    setIndex2((s) => [...s, i])
+                    index1.push(i)
                 })
             }
         }
 
-        console.log("index: ", index);
+        console.log("index1: ", index1);
+
+        if (toApply[1] > 0) {
+            index2 = index1.filter((e) => {
+                if (rating[e] >= toApply[1]) {
+                    return e
+                }
+            })
+            index2Execution = true
+        }
+
         console.log("index2: ", index2);
 
-        // if (toApply[1] > 0) {
-        //     setIndex((s) => index2.filter((e) => {
-        //         if (rating[e] >= toApply[1]) {
-        //             return e
-        //         }
-        //     }))
-        // }
+        if (toApply[2] > 0) {
+            index3 = index2.filter((e) => {
+                if (price[e] >= toApply[2]) {
+                    return e
+                }
+            })
+            index3Execution = true
+        }
 
-        // if (toApply[2] > 0) {
-        //     setIndex((s) => index2.filter((e) => {
-        //         if (price[e] >= toApply[2]) {
-        //             return e
-        //         }
-        //     }))
-        // }
+        console.log("index3: ", index3);
+
+        if (index2.length == 0 && index3.length == 0 && index2Execution == false && index3Execution == false) {
+            setIndex((s) =>index1.filter((e) => { return e }))
+        }
+        else if (index2.length == 0 && index3.length == 0 && index2Execution == true && index3Execution == true) {
+            setIndex([])
+        }
+        else if (index3.length == 0 && index3Execution == false) {
+            setIndex((s) => index2.filter((e) => { return e }))
+
+        }
+        else if (index3.length == 0 && index3Execution == true) {
+            setIndex([])
+        }
+        else {
+            setIndex((s) => index3.filter((e) => { return e }))
+        }
 
     }, [toApply])
 
     console.log("toApply in restaurant: ", toApply);
     console.log("apply in restaurant: ", apply);
+    console.log("index useeffect: ", index);
 
     return (
         <>

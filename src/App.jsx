@@ -16,10 +16,11 @@ function App() {
   const [price, setPrice] = useState(0)
 
   const [selectSort, setSelectSort] = useState("Popularity")
-  const [apply, setApply]=useState(false)
+  const [apply, setApply] = useState(false)
   const [toApply, setToApply] = useState(["Popularity", range, price])
+
   return (
-    <ApplyFilter.Provider value={{apply, setApply, toApply, setToApply, rangeVal, setRangeVal, range, setRange, costVal, setCostVal, price, setPrice, selectSort, setSelectSort }}>
+    <ApplyFilter.Provider value={{ apply, setApply, toApply, setToApply, rangeVal, setRangeVal, range, setRange, costVal, setCostVal, price, setPrice, selectSort, setSelectSort}}>
       <openSearch.Provider value={{ searchBox, setSearchBox }}>
         <Bookmark.Provider value={{ bookmarks, setBookmarks }}>
           <CustomRoutes />

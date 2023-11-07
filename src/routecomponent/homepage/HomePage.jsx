@@ -13,14 +13,15 @@ import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
 // importing default hooks
 import { useParams } from "react-router-dom"
-import {useState } from "react"
+import { useContext, useState } from "react"
 
 // importing custom hooks
 import useHomepageAsset from "../../hooks/useHomepageAssets"
 import FilterOption from "../../component/filteroption/FilterOption"
 
-
 function HomePage() {
+
+    
 
     // custom hooks
     let obj = useHomepageAsset()
@@ -30,6 +31,7 @@ function HomePage() {
     const [inputval, setInputval] = useState("")
     const [filter, setFilter] = useState(false)
 
+
     function handleSearch(e) {
         if (e != "") {
             setInputval(e.target.value)
@@ -37,11 +39,11 @@ function HomePage() {
     }
 
     function handleFilter() {
-        if(filter==true){
-            document.body.style.overflow="visible"
+        if (filter == true) {
+            document.body.style.overflow = "visible"
         }
-        else{
-            document.body.style.overflow="hidden"
+        else {
+            document.body.style.overflow = "hidden"
         }
         setFilter(!filter)
     }
@@ -62,10 +64,11 @@ function HomePage() {
             <Section status={status} page={"delivery"} />
             <Filter setFilter={handleFilter} />
             {
-                filter && <FilterOption passing={"delivery"} setFilter={handleFilter}/>
+                filter && <FilterOption passing={"delivery"} setFilter={handleFilter} />
             }
             <ProductType />
             <TopBrand status={status} />
+
             <Restaurant inputvalue={inputval} status={status || 0} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} time={obj.time} title={"Best Restaurant in Kolkata"} calling="delivery" />
             <Footer />
         </>

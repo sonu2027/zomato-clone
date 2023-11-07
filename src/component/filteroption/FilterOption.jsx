@@ -180,7 +180,7 @@ function FilterOption(props) {
 
                 <div className="control">
                     <button onClick={() => { setToApply(["Popularity", 0, 0]), setApply(false) }} style={{ border: "none", fontSize: "1.1rem", backgroundColor: "transparent" }}>Clear all</button>
-                    <button onClick={() => { setToApply([selectSort, range, price]), setApply(true) }} className="apply">Apply</button>
+                    <button onClick={() => { setToApply([selectSort, range, price]), setApply(true), props.setFilter() }} className="apply">Apply</button>
                 </div>
 
             </div>
