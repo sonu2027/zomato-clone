@@ -13,15 +13,33 @@ import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
 // importing default hooks
 import { useParams } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 // importing custom hooks
 import useHomepageAsset from "../../hooks/useHomepageAssets"
 import FilterOption from "../../component/filteroption/FilterOption"
+import applyFilter from "../../context/applyFilter"
+import { apply } from "file-loader"
 
 function HomePage() {
 
-    
+    const { toApply, setApply } = useContext(applyFilter)
+    const [brand, setBrand] = useState(true)
+
+    useEffect(() => {
+        if (toApply[0] != "Popularity") {
+            setBrand(false)
+        }
+        else if (toApply[1] > 0) {
+            setBrand(false)
+        }
+        else if (toApply[2] > 0) {
+            setBrand(false)
+        }
+        else {
+            setBrand(true)
+        }
+    }, [toApply])
 
     // custom hooks
     let obj = useHomepageAsset()
@@ -66,8 +84,13 @@ function HomePage() {
             {
                 filter && <FilterOption passing={"delivery"} setFilter={handleFilter} />
             }
-            <ProductType />
-            <TopBrand status={status} />
+            {
+                brand &&
+                <>
+                    <ProductType />
+                    <TopBrand status={status} />
+                </>
+            }
 
             <Restaurant inputvalue={inputval} status={status || 0} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} time={obj.time} title={"Best Restaurant in Kolkata"} calling="delivery" />
             <Footer />

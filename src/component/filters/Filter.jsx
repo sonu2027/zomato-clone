@@ -1,15 +1,73 @@
 import "./Filter.css"
 import f1 from "../../assets/filters/filter.jpg"
+import applyFilter from "../../context/applyFilter"
+import { useContext, useEffect, useState } from "react"
+import { RxCross1 } from "react-icons/rx"
 function Filter(props) {
+    const { toApply, setToApply, setRangeVal, setRange, countFilter, setCountFilter } = useContext(applyFilter)
+    const [rating, setRating] = useState([false, 0])
+    useEffect(() => {
+        let count = 0;
+        toApply.map((e) => {
+            if (e != "Popularity" && e != 0) {
+                count++
+            }
+        })
+        setCountFilter(count)
+        if (toApply[1] > 0) {
+            setRating([true, toApply[1]])
+        }
+        else {
+            setRating([false, 0])
+        }
+    }, [toApply])
+    function handleRating() {
+        setRating([false, 0])
+        const modifiedToApply = [...toApply];
+        modifiedToApply[1] = 0;
+        setRange(0)
+        setRangeVal(0)
+        setToApply(modifiedToApply);
+    }
+    function handleRating2() {
+        const modifiedToApply = [...toApply];
+        modifiedToApply[1] = 4;
+        setRangeVal(8)
+        setRange(4)
+        setToApply(modifiedToApply)
+    }
     return (
         <div className="filter-parent">
-            <button onClick={props.setFilter} className="filter">
-                <img src={f1} alt="" />
-                <div>Filters</div>
-            </button>
-            <button className="filter">
-                Rating: 4.0+
-            </button>
+            {
+                countFilter == 0 ?
+                    <>
+                        <button onClick={props.setFilter} className="filter">
+                            <img src={f1} alt="" />
+                            <div>Filters</div>
+                        </button>
+                    </> :
+                    <>
+                        <button style={{padding:"9px 16px"}} onClick={props.setFilter} className="filter">
+                            {/* <img src={f1} alt="" /> */}
+                            <div style={{backgroundColor:"rgb(239, 79, 95)", color:"#fff", padding:"3px 6px", borderRadius:"4px"}}>{countFilter}</div>
+                            <div>Filters</div>
+                        </button>
+                    </>
+            }
+            {
+                rating[0] == true ?
+                    <>
+                        <button onClick={handleRating} style={{ backgroundColor: "rgb(239, 79, 95)", color: "#fff" }} className="filter">
+                            Rating: {rating[1].toFixed(1)}+
+                            <RxCross1 />
+                        </button>
+                    </> :
+                    <>
+                        <button onClick={handleRating2} className="filter">
+                            Rating: 4.0+
+                        </button>
+                    </>
+            }
             <button className="filter">
                 Pure Veg
             </button>

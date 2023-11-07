@@ -4,7 +4,7 @@ import RestaurantList from "../../component/restaurantlist/RestaurantList"
 import { useContext, useEffect, useState } from "react"
 import applyFilter from "../../context/applyFilter"
 
-function Restaurant({ status, img, shopName, aboutShop, rating, price, time, title, calling, distance, address, inputvalue, topApply, bookmarkcontent = false }) {
+function Restaurant({ status, img, shopName, aboutShop, rating, price, time, title, calling, distance, address, inputvalue, bookmarkcontent = false }) {
 
     // console.log("status: ", status, "img: ", img, "shopNmae:", shopName, "aboutshop:", aboutShop, "Rating:", rating, "price:", price, "time:", time, "title:", title, "calling", calling, "distance:", distance, "address:", address);
 
@@ -147,7 +147,7 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
         if (toApply[1] > 0) {
             index2 = index1.filter((e) => {
                 if (rating[e] >= toApply[1]) {
-                    return e
+                    return e !== undefined
                 }
             })
             index2Execution = true
@@ -156,31 +156,40 @@ function Restaurant({ status, img, shopName, aboutShop, rating, price, time, tit
         console.log("index2: ", index2);
 
         if (toApply[2] > 0) {
-            index3 = index2.filter((e) => {
-                if (price[e] >= toApply[2]) {
-                    return e
-                }
-            })
+            if (index2.length == 0) {
+                index3 = index1.filter((e) => {
+                    if (price[e] >= toApply[2]) {
+                        return e !== undefined
+                    }
+                })
+            }
+            else {
+                index3 = index2.filter((e) => {
+                    if (price[e] >= toApply[2]) {
+                        return e !== undefined
+                    }
+                })
+            }
             index3Execution = true
         }
 
         console.log("index3: ", index3);
 
         if (index2.length == 0 && index3.length == 0 && index2Execution == false && index3Execution == false) {
-            setIndex((s) =>index1.filter((e) => { return e }))
+            setIndex((s) => index1.filter((e) => e !== undefined))
         }
         else if (index2.length == 0 && index3.length == 0 && index2Execution == true && index3Execution == true) {
             setIndex([])
         }
         else if (index3.length == 0 && index3Execution == false) {
-            setIndex((s) => index2.filter((e) => { return e }))
+            setIndex((s) => index2.filter((e) => e !== undefined))
 
         }
         else if (index3.length == 0 && index3Execution == true) {
             setIndex([])
         }
         else {
-            setIndex((s) => index3.filter((e) => { return e }))
+            setIndex((s) => index3.filter((e) => e !== undefined))
         }
 
     }, [toApply])

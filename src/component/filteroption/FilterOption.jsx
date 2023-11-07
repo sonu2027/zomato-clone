@@ -179,8 +179,16 @@ function FilterOption(props) {
                 <hr style={{ overflow: "hidden", color: "yellow", width: "100%", border: "1px solid #fff" }} />
 
                 <div className="control">
-                    <button onClick={() => { setToApply(["Popularity", 0, 0]), setApply(false) }} style={{ border: "none", fontSize: "1.1rem", backgroundColor: "transparent" }}>Clear all</button>
-                    <button onClick={() => { setToApply([selectSort, range, price]), setApply(true), props.setFilter() }} className="apply">Apply</button>
+
+                    <button
+                        onClick={() => { setToApply(["Popularity", 0, 0]), setRangeVal(0), setCostVal(0), setRange(0), setPrice(0), setApply(false), setSelectSort("Popularity"), props.setFilter() }}
+                        style={{ border: "none", fontSize: "1.1rem", backgroundColor: "transparent" }}
+                    >Clear all</button>
+
+                    <button
+                        onClick={() => { setToApply([selectSort, range, price]), setApply(true), props.setFilter() }}
+                        className="apply"
+                    >Apply</button>
                 </div>
 
             </div>
