@@ -1,33 +1,33 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import "./FilterOption.css"
 import { RxCross1 } from "react-icons/rx"
+import applyFilter from "../../context/applyFilter"
 function FilterOption(props) {
 
     const [cost, showCost] = useState(false)
     const [rating, showRating] = useState(false)
     const [sort, showSortBy] = useState(true)
 
-    const [rangeVal, setRangeVal] = useState(0)
-    const [range, setRange] = useState(0)
-
-    const [costVal, setCostVal] = useState(49)
-    const [price, setPrice] = useState(0)
-
-    const [selectSort, setSelectSort] = useState("Popularity")
+    const { apply, setApply, toApply, setToApply, rangeVal, setRangeVal, range, setRange, costVal, setCostVal, price, setPrice, selectSort, setSelectSort } = useContext(applyFilter)
 
     useEffect(() => {
         setRange(rangeVal / 2)
         setPrice(costVal * 100)
     }, [rangeVal, costVal])
 
+
+    console.log("toApply: ", toApply);
+
     return (
         <div className="filter-option">
             <div className="child-div">
+
                 <div className="child-div-filter">
                     <h2>Filters</h2>
                     <RxCross1 className="cross-icon" onClick={props.setFilter} />
                 </div>
                 <hr style={{ overflow: "hidden", color: "yellow", width: "100%", border: "1px solid #fff" }} />
+
                 <div className="container">
                     <div className="box1">
                         <button onClick={() => { showRating(false), showCost(false), showSortBy(true) }} className="box1-button">
@@ -75,22 +75,45 @@ function FilterOption(props) {
                                 >Rating: High to Low</label>
                             </div>
 
-                            <div
-                                onClick={() => setSelectSort("Delivery Time")}
-                                className="box"
-                            >
-                                <input
-                                    onChange={() => setSelectSort("Delivery Time")}
-                                    checked={selectSort == "Delivery Time"}
-                                    type="radio"
-                                    name="sorting"
-                                    id="deliverytime"
-                                />
-                                &nbsp;
-                                <label
-                                    htmlFor="deliverytime"
-                                >Delivery Time</label>
-                            </div>
+                            {
+                                props.passing == "delivery" ?
+                                    <>
+                                        <div
+                                            onClick={() => setSelectSort("Delivery Time")}
+                                            className="box"
+                                        >
+                                            <input
+                                                onChange={() => setSelectSort("Delivery Time")}
+                                                checked={selectSort == "Delivery Time"}
+                                                type="radio"
+                                                name="sorting"
+                                                id="deliverytime"
+                                            />
+                                            &nbsp;
+                                            <label
+                                                htmlFor="deliverytime"
+                                            >Delivery Time</label>
+                                        </div>
+                                    </> :
+                                    <>
+                                        <div
+                                            onClick={() => setSelectSort("Distance")}
+                                            className="box"
+                                        >
+                                            <input
+                                                onChange={() => setSelectSort("Distance")}
+                                                checked={selectSort == "Distance"}
+                                                type="radio"
+                                                name="sorting"
+                                                id="distance"
+                                            />
+                                            &nbsp;
+                                            <label
+                                                htmlFor="distance"
+                                            >Distance</label>
+                                        </div>
+                                    </>
+                            }
 
                             <div
                                 onClick={() => setSelectSort("Cost: Low to High")}
@@ -154,10 +177,12 @@ function FilterOption(props) {
                     }
                 </div>
                 <hr style={{ overflow: "hidden", color: "yellow", width: "100%", border: "1px solid #fff" }} />
+
                 <div className="control">
-                    <button style={{ border: "none", fontSize: "1.1rem", backgroundColor: "transparent" }}>Clear all</button>
-                    <button className="apply">Apply</button>
+                    <button onClick={() => { setToApply(["Popularity", 0, 0]), setApply(false) }} style={{ border: "none", fontSize: "1.1rem", backgroundColor: "transparent" }}>Clear all</button>
+                    <button onClick={() => { setToApply([selectSort, range, price]), setApply(true) }} className="apply">Apply</button>
                 </div>
+
             </div>
         </div>
     )

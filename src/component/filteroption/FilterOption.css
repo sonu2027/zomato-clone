@@ -1,3 +1,14 @@
+.filter-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 23vw;
+  bottom: 5%;
+  z-index: 1;
+  background-color: #f6f6f6;
+  border-radius: 1rem;
+}
 .filter-option .container {
   display: flex;
   column-gap: 3rem;
@@ -41,17 +52,6 @@
   width: 50vw;
   row-gap: 2rem;
   margin: 2rem 0;
-}
-.filter-option {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  left: 23vw;
-  bottom: 5%;
-  z-index: 1;
-  background-color: #f6f6f6;
-  border-radius: 1rem;
 }
 .filter-option .child-div-filter {
   padding: 0 2rem;
@@ -131,9 +131,13 @@
     left: 0;
     bottom: 0;
     height: 100vh;
+    top: 4rem;
+    border-radius: 1rem;
   }
   .filter-option .child-div {
     width: 100vw;
+    height: 99vh;
+    margin-top: 5rem;
   }
   .filter-option .child-div-filter,
   .filter-option .control {

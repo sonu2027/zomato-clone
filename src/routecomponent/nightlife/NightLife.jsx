@@ -17,6 +17,8 @@ import useNightlifePageAsset from "../../hooks/useNightlifePageAsset"
 import { useParams } from "react-router-dom"
 import { useState } from "react"
 
+import FilterOption from "../../component/filteroption/FilterOption"
+
 function NightLife() {
 
     // custom hooks
@@ -33,6 +35,17 @@ function NightLife() {
         }
     }
 
+    const [filter, setFilter] = useState(false)
+    function handleFilter() {
+        if (filter == true) {
+            document.body.style.overflow = "visible"
+        }
+        else {
+            document.body.style.overflow = "hidden"
+        }
+        setFilter(!filter)
+    }
+
     return (
         <>
             <Header search={handleSearch} status={status} />
@@ -47,7 +60,10 @@ function NightLife() {
                     </>
             }
             <Section status={status} page="night-life" />
-            <Filter />
+            <Filter setFilter={handleFilter}/>
+            {
+                filter && <FilterOption passing={"nightlife"} setFilter={handleFilter} />
+            }
             <DiscountImage />
             <Restaurant inputvalue={inputval} status={status} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} distance={obj.distance} address={obj.address} title={"Nightlife Restaurants in Behala"} calling="night-life" />
             <Footer />

@@ -13,7 +13,7 @@ import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
 // importing default hooks
 import { useParams } from "react-router-dom"
-import { useState } from "react"
+import {useState } from "react"
 
 // importing custom hooks
 import useHomepageAsset from "../../hooks/useHomepageAssets"
@@ -62,7 +62,7 @@ function HomePage() {
             <Section status={status} page={"delivery"} />
             <Filter setFilter={handleFilter} />
             {
-                filter && <FilterOption setFilter={handleFilter}/>
+                filter && <FilterOption passing={"delivery"} setFilter={handleFilter}/>
             }
             <ProductType />
             <TopBrand status={status} />

@@ -17,6 +17,8 @@ import useDiningoutPageAsset from "../../hooks/useDiningoutPageAsset"
 import { useParams } from "react-router-dom"
 import { useState } from "react"
 
+import FilterOption from "../../component/filteroption/FilterOption"
+
 
 function DiningOut() {
 
@@ -26,6 +28,18 @@ function DiningOut() {
     // default hooks
     const { status } = useParams()
     const [inputval, setInputval] = useState("")
+
+    const [filter, setFilter] = useState(false)
+
+    function handleFilter() {
+        if (filter == true) {
+            document.body.style.overflow = "visible"
+        }
+        else {
+            document.body.style.overflow = "hidden"
+        }
+        setFilter(!filter)
+    }
 
 
     function handleSearch(e) {
@@ -49,7 +63,10 @@ function DiningOut() {
             }
             <Section status={status} page="dining-out" />
             {inputval}
-            <Filter />
+            <Filter setFilter={handleFilter} />
+            {
+                filter && <FilterOption passing={"diningout"} setFilter={handleFilter} />
+            }
             <DiscountImage />
             <Restaurant inputvalue={inputval} status={status} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} distance={obj.distance} address={obj.address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" />
             <Footer />

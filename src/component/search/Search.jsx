@@ -9,7 +9,7 @@ import { RxCross1 } from "react-icons/rx"
 import location from "../../assets/zomato/location.jpg"
 
 // importing hooks
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 
 // importing context api
 import openSearch from "../../context/openSearch"
@@ -17,6 +17,15 @@ import openSearch from "../../context/openSearch"
 function Search(props) {
 
     const { searchBox, setSearchBox } = useContext(openSearch)
+
+    useEffect(() => {
+        if (searchBox == true) {
+            document.body.style.overflow="hidden"
+        }
+        else {
+            document.body.style.overflow="auto"
+        }
+    }, [searchBox])
 
     return (
         <div id="search-box-main">

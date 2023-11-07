@@ -148,18 +148,18 @@ function BookmarkPage() {
 
             <Restaurant inputvalue="" status={1} img={img1} shopName={shopName1} aboutShop={aboutShop1} rating={rating1} price={price1} time={time1} title={
                 img1.length > 0 || img2.length > 0 || img3.length > 0 || img4.length > 0 ? "Bookmarks" : "You haven't add any restaurant to bookmark"
-            } calling="delivery" />
+            } calling="delivery" bookmarkcontent={true}/>
 
             {
                 shopName4.length > 0 ?
-                    <Restaurant inputvalue="" status={1} img={img4} shopName={shopName4} aboutShop={aboutShop4} rating={rating4} price={price4} time={time4} title={""} calling="delivery" /> : null
+                    <Restaurant inputvalue="" status={1} img={img4} shopName={shopName4} aboutShop={aboutShop4} rating={rating4} price={price4} time={time4} title={""} calling="delivery" bookmarkcontent={true}/> : null
             }
 
             {
                 shopName2.length > 0 ?
-                    <Restaurant inputvalue="" status={1} img={img2} shopName={shopName2} aboutShop={aboutShop2} rating={rating2} price={price2} distance={distance2} address={address2} title={""} calling="dining-out" /> : null
+                    <Restaurant inputvalue="" status={1} img={img2} shopName={shopName2} aboutShop={aboutShop2} rating={rating2} price={price2} distance={distance2} address={address2} title={""} calling="dining-out" bookmarkcontent={true}/> : null
             }
-            <Restaurant inputvalue="" status={1} img={img3} shopName={shopName3} aboutShop={aboutShop3} rating={rating3} price={price3} distance={distance3} address={address3} title={""} calling="night-life" />
+            <Restaurant inputvalue="" status={1} img={img3} shopName={shopName3} aboutShop={aboutShop3} rating={rating3} price={price3} distance={distance3} address={address3} title={""} calling="night-life" bookmarkcontent={true}/>
 
             <Footer />
         </div>
