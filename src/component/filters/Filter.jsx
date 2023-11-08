@@ -4,7 +4,7 @@ import applyFilter from "../../context/applyFilter"
 import { useContext, useEffect, useState } from "react"
 import { RxCross1 } from "react-icons/rx"
 function Filter(props) {
-    const { toApply, setToApply, setRangeVal, setRange, countFilter, setCountFilter } = useContext(applyFilter)
+    const { toApply, setToApply, setRangeVal, setRange, countFilter, setCountFilter, setApply } = useContext(applyFilter)
     const [rating, setRating] = useState([false, 0])
     useEffect(() => {
         let count = 0;
@@ -23,14 +23,14 @@ function Filter(props) {
     }, [toApply])
     function handleRating() {
         setRating([false, 0])
-        const modifiedToApply = [...toApply];
+        let modifiedToApply = [...toApply];
         modifiedToApply[1] = 0;
         setRange(0)
         setRangeVal(0)
         setToApply(modifiedToApply);
     }
     function handleRating2() {
-        const modifiedToApply = [...toApply];
+        let modifiedToApply = [...toApply];
         modifiedToApply[1] = 4;
         setRangeVal(8)
         setRange(4)
@@ -63,7 +63,7 @@ function Filter(props) {
                         </button>
                     </> :
                     <>
-                        <button onClick={handleRating2} className="filter">
+                        <button onClick={()=>{handleRating2(), setApply(true)}} className="filter">
                             Rating: 4.0+
                         </button>
                     </>
