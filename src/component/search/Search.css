@@ -104,10 +104,3 @@ select:focus {
     margin: 0.9rem 1.2rem;
   }
 }
-
-@media screen and (max-width: 525px) {
-  .open-search {
-    border-top-right-radius: 10%;
-    border-top-left-radius: 10%;
-  }
-}
