@@ -27,7 +27,7 @@ function LoginPage() {
                 </div>
                 <div id="input-tag">
                     <input value={emailPhoneValue} onChange={(e) => setEmailPhoneValue(e.target.value)}
-                        type="text" placeholder="Enter email or phone as admin" />
+                        type="text" placeholder="Enter username as admin" />
                     <input value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)}
                         type="password" name="" id="" placeholder="Enter password as password" />
                 </div>

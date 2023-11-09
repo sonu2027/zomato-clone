@@ -1,104 +1,113 @@
-#vertical-line{
-    height: 1.5rem;
-    width: 0px;
-    border: 1px solid #b5b5b5;
+#vertical-line {
+  height: 1.5rem;
+  width: 0px;
+  border: 1px solid #b5b5b5;
 }
-#search-box-main{
+#search-box-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50vw;
+  border-radius: 6px;
+  box-shadow: 0 0 3px #646262;
+}
+#search-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.8rem;
+  padding-right: 5px;
+}
+#search-item .input-search {
+  width: 25vw;
+  height: 2.5rem;
+  border: none;
+}
+#search-item input,
+select:focus {
+  outline: none;
+}
+#search-item select {
+  border: none;
+}
+#location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#location-icon {
+  color: rgba(255, 18, 18, 0.994);
+  height: 2.2rem;
+  width: 2.5rem;
+}
+.open-search {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #vertical-line,
+  #search-item select,
+  #search-item .input-search {
+    display: none;
+  }
+  .open-search {
+    display: block;
+    position: fixed;
+    right: 0;
+    height: 85vh;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 2;
+    border-top-right-radius: 7%;
+    border-top-left-radius: 7%;
+    border: 1px solid rgb(212, 210, 210);
+  }
+  .open-search-child .open-search-grand-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(199, 194, 194);
+    column-gap: 0.5rem;
+    padding: 0 0.3rem;
+    border-radius: 8px;
+  }
+  .open-search-child .open-search-grand-child input {
+    width: 15rem;
+    border: none;
+    height: 2rem;
+  }
+  .open-search-child .open-search-grand-child input:focus {
+    outline: none;
+  }
+  .open-search-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #search-box-main {
+    border: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 50vw;
-    border-radius: 6px;
-    box-shadow: 0 0 3px #646262;
-}
-#search-item{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 0.8rem;
-    padding-right: 5px;
-}
-#search-item .input-search{
-    width: 25vw;
-    height: 2.5rem;
-    border: none;
-}
-#search-item input,select:focus{
-    outline: none;
-}
-#search-item select{
-    border: none;
-}
-#location{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#location-icon{
-    color: rgba(255, 18, 18, 0.994);
-    height: 2.2rem;
-    width: 2.5rem;
-}
-.open-search{
-    display: none;
-
+    width: 100%;
+    height: 3rem;
+    box-shadow: 0 0 0px #646262;
+  }
+  .input-search-icon {
+    background-color: yellow;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .cross-icon-open-search {
+    margin: 0.9rem 1.2rem;
+  }
 }
 
-@media  screen and (max-width:768px) {
-    #vertical-line,#search-item select,#search-item .input-search{
-        display: none;
-    }
-    .open-search{
-        display: block;
-        position: fixed;
-        right: 0;
-        height: 85vh;
-        bottom: 0;
-        left: 0;
-        background-color: #fff;
-        z-index: 2;
-        border-top-right-radius: 7%;
-        border-top-left-radius: 7%;
-        border: 1px solid rgb(212, 210, 210);
-    }
-    .open-search-child .open-search-grand-child{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid rgb(199, 194, 194);
-        column-gap: 0.5rem;
-        padding: 0 0.3rem;
-        border-radius:8px ;
-    }
-    .open-search-child .open-search-grand-child input{
-        width: 15rem;
-        border: none;
-        height: 2rem;
-    }
-    .open-search-child .open-search-grand-child input:focus{
-        outline: none;
-    }
-    .open-search-child{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    #search-box-main{
-        border: none;
-        display: flex;
-        justify-content: space-between;
-        align-items:center;
-        width: 100%;
-        height: 3rem;
-        box-shadow: 0 0 0px #646262;
-    }
-    .input-search-icon{
-        background-color: yellow;
-        position: fixed;
-        height: 100%;
-        width: 100%;
-    }
-    .cross-icon-open-search{
-        margin: 0.9rem 1.2rem;
-    }
+@media screen and (max-width: 525px) {
+  .open-search {
+    border-top-right-radius: 10%;
+    border-top-left-radius: 10%;
+  }
 }

@@ -47,9 +47,8 @@ function Filter(props) {
                         </button>
                     </> :
                     <>
-                        <button style={{padding:"9px 16px"}} onClick={props.setFilter} className="filter">
-                            {/* <img src={f1} alt="" /> */}
-                            <div style={{backgroundColor:"rgb(239, 79, 95)", color:"#fff", padding:"3px 6px", borderRadius:"4px"}}>{countFilter}</div>
+                        <button style={{ padding: "9px 16px" }} onClick={props.setFilter} className="filter">
+                            <div style={{ backgroundColor: "rgb(239, 79, 95)", color: "#fff", padding: "3px 6px", borderRadius: "4px" }}>{countFilter}</div>
                             <div>Filters</div>
                         </button>
                     </>
@@ -63,7 +62,7 @@ function Filter(props) {
                         </button>
                     </> :
                     <>
-                        <button onClick={()=>{handleRating2(), setApply(true)}} className="filter">
+                        <button onClick={() => { handleRating2(), setApply(true) }} className="filter">
                             Rating: 4.0+
                         </button>
                     </>

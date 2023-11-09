@@ -10,13 +10,13 @@ function ProductTypesItem({ product, img, time, calling = "null", status, aboutP
                         <Link to={`/login/loggedin?status=${status}&shopName=${product}&aboutShop=${aboutProduct}&rating=${rating}&price=${100}&time=${time}&calling=${"delivery"}&img=${img}`}>
                             <img src={img} alt="Image" />
                         </Link>
+                        <div> {`${time} min`}</div>
                     </> :
                     <>
                         <img src={img} alt="Image" />
                     </>
             }
             <div style={{ textAlign: "center" }}>{product} </div>
-            <div> {`${time} min`}</div>
         </div>
     )
 }
