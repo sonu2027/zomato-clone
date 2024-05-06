@@ -11,7 +11,7 @@ function Header(props) {
     return (
         <div id="header">
             <Zomato status={props.status || defaultValue} />
-            <Search search={props.search} />
+            <Search search={props.search} emptySearch={props.emptySearch} />
             <LoginStatus status={props.status || defaultValue} />
         </div>
     )

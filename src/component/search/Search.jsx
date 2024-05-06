@@ -20,12 +20,17 @@ function Search(props) {
 
     useEffect(() => {
         if (searchBox == true) {
-            document.body.style.overflow="hidden"
+            document.body.style.overflow = "hidden"
         }
         else {
-            document.body.style.overflow="auto"
+            document.body.style.overflow = "auto"
         }
     }, [searchBox])
+
+    const removeSearch = () => {
+        props.emptySearch("")
+        setSearchBox(false)
+    }
 
     return (
         <div id="search-box-main">
@@ -38,7 +43,7 @@ function Search(props) {
                     searchBox == true ?
                         <>
                             <div className="open-search">
-                                <RxCross1 className="cross-icon-open-search" onClick={() => setSearchBox(false)} />
+                                <RxCross1 className="cross-icon-open-search" onClick={removeSearch}/>
                                 <div className="open-search-child">
                                     <div className="open-search-grand-child">
                                         <BsSearch style={{

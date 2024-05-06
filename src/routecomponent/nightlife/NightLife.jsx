@@ -48,7 +48,7 @@ function NightLife() {
 
     return (
         <>
-            <Header search={handleSearch} status={status} />
+            <Header search={handleSearch} emptySearch={setInputval} status={status} />
             {
                 inputval != "" ?
                     <>

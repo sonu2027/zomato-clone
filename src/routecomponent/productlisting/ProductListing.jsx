@@ -70,7 +70,7 @@ function ProductListing() {
             if(e==shopName)
                 setBookmarked(true)
         })
-    },[])
+    },[shopName])
 
     function handleBookmark() {
         let foundItem = false
@@ -98,7 +98,7 @@ function ProductListing() {
         <>
             {calling == "delivery" ?
                 <>
-                    <Header search={handleSearch} status={status} />
+                    <Header search={handleSearch} emptySearch={setInputval} status={status} />
                     {
                         inputval != "" ?
                             <>
@@ -129,7 +129,7 @@ function ProductListing() {
                     {
                         calling == "dining-out" ?
                             <>
-                                <Header search={handleSearch} status={status} />
+                                <Header search={handleSearch} emptySearch={setInputval} status={status} />
                                 {
                                     inputval != "" ?
                                         <>
@@ -158,7 +158,7 @@ function ProductListing() {
                                 </div>
                             </> :
                             <>
-                                <Header search={handleSearch} status={status} />
+                                <Header search={handleSearch} emptySearch={setInputval} status={status} />
                                 {
                                     inputval != "" ?
                                         <>
