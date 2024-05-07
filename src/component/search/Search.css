@@ -59,9 +59,11 @@ select:focus {
     left: 0;
     background-color: #fff;
     z-index: 2;
-    border-top-right-radius: 7%;
-    border-top-left-radius: 7%;
+    border-top-right-radius: 8%;
+    border-top-left-radius: 8%;
     border: 1px solid rgb(212, 210, 210);
+    transition: transform 1s ease;
+    transform: translateY(100%);
   }
   .open-search-child .open-search-grand-child {
     display: flex;

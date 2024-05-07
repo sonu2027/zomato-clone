@@ -32,6 +32,14 @@ function Search(props) {
         setSearchBox(false)
     }
 
+    const handlesearch = () => {
+        setSearchBox(true)
+        setTimeout(function () {
+            document.getElementsByClassName("open-search")[0].style.opacity = "1"; // Show the box after 0 seconds
+            document.getElementsByClassName("open-search")[0].style.transform = "translateY(0)"; // Move the box from bottom to top
+        });
+    }
+
     return (
         <div id="search-box-main">
             <div id="location">
@@ -43,7 +51,7 @@ function Search(props) {
                     searchBox == true ?
                         <>
                             <div className="open-search">
-                                <RxCross1 className="cross-icon-open-search" onClick={removeSearch}/>
+                                <RxCross1 className="cross-icon-open-search" onClick={removeSearch} />
                                 <div className="open-search-child">
                                     <div className="open-search-grand-child">
                                         <BsSearch style={{
@@ -56,7 +64,7 @@ function Search(props) {
                             </div>
                         </> :
                         <>
-                            <BsSearch onClick={() => setSearchBox(true)} style={{
+                            <BsSearch onClick={handlesearch} style={{
                                 color: "grey", height: "1.5rem",
                                 width: "1.5rem"
                             }} />
