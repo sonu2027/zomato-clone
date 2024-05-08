@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./PartnerLogin.css";
+import "./partnerLogin.css";
 import img1 from "../../assets/zomato/zomatoPartnerLogo.svg";
 import img2 from "../../assets/zomato/partnerLoginBodyImage.png";
 import { useNavigate } from "react-router-dom";
