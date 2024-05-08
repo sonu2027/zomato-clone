@@ -6,6 +6,8 @@ import NightLife from "../routecomponent/nightlife/NightLife"
 import ProductListing from "../routecomponent/productlisting/ProductListing"
 import BookmarkPage from "../routecomponent/Bookmark/BookmarkPage"
 import Profile from "../routecomponent/profile/Profile"
+import PartnerLogin from "../routecomponent/partnerLogin/partnerLogin"
+import PartnerRegister from "../routecomponent/partnerRegister/PartnerRegister"
 
 function CustomRoutes(){
     return (
@@ -18,6 +20,8 @@ function CustomRoutes(){
             <Route path="/login/loggedin" element={<ProductListing/>}/>
             <Route path="/login/loggedin/bookmark/:status" element={<BookmarkPage/>}/>
             <Route path="/login/loggedin/profile/:status" element={<Profile/>}/>
+            <Route path="/partner/login" element={<PartnerLogin/>}/>
+            <Route path="/partner/register" element={<PartnerRegister/>}/>
         </Routes>
     )
 }

@@ -1,0 +1,259 @@
+.partnerLogin {
+  background: rgb(246, 246, 246);
+  height: 100vh;
+}
+
+.partnerLogin .header {
+  padding: 0.5rem 0 0.5rem 1rem;
+  background: #fff;
+}
+
+.partnerLogin .body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.partnerLogin .body .body-child-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.partnerLogin .body .body-child-div .button {
+  width: 80%;
+  padding: 0.7rem 0;
+  background: rgb(89, 128, 247);
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.partnerLogin .body .body-child-div .button1 {
+  background: rgb(89, 128, 247);
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.partnerLogin .body .body-child-div .button1:hover {
+    background: rgb(57, 96, 212);
+  }
+
+  .partnerLogin .body .body-child-div .button2 {
+  color: rgb(89, 128, 247);
+  background-color: #fff;
+  border: 1px solid rgb(89, 128, 247);
+}
+.partnerLogin .body .body-child-div .button2:hover {
+    background-color: #f1eded;
+  }
+
+  .partnerLogin .body .body-child-div .t1 {
+  font-size: 1.2rem;
+  color: rgb(83, 82, 82);
+  font-weight: 600;
+}
+
+.partnerLogin .body .body-child-div .t2 {
+  display: flex;
+  width: 80%;
+  justify-content: end;
+  align-items: center;
+  column-gap: 4px;
+  font-size: 0.8rem;
+  color: rgb(85, 84, 84);
+}
+
+.partnerLogin .body .body-child-div .t3 {
+  color: rgb(47, 46, 46);
+}
+
+.partnerLogin .body .body-child-div .t2 .t2t1 {
+  color: royalblue;
+}
+
+.partnerLogin .body .body-child-div .t4 {
+  display: flex;
+  column-gap: 8px;
+  color: rgb(115, 114, 114);
+  font-size: 0.8rem;
+}
+
+.partnerLogin .body .body-child-div .t4 .t4t1 {
+  display: flex;
+  column-gap: 8px;
+}
+
+.partnerLogin .body .body-child-div .t4 .t4t1 .t4t1t1 {
+  border-bottom: 2px dotted rgb(115, 114, 114);
+  padding-bottom: 2px;
+}
+
+.partnerLogin .body .body-child-div img {
+  width: 22rem;
+}
+
+.partnerLogin .body .form-element {
+  border: 1px solid rgb(168, 166, 166);
+  background: #fff;
+  width: 25rem;
+  position: fixed;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  transition: transform 1s ease;
+  transform: translateY(100%);
+}
+
+.partnerLogin .cross-icon:hover {
+  cursor: pointer;
+}
+.partnerLogin .cross-icon {
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.partnerLogin .body .form-element .t1 div {
+  font-size: 2rem;
+  color: rgb(69, 69, 69);
+}
+
+.partnerLogin .body .form-element .t1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.partnerLogin .body .form-element form .email-box input {
+  padding-left: 4px;
+  border: none;
+  width: 80%;
+  height: 2rem;
+}
+
+.partnerLogin .body .form-element form button {
+  width: 100%;
+  padding: 0.7rem 0;
+  background-color: rgb(239, 79, 95);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  margin-top: 1.5rem;
+}
+
+.partnerLogin .body .form-element form .email-box {
+  border: 1px solid rgb(190, 186, 186);
+  padding: 4px 0 4px 2px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.partnerLogin .body .form-element form .email-box label {
+  color: rgb(125, 124, 124);
+  font-size: 1.3rem;
+}
+
+body .form-element form .email-box input:focus {
+  outline: none;
+}
+
+body .form-element form .email-box {
+  background: #fff;
+}
+
+body .form-element .line hr {
+  width: 50%;
+}
+
+body .form-element .line {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 8px;
+}
+
+body .form-element .line .create {
+  color: rgb(239, 79, 95);
+  cursor: pointer;
+}
+
+body .form-element .email {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  border: 1px solid rgb(190, 186, 186);
+  padding: 0.7rem 0;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+body .form-element .email .email-icon {
+  color: rgb(239, 79, 95);
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 725px) {
+  .body .form-element {
+    bottom: 0;
+  }
+  .body .body-child-div img {
+    width: 18rem;
+  }
+  .body .body-child-div .t1 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .partnerLogin .body .form-element {
+    bottom: 0;
+    width: 100vw;
+    border: none;
+  }
+  .cross-icon {
+    font-size: 1.2rem;
+    padding-right: 5%;
+  }
+
+  .partnerLogin .body .form-element .t1 div {
+    font-size: 1.5rem;
+  }
+  .partnerLogin .body .form-element .t1 {
+    margin-left: 5%;
+  }
+
+  .partnerLogin .body .form-element form .email-box input {
+    width: 70%;
+    margin-left: 5%;
+  }
+
+  .partnerLogin .body .form-element form button {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .partnerLogin .body .form-element form .email-box {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .partnerLogin .body .form-element .line hr {
+    width: 42%;
+  }
+
+  .partnerLogin .body .form-element .line {
+    margin-left: 5%;
+  }
+
+  .partnerLogin .body .form-element .email {
+    width: 90%;
+    margin-left: 5%;
+  }
+}
