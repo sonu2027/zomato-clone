@@ -6,7 +6,7 @@ import NightLife from "../routecomponent/nightlife/NightLife"
 import ProductListing from "../routecomponent/productlisting/ProductListing"
 import BookmarkPage from "../routecomponent/Bookmark/BookmarkPage"
 import Profile from "../routecomponent/profile/Profile"
-import PartnerLogin from "../routecomponent/partnerLogin/partnerLogin"
+import PartnerLogin from "../routecomponent/partnerLogin/PartnerLogin"
 import PartnerRegister from "../routecomponent/partnerRegister/PartnerRegister"
 
 function CustomRoutes(){
