@@ -5,10 +5,10 @@
   color: #fff;
 }
 
-.PartnerRegister .body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.PartnerRegister .body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .PartnerRegister .t1 {
@@ -79,10 +79,155 @@
 .PartnerRegister .t4 .b2:hover {
   background-color: #f1eded;
 }
-  
+
+.PartnerRegister .PartnerRegister-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild {
+  background: #fff;
+  color: black;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1.5rem 2rem;
+  border-radius: 6px;
+  transition: transform 1s ease;
+  transform: translateY(100%);
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild form input {
+  height: 2.2rem;
+  border-radius: 6px;
+  border: 2px solid rgb(208, 208, 208);
+  padding-left: 4px;
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  form
+  .input:focus {
+  outline: 2px solid rgb(91, 203, 91);
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild .check-box {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: rgb(110, 109, 109);
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .check-box
+  label {
+  font-size: 0.8rem;
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .check-box
+  span {
+  font-size: 0.8rem;
+  color: rgb(239, 79, 95);
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild .line hr {
+  width: 48%;
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild .line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  color: rgb(110, 109, 109);
+  margin: 1rem 0;
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .line
+  .create {
+  color: rgb(239, 79, 95);
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .line
+  .create:hover {
+  cursor: pointer;
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild .email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  border: 1px solid rgb(99, 98, 98);
+  height: 2.2rem;
+  color: rgb(110, 109, 109);
+  border: 1px solid rgb(110, 109, 109);
+  border-radius: 6px;
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .email:hover {
+  cursor: pointer;
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild button {
+  height: 2.4rem;
+  color: rgb(110, 109, 109);
+  border: 1px solid rgb(110, 109, 109);
+  border-radius: 6px;
+}
+
+.PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild .signup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(69, 68, 68);
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .signup
+  div {
+  font-size: 2rem;
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .signup
+  .cross-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 900px) {
-  .PartnerRegister{
+  .PartnerRegister {
     height: 80vh;
   }
 
@@ -106,20 +251,48 @@
     text-align: center;
   }
 
-  .PartnerRegister .t5{
+  .PartnerRegister .t5 {
+    text-align: center;
+  }
+
+  .PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild {
+    width: 25rem;
+  }
+
+  .PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .check-box
+  label {
+  font-size: 0.6rem;
+}
+
+.PartnerRegister
+  .PartnerRegister-child
+  .PartnerRegister-grandChild
+  .check-box
+  span {
+  font-size: 0.6rem;
+}
+}
+
+@media screen and (max-width: 800px) {
+  .PartnerRegister {
+    height: 90vh;
+  }
+  .PartnerRegister .t4 button {
+    width: 22rem;
+    font-size: 1rem;
+  }
+  .PartnerRegister .t2 .div2 {
     text-align: center;
   }
 }
 
-@media screen and (max-width:800px){
-    .PartnerRegister {
-        height: 90vh;
-      }
-    .PartnerRegister .t4 button{
-        width: 22rem;
-        font-size: 1rem;
-      }
-      .PartnerRegister .t2 .div2{
-        text-align: center;
-      }
+@media screen and (max-width: 480px) {
+  .PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild {
+    position: fixed;
+    bottom: 0;
+    width: 90%;
+  }
 }
