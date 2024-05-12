@@ -1,8 +1,12 @@
 import React from 'react'
 import { RxCross1 } from "react-icons/rx"
 import { MdEmail } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 function PartnerLoginForm({closeLoginTab, }) {
+
+    const navigate=useNavigate()
+
     return (
         <div className="form-element">
             <div className="t1">
@@ -27,7 +31,7 @@ function PartnerLoginForm({closeLoginTab, }) {
             </div>
             <div className="line">
                 <div>New to zomato ? </div>
-                <div className="create">Create account</div>
+                <div onClick={()=>navigate("/partner/register")} className="create">Create account</div>
             </div>
         </div>
     )

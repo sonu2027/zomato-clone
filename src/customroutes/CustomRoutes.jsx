@@ -8,6 +8,7 @@ import BookmarkPage from "../routecomponent/Bookmark/BookmarkPage"
 import Profile from "../routecomponent/profile/Profile"
 import PartnerLogin from "../routecomponent/partnerLogin/PartnerLogin"
 import PartnerRegister from "../routecomponent/partnerRegister/PartnerRegister"
+import CreateRestaurant from "../routecomponent/createrestaurant/CreateRestaurant"
 
 function CustomRoutes(){
     return (
@@ -22,6 +23,7 @@ function CustomRoutes(){
             <Route path="/login/loggedin/profile/:status" element={<Profile/>}/>
             <Route path="/partner/login" element={<PartnerLogin/>}/>
             <Route path="/partner/register" element={<PartnerRegister/>}/>
+            <Route path="/partner/register/create-your-restaurant" element={<CreateRestaurant/>}/>
         </Routes>
     )
 }

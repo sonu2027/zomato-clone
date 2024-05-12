@@ -1,0 +1,15 @@
+.CreateRestaurant .res-dtl, .owner-dtl{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.CreateRestaurant .res-dtl>input, .owner-dtl>input{
+    width: 20rem;
+}
+
+.CreateRestaurant .res-img, .res-timing, .cuisine-type, .res-type, .res-des{
+    margin: 2rem 0 1rem 0;
+}

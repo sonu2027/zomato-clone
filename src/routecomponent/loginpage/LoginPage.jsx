@@ -66,7 +66,7 @@ function LoginPage() {
                 </div>
                 <div className="line">
                     <div>Do you have restaurant?</div>
-                    <Link to="/partner/register"><div className="create">Register here</div></Link>
+                    <div onClick={() => navigate("/partner/register")} className="create">Register here</div>
                 </div>
                 {
                     showStatus.length > 0 && <div>{showStatus}</div>

@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import "./PartnerRegister.css";
 import img1 from "../../assets/zomato/zomatoPartnerBusiness.png";
 import { useNavigate } from "react-router-dom";
-import { RxCross1 } from "react-icons/rx";
-import { MdEmail } from "react-icons/md";
+import PartnerRegisterForm from "../../component/partnerregisterform/PartnerRegisterForm";
+import VerifyOtp from "../../component/otpverify/VerifyOtp";
 
 function PartnerRegister() {
   const navigate = useNavigate();
   const [showRegister, setShowRegister] = useState(false);
+  const [otpSent, setOtpSent] = useState(false)
+  const [agree, setAgree] = useState(false)
+  const [otp, setOtp] = useState("")
+  const [fullName, setFullName] = useState("")
+  const [email, setEmail] = useState("")
 
   const showLoginTab = () => {
     setShowRegister(true)
@@ -17,54 +22,28 @@ function PartnerRegister() {
     });
   }
 
-  const handleChecked=(e)=>{
-    if(e.target.checked==true){
-        document.getElementsByClassName("create-account")[0].style.background="rgb(239, 79, 95)"
-        document.getElementsByClassName("create-account")[0].style.color="#fff"
+  const handleChecked = (e) => {
+    console.log("event: ", e);
+    if (e.target.checked == true) {
+      document.getElementsByClassName("create-account")[0].style.background = "rgb(239, 79, 95)"
+      document.getElementsByClassName("create-account")[0].style.color = "#fff"
+      setAgree(e.target.checked)
     }
-    else{
-        document.getElementsByClassName("create-account")[0].style.background="rgb(237, 235, 235)"
-        document.getElementsByClassName("create-account")[0].style.color="rgb(110, 109, 109)"
+    else {
+      document.getElementsByClassName("create-account")[0].style.background = "rgb(237, 235, 235)"
+      document.getElementsByClassName("create-account")[0].style.color = "rgb(110, 109, 109)"
+      setAgree(e.target.checked)
     }
   }
 
   return (
     <div className="PartnerRegister">
-      {showRegister && (
-        <div className="PartnerRegister-child">
-          <div className="PartnerRegister-grandChild">
-            <div className="signup">
-              <div>Signup</div>
-              <RxCross1 className="cross-icon" onClick={()=>setShowRegister(false)}/>
-            </div>
-            <form>
-              <input className="input" type="text" name="" id="" placeholder="Full name"/>
-              <input className="input" type="email" name="" id="" placeholder="Email"/>
-              <div className="check-box">
-                <input onClick={handleChecked} type="checkbox" name="" id="checkbox" />
-                <label htmlFor="checkbox">&nbsp; I agree to Zomato's &nbsp;</label>{" "}
-                <span>Terms of Service</span>,<span>&nbsp; Privacy Policy &nbsp;</span>{" "}
-                <label htmlFor="checkbox">and &nbsp;</label>{" "}
-                <span>Content Policies</span>
-              </div>
-              <button className="create-account">Create account</button>
-            </form>
-            <div className="line">
-              <hr />
-              <div>or</div>
-              <hr />
-            </div>
-            <div className="email">
-              <MdEmail className="email-icon" />
-              <div>Continue with email</div>
-            </div>
-            <div className="line">
-              <div>Already have an account ? </div>
-              <div onClick={()=>navigate("/partner/login")} className="create">Login</div>
-            </div>
-          </div>
-        </div>
-      )}
+      {showRegister &&
+        <PartnerRegisterForm setShowRegister={setShowRegister} handleChecked={handleChecked} setOtpSent={setOtpSent} agree={agree} setOtp={setOtp} setFullName={setFullName} fullName={fullName} email={email} setEmail={setEmail} />
+      }
+      {
+        otpSent && <VerifyOtp setOtpSent={setOtpSent} otp={otp} fullName={fullName} email={email} />
+      }
       <div className="t1">
         <img src={img1} alt="" />
         <button>Login</button>
