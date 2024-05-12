@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import "./CreateRestaurant.css";
+import "./createRestaurant.css";
 import { useLocation } from "react-router-dom";
 
 function CreateRestaurant() {
 
   const location=useLocation()
-  const {otp, full_name:owner_full_name, email:owner_email, ownerId}=location.state
+  const {ownerId}=location.state
+
+  // don't need of this
+  // otp, full_name:owner_full_name, email:owner_email, 
 
   const [openingDayCount, setOpeningDayCount] = useState([]);
   const [describeRestaurant, setDescribeRestaurant] = useState([]);
@@ -65,7 +68,7 @@ function CreateRestaurant() {
 
   console.log("Opening day count: ", openingDayCount);
   console.log("des res: ", describeRestaurant);
-  console.log("received oto is: ", otp, owner_full_name, owner_email);
+  console.log("received ownerid is is: ", ownerId);
 
   return (
     <form
