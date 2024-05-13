@@ -37,7 +37,7 @@ const sendEmail = async (req, res) => {
   }
 };
 
-const registerUser = async (req, res) => {
+const registerPartner = async (req, res) => {
   console.log("req.body: ", req.body);
   const { owner_full_name, owner_email } = req.body;
 
@@ -51,4 +51,4 @@ const registerUser = async (req, res) => {
   return res.status(201).json({ response });
 };
 
-export { sendEmail, registerUser };
+export { sendEmail, registerPartner };

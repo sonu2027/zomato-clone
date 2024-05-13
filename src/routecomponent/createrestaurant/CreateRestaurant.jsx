@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./createRestaurant.css";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setResDetail } from "../../store/restaurantSlice";
 
 function CreateRestaurant() {
 
-  const location=useLocation()
-  const {ownerId}=location.state
+  const dispatch = useDispatch()
+  const ownerId = useSelector((s) => s.partner.id)
 
-  // don't need of this
-  // otp, full_name:owner_full_name, email:owner_email, 
+  const navigate = useNavigate()
 
   const [openingDayCount, setOpeningDayCount] = useState([]);
   const [describeRestaurant, setDescribeRestaurant] = useState([]);
@@ -21,8 +22,8 @@ function CreateRestaurant() {
     e.target.checked == true
       ? setOpeningDayCount((s) => [...s, e.target.attributes.id.nodeValue])
       : setOpeningDayCount((s) =>
-          s.filter((element) => element != e.target.attributes.id.nodeValue)
-        );
+        s.filter((element) => element != e.target.attributes.id.nodeValue)
+      );
   };
 
   const handleDescribeRestaurant = (e) => {
@@ -31,8 +32,8 @@ function CreateRestaurant() {
     e.target.checked == true
       ? setDescribeRestaurant((s) => [...s, e.target.attributes.id.nodeValue])
       : setDescribeRestaurant((s) =>
-          s.filter((element) => element != e.target.attributes.id.nodeValue)
-        );
+        s.filter((element) => element != e.target.attributes.id.nodeValue)
+      );
   };
 
   const handleCuisines = (e) => {
@@ -41,8 +42,8 @@ function CreateRestaurant() {
     e.target.checked == true
       ? setCuisines((s) => [...s, e.target.attributes.id.nodeValue])
       : setCuisines((s) =>
-          s.filter((element) => element != e.target.attributes.id.nodeValue)
-        );
+        s.filter((element) => element != e.target.attributes.id.nodeValue)
+      );
   };
 
   const handleResType = (e) => {
@@ -62,8 +63,30 @@ function CreateRestaurant() {
       method: "POST",
       body: formData,
     });
-    const data=await response.json()
-    console.log("response data: ", data);
+    if (response.ok) {
+      const data = await response.json()
+      console.log("response data: ", data);
+      dispatch(setResDetail({
+        resName: data.response.restaurant_name,
+        address: data.response.restaurant_complete_address,
+        location: data.response.restaurant_location,
+        resMobNo: data.response.mobile_number_at_restaurant,
+        landline_number: data.response.landline_number,
+        restaurant_type: data.response.restaurant_type,
+        describe_restaurant: data.response.describe_restaurant,
+        cuisines: data.response.cuisines,
+        hour: data.response.restaurant_hour,
+        day: data.response.restaurant_day,
+        menu_URL: data.response.restaurant_menu_URL,
+        menu_public_id: data.response.restaurant_menu_public_id,
+        image_URL: data.response.restaurant_image_URL,
+        image_public_id: data.response.restaurant_image_public_id,
+        food_image__URL: data.response.restaurant_food_image__URL,
+        food_image__public_id: data.response.restaurant_food_image__public_id,
+        ownerId: data.response.ownerId,
+      }))
+      navigate("/partner/home")
+    }
   };
 
   console.log("Opening day count: ", openingDayCount);
@@ -105,8 +128,8 @@ function CreateRestaurant() {
         />
       </div>
 
-      <div>Owner details</div>
-      <div className="owner-dtl">
+      {/* <div>Owner details</div> */}
+      {/* <div className="owner-dtl">
         <input
           type="text"
           placeholder="Mobile numer of owner"
@@ -122,7 +145,7 @@ function CreateRestaurant() {
           placeholder="Restaurant owner email address"
           name="restaurant_owner_email"
         />
-      </div>
+      </div> */}
 
       <div className="res-type">Restaurant type and timing</div>
       <input

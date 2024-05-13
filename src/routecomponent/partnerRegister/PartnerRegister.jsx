@@ -46,7 +46,7 @@ function PartnerRegister() {
       }
       <div className="t1">
         <img src={img1} alt="" />
-        <button>Login</button>
+        <button onClick={() => navigate("/partner/login")}>Login</button>
       </div>
       <div className="body">
         <div className="body-child">

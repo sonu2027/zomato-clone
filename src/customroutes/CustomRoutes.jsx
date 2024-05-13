@@ -9,6 +9,7 @@ import Profile from "../routecomponent/profile/Profile"
 import PartnerLogin from "../routecomponent/partnerLogin/PartnerLogin"
 import PartnerRegister from "../routecomponent/partnerRegister/PartnerRegister"
 import CreateRestaurant from "../routecomponent/createrestaurant/CreateRestaurant"
+import PartnerHome from "../routecomponent/partnerhome/PartnerHome"
 
 function CustomRoutes(){
     return (
@@ -24,6 +25,7 @@ function CustomRoutes(){
             <Route path="/partner/login" element={<PartnerLogin/>}/>
             <Route path="/partner/register" element={<PartnerRegister/>}/>
             <Route path="/partner/register/create-your-restaurant" element={<CreateRestaurant/>}/>
+            <Route path="/partner/home" element={<PartnerHome/>}/>
         </Routes>
     )
 }

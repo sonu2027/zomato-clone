@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setPartnerDetail } from "../../store/partnerSlice";
 
 function VerifyOtp({ setOtpSent, otp, fullName, email }) {
+
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   const [inputOtp, setInputOtp] = useState(["", "", "", "", "", ""])
+  const [timeRemaining, setTimeRemaining] = useState(59)
 
   const registerUser = async () => {
     const jsonData = {
@@ -24,8 +29,19 @@ function VerifyOtp({ setOtpSent, otp, fullName, email }) {
     console.log("response: ", response);
     const data = await response.json()
     console.log("data: ", data);
-    return data.response._id
+    dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id:data.response._id }))
   }
+
+  useEffect(() => {
+    const timeStart = setInterval(() => {
+      setTimeRemaining((timeRemaining) => timeRemaining - 1)
+    }, 1000)
+
+    setTimeout(() => {
+      clearInterval(timeStart)
+      setOtpSent(false)
+    }, 59000)
+  }, [])
 
   useEffect(() => {
     let register = true
@@ -39,8 +55,8 @@ function VerifyOtp({ setOtpSent, otp, fullName, email }) {
       console.log("otp is", otp, typeof otp, Number(inputOtp.join("")), typeof Number(inputOtp.join("")));
 
       registerUser().
-        then((ownerId) => {
-          navigate("/partner/register/create-your-restaurant", { state: { otp: otp, full_name: fullName, email, ownerId } })
+        then(() => {
+          navigate("/partner/register/create-your-restaurant")
         })
         .catch((e) => {
           console.log("error while registering: ", e);
@@ -49,22 +65,54 @@ function VerifyOtp({ setOtpSent, otp, fullName, email }) {
   }, [inputOtp])
 
   const handleInputOtp = (e, i) => {
+    const form = document.querySelectorAll("form")
+    console.log("form: ", form[0][1]);
     if (i == "i1") {
+      if (e.target.value) {
+        form[0][1].focus()
+      }
       setInputOtp([e.target.value, inputOtp[1], inputOtp[2], inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
     }
     else if (i == "i2") {
+      if (e.target.value) {
+        form[0][2].focus()
+      }
+      else {
+        form[0][0].focus()
+      }
       setInputOtp([inputOtp[0], e.target.value, inputOtp[2], inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
     }
     else if (i == "i3") {
+      if (e.target.value) {
+        form[0][3].focus()
+      }
+      else {
+        form[0][1].focus()
+      }
       setInputOtp([inputOtp[0], inputOtp[1], e.target.value, inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
     }
     else if (i == "i4") {
+      if (e.target.value) {
+        form[0][4].focus()
+      }
+      else {
+        form[0][2].focus()
+      }
       setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], e.target.value, inputOtp[4], inputOtp[5], inputOtp[6]])
     }
     else if (i == "i5") {
+      if (e.target.value) {
+        form[0][5].focus()
+      }
+      else {
+        form[0][3].focus()
+      }
       setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], inputOtp[3], e.target.value, inputOtp[5], inputOtp[6]])
     }
     else {
+      if (!e.target.value) {
+        form[0][4].focus()
+      }
       setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], inputOtp[3], inputOtp[4], e.target.value])
     }
   }
@@ -91,8 +139,8 @@ function VerifyOtp({ setOtpSent, otp, fullName, email }) {
           <input onChange={(e) => handleInputOtp(e, "i5")} type="text" name="" id="" />
           <input onChange={(e) => handleInputOtp(e, "i6")} type="text" name="" id="" />
         </form>
-        <div className="time-count">00:00</div>
-        <div className="resend">Not received OTP? Resend Now</div>
+        <div className="time-count">00:{timeRemaining}</div>
+        {/* <div className="resend">Not received OTP? Resend Now</div> */}
       </div>
     </div>
   );
