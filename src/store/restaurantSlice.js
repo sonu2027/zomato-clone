@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  resId:"",
   resName: "",
   address: "",
   location: "",
@@ -26,6 +27,7 @@ const restaurantSlice = createSlice({
   reducers: {
     setResDetail: (state, action) => {
       console.log("action: ", action);
+      state.resId = action.payload.resId;
       state.resName = action.payload.resName;
       state.address = action.payload.address;
       state.location = action.payload.location;
@@ -44,6 +46,7 @@ const restaurantSlice = createSlice({
       state.ownerId = action.payload.ownerId;
     },
     removeResDetail: (state) => {
+      state.resId="";
       state.names = "";
       state.address = "";
       state.location = "";

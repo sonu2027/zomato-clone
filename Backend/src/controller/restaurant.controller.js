@@ -10,9 +10,6 @@ const registerRestaurant = async (req, res) => {
     restaurant_location,
     mobile_number_at_restaurant,
     landline_number,
-    // restaurant_owner_mobile_number,
-    // restaurant_owner_full_name,
-    // restaurant_owner_email,
     restaurant_type,
     describe_restaurant,
     cuisines,
@@ -23,6 +20,8 @@ const registerRestaurant = async (req, res) => {
 
   const { restaurant_menu, restaurant_food_image, restaurant_image } =
     req.files;
+
+  console.log("typeof restaurant_hour: ", typeof restaurant_hour);
 
   try {
     const image1 = await uploadOnCloudinary(restaurant_menu[0].path);
@@ -45,7 +44,10 @@ const registerRestaurant = async (req, res) => {
       restaurant_type: restaurant_type.split(","),
       describe_restaurant: describe_restaurant.split(","),
       cuisines: cuisines.split(","),
-      restaurant_hour,
+      restaurant_hour:
+        typeof restaurant_hour == "object"
+          ? restaurant_hour
+          : restaurant_hour.split(","),
       restaurant_day: restaurant_day.split(","),
       restaurant_menu_URL: image1.url,
       restaurant_menu_public_id: image1.public_id,
@@ -68,4 +70,8 @@ const registerRestaurant = async (req, res) => {
   }
 };
 
-export { registerRestaurant };
+const deleteRestaurant=async(req,res)=>{
+  console.log("req.body: ", req.body);
+}
+
+export { registerRestaurant, deleteRestaurant };

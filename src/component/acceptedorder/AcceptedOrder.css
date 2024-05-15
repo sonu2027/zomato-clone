@@ -1,0 +1,11 @@
+.AcceptedOrder {
+  margin: 1rem 10vw 0 10vw;
+  color: black;
+  border: 1px solid rgb(179, 178, 178);
+  background: rgb(235, 235, 236);
+  border-radius: 6px;
+}
+
+.AcceptedOrder .order-text {
+  margin: 1rem 0 1rem 1rem;
+}

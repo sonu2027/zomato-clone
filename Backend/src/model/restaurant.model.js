@@ -26,18 +26,6 @@ const restaurantSchema = new Schema(
       required: true,
       unique: true,
     },
-    // restaurant_owner_mobile_number:{
-    //   type: String,
-    //   required: true,
-    // },
-    // restaurant_owner_full_name:{
-    //   type: String,
-    //   required: true,
-    // },
-    // restaurant_owner_email:{
-    //   type: String,
-    //   required: true,
-    // },
     restaurant_type: {
       type: Array,
       required: true,

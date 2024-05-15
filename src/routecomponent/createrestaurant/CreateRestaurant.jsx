@@ -50,6 +50,39 @@ function CreateRestaurant() {
     setResType(e.target.attributes.id.nodeValue);
   };
 
+  const addRestauarntToPartner = async (resId) => {
+
+    const jsonData = {
+      ownerId: ownerId,
+      resId: resId
+    }
+
+    const response = await fetch("http://localhost:7000/addrestaurant", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(jsonData)
+    })
+    if (response.ok) {
+      const data = await response.json()
+      console.log("data is: ", data);
+      navigate("/partner/home")
+    }
+    else {
+      const jsonData = {
+        resId: resId
+      }  
+      const response = await fetch("http://localhost:7000/deleterestaurant", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+      })
+    }
+  }
+
   const handleForm = async (e) => {
     e.preventDefault();
     console.log("form event: ", e.target);
@@ -67,6 +100,7 @@ function CreateRestaurant() {
       const data = await response.json()
       console.log("response data: ", data);
       dispatch(setResDetail({
+        resId:data.response._id,
         resName: data.response.restaurant_name,
         address: data.response.restaurant_complete_address,
         location: data.response.restaurant_location,
@@ -85,7 +119,7 @@ function CreateRestaurant() {
         food_image__public_id: data.response.restaurant_food_image__public_id,
         ownerId: data.response.ownerId,
       }))
-      navigate("/partner/home")
+      addRestauarntToPartner(data.response._id)
     }
   };
 
@@ -127,25 +161,6 @@ function CreateRestaurant() {
           name="landline_number"
         />
       </div>
-
-      {/* <div>Owner details</div> */}
-      {/* <div className="owner-dtl">
-        <input
-          type="text"
-          placeholder="Mobile numer of owner"
-          name="restaurant_owner_mobile_number"
-        />
-        <input
-          type="text"
-          placeholder="Restaurant owner full name"
-          name="restaurant_owner_full_name"
-        />
-        <input
-          type="text"
-          placeholder="Restaurant owner email address"
-          name="restaurant_owner_email"
-        />
-      </div> */}
 
       <div className="res-type">Restaurant type and timing</div>
       <input

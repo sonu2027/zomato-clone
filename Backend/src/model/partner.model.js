@@ -13,19 +13,17 @@ const partnerSchema = new Schema(
       lowecase: true,
       trim: true,
     },
-    // password: {
-    //     type: String,
-    //     required: [true, 'Password is required']
-    // },
-    // owner_mobile_number: {
-    //   type: String,
-    //   required: true,
-    // },
+    restaurantId: {
+      type: Array,
+      required: false,
+    },
     owner_profile_picture_URL: {
       type: String,
+      requires: false,
     },
     owner_profile_picture_public_id: {
       type: String,
+      requires: false,
     },
   },
   {

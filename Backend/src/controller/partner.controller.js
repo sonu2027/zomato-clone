@@ -51,4 +51,24 @@ const registerPartner = async (req, res) => {
   return res.status(201).json({ response });
 };
 
-export { sendEmail, registerPartner };
+const addRestaurant = async (req, res) => {
+  try {
+    console.log("I am in addRestaurant");
+    console.log("req.body: ", req.body);
+    const { resId, ownerId } = req.body;
+    const response = await Partner.updateOne(
+      { _id: ownerId },
+      { $push: { restaurantId: resId } }
+    );
+    res
+      .status(200)
+      .json({ response, message: "restaurant added successfully" });
+  } catch (error) {
+    console.log("Error while adding restaurant: ", error);
+    return res
+      .status(500)
+      .json({ errors: error, message: "Error while adding restaurant" });
+  }
+};
+
+export { sendEmail, registerPartner, addRestaurant };
