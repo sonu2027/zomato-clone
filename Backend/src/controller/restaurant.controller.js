@@ -63,7 +63,7 @@ const registerRestaurant = async (req, res) => {
     return res.status(200).json({ response });
   } catch (error) {
     console.log("Error while registering partner restaurant");
-    res.status(500).json({
+    return res.status(500).json({
       error: error,
       message: "Error while registering partner restaurant",
     });
@@ -72,6 +72,9 @@ const registerRestaurant = async (req, res) => {
 
 const deleteRestaurant=async(req,res)=>{
   console.log("req.body: ", req.body);
+  const response=await Restaurant.deleteOne({_id:req.body.resId})
+  console.log(response);
+  return res.json(response)
 }
 
 export { registerRestaurant, deleteRestaurant };

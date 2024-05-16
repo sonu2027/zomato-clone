@@ -15,6 +15,7 @@ function CreateRestaurant() {
   const [describeRestaurant, setDescribeRestaurant] = useState([]);
   const [cuisines, setCuisines] = useState([]);
   const [resType, setResType] = useState("");
+  const [resRegStatus, setResRegStatus] = useState(true)
 
   const handleOpeningDayCount = (e) => {
     console.log("e: ", e);
@@ -64,22 +65,25 @@ function CreateRestaurant() {
       },
       body: JSON.stringify(jsonData)
     })
+    const data = await response.json()
+    console.log("data is: ", data);
     if (response.ok) {
-      const data = await response.json()
-      console.log("data is: ", data);
       navigate("/partner/home")
     }
     else {
       const jsonData = {
         resId: resId
-      }  
+      }
       const response = await fetch("http://localhost:7000/deleterestaurant", {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(jsonData)
       })
+      console.log("response", response);
+      const data = await response.json()
+      console.log("data: ", data);
     }
   }
 
@@ -96,11 +100,11 @@ function CreateRestaurant() {
       method: "POST",
       body: formData,
     });
+    const data = await response.json()
+    console.log("response data: ", data);
     if (response.ok) {
-      const data = await response.json()
-      console.log("response data: ", data);
       dispatch(setResDetail({
-        resId:data.response._id,
+        resId: data.response._id,
         resName: data.response.restaurant_name,
         address: data.response.restaurant_complete_address,
         location: data.response.restaurant_location,
@@ -120,6 +124,12 @@ function CreateRestaurant() {
         ownerId: data.response.ownerId,
       }))
       addRestauarntToPartner(data.response._id)
+    }
+    else {
+      setResRegStatus(false)
+      setTimeout(() => {
+        setResRegStatus(true)
+      }, 3000)
     }
   };
 
@@ -1356,6 +1366,10 @@ function CreateRestaurant() {
         id="resImage"
         name="restaurant_image"
       />
+
+      {
+        !resRegStatus && <div>Something went wrong, please try again</div>
+      }
 
       <button type="submit">Submit</button>
     </form>

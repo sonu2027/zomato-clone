@@ -71,4 +71,21 @@ const addRestaurant = async (req, res) => {
   }
 };
 
-export { sendEmail, registerPartner, addRestaurant };
+const loginPartner = async (req, res) => {
+  console.log("req.body: ", req.body);
+  try {
+    const response = await Partner.findOne({
+      owner_email: req.body.owner_email,
+    });
+    console.log("rrsponse: ", response);
+    if (response) {
+      return res.status(200).json({ response });
+    } else {
+      throw error;
+    }
+  } catch (error) {
+    return res.status(500).json({ error:error, message: "usernot found" });
+  }
+};
+
+export { sendEmail, registerPartner, addRestaurant, loginPartner };

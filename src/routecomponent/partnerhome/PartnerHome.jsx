@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import "./partnerhome.css"
 import img1 from "../../assets/zomato/zomatoPartnerBusiness.png";
-import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md"
 import ReceivedOrder from '../../component/receivedorder/ReceivedOrder';
 import AcceptedOrder from '../../component/acceptedorder/AcceptedOrder';
 import OrderCompleted from '../../component/ordercompleted/OrderCompleted';
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { removePartnerDetail } from '../../store/partnerSlice.js';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function PartnerHome() {
+
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+
+  const PartnerName = useSelector((s) => s.partner.fullName)
+  const PartnerEmail= useSelector((s) => s.partner.email)
+  console.log("partnetname", PartnerName);
 
   const data1 = useSelector((s) => s.partner)
   console.log("data1: ", data1);
@@ -29,7 +38,7 @@ function PartnerHome() {
   const changeSection = (event) => {
     console.log(event);
     setOrderSection(event.target.className)
-    document.getElementsByClassName(prevOrderSection)[0].style.border="none"
+    document.getElementsByClassName(prevOrderSection)[0].style.border = "none"
     setPrevOrdeSectionr(event.target.className)
     event.target.style.borderBottom = "2px solid rgb(94, 132, 246)"
   }
@@ -38,24 +47,29 @@ function PartnerHome() {
     document.getElementsByClassName("received-order")[0].style.borderBottom = "2px solid rgb(94, 132, 246)"
   }, [])
 
+  const logoutPartner=()=>{
+    dispatch(removePartnerDetail())
+    navigate("/partner/login")
+  }
+
   return (
     <div className='PartnerHome'>
       <div className="header">
         <img src={img1} alt="" />
         <div className='profile'>
           <img src="https://b.zmtcdn.com/mx-onboarding-hero87f77501659a5656cad54d98e72bf0d81627911821.webp" alt="" />
-          {"name"}
+          {PartnerName}
           {
-            arrow ? <MdOutlineKeyboardArrowDown onClick={(e) => showOption(e)} /> : <MdOutlineKeyboardArrowUp onClick={(e) => closeOption(e)} />
+            arrow ? <IoMdArrowDropdown onClick={(e) => showOption(e)} /> : <IoMdArrowDropup onClick={(e) => closeOption(e)} />
           }
         </div>
         {
           !arrow && <div className='profile-option'>
             <img src="https://b.zmtcdn.com/mx-onboarding-hero87f77501659a5656cad54d98e72bf0d81627911821.webp" alt="" />
-            <div className='t1'>sonu</div>
-            <div className='t2'>sonu.mondal.2027@gmail.com</div>
+            <div className='t1'>{PartnerName}</div>
+            <div className='t2'>{PartnerEmail}</div>
             <div className='t3'>My restaurant</div>
-            <button className='t4'>Logout</button>
+            <button onClick={logoutPartner} className='t4'>Logout</button>
             <div className='condition'>
               <div>Terms of service</div>
               <div>|</div>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPartnerDetail } from "../../store/partnerSlice";
 
-function VerifyOtp({ setOtpSent, otp, fullName, email }) {
+function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
 
   const dispatch = useDispatch()
 
@@ -12,6 +12,7 @@ function VerifyOtp({ setOtpSent, otp, fullName, email }) {
 
   const [inputOtp, setInputOtp] = useState(["", "", "", "", "", ""])
   const [timeRemaining, setTimeRemaining] = useState(59)
+  const [somethingWentWrong, setSomethingWentWrong] = useState(false)
 
   const registerUser = async () => {
     const jsonData = {
@@ -29,14 +30,36 @@ function VerifyOtp({ setOtpSent, otp, fullName, email }) {
     console.log("response: ", response);
     const data = await response.json()
     console.log("data: ", data);
-    dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id:data.response._id }))
+    dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id }))
+  }
+
+  const loginUser = async () => {
+    const jsonData = {
+      owner_email: email
+    }
+    const response = await fetch("http://localhost:7000/loginuser", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(jsonData)
+    })
+
+    console.log("response: ", response);
+    if (response.ok) {
+      const data = await response.json()
+      console.log("data: ", data);
+      dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id }))
+    }
+    else {
+      throw error
+    }
   }
 
   useEffect(() => {
     const timeStart = setInterval(() => {
       setTimeRemaining((timeRemaining) => timeRemaining - 1)
     }, 1000)
-
     setTimeout(() => {
       clearInterval(timeStart)
       setOtpSent(false)
@@ -54,13 +77,30 @@ function VerifyOtp({ setOtpSent, otp, fullName, email }) {
     if (register == true && otp == Number(inputOtp.join(""))) {
       console.log("otp is", otp, typeof otp, Number(inputOtp.join("")), typeof Number(inputOtp.join("")));
 
-      registerUser().
-        then(() => {
-          navigate("/partner/register/create-your-restaurant")
-        })
-        .catch((e) => {
-          console.log("error while registering: ", e);
-        })
+      if (task == "registerUser") {
+        registerUser().
+          then(() => {
+            navigate("/partner/register/create-your-restaurant")
+          })
+          .catch((e) => {
+            console.log("error while registering: ", e);
+          })
+      }
+      else if (task == "loginUser") {
+        loginUser()
+          .then(() => {
+            navigate("/partner/home")
+          })
+          .catch((e) => {
+            setSomethingWentWrong(true)
+            setTimeout(() => {
+              setSomethingWentWrong(false)
+              setOtpSent(false)
+              navigate("/partner/register")
+            }, 3000)
+            console.log("error while login: ", e);
+          })
+      }
     }
   }, [inputOtp])
 
@@ -139,6 +179,9 @@ function VerifyOtp({ setOtpSent, otp, fullName, email }) {
           <input onChange={(e) => handleInputOtp(e, "i5")} type="text" name="" id="" />
           <input onChange={(e) => handleInputOtp(e, "i6")} type="text" name="" id="" />
         </form>
+        {
+          somethingWentWrong && <div className="time-count">User doesn't exist</div>
+        }
         <div className="time-count">00:{timeRemaining}</div>
         {/* <div className="resend">Not received OTP? Resend Now</div> */}
       </div>

@@ -4,39 +4,41 @@ import img1 from "../../assets/zomato/zomatoPartnerLogo.svg";
 import img2 from "../../assets/zomato/partnerLoginBodyImage.png";
 import { useNavigate } from "react-router-dom";
 import PartnerLoginForm from "../../component/partnerLoginForm/PartnerLoginForm";
+import VerifyOtp from "../../component/otpverify/VerifyOtp";
 
 function PartnerLogin() {
 
-  const navigate=useNavigate()
-
-  const [showLogin, setShowLogin] = useState(false);
+  const navigate = useNavigate();
+  const [showRegister, setShowRegister] = useState(false);
+  const [otpSent, setOtpSent] = useState(false)
+  const [otp, setOtp] = useState("")
+  const [email, setEmail] = useState("")
 
   const showLoginTab = () => {
-    setShowLogin(true)
+    setShowRegister(true)
     setTimeout(function () {
       document.getElementsByClassName("form-element")[0].style.opacity = "1"; // Show the box after 0 seconds
       document.getElementsByClassName("form-element")[0].style.transform = "translateY(0)"; // Move the box from bottom to top
     });
   }
 
-  const closeLoginTab = () => {
-    setShowLogin(false)
-  }
-
   return (
     <div className="partnerLogin">
+      {
+        otpSent && <VerifyOtp task="loginUser" setOtpSent={setOtpSent} otp={otp} email={email} />
+      }
       <div className="header">
         <img src={img1} alt="" />
       </div>
       <div className="body">
-        {showLogin && <PartnerLoginForm closeLoginTab={closeLoginTab}/>}
+        {showRegister && <PartnerLoginForm setShowRegister={setShowRegister} setOtpSent={setOtpSent} setOtp={setOtp} email={email} setEmail={setEmail} />}
         <div className="body-child-div">
           <img src={img2} alt="" />
           <div className="t1">Zomato Restaurant Partner dashboard</div>
           <button onClick={showLoginTab} className="button button1">
             Login
           </button>
-          <button onClick={()=>navigate("/partner/register")} className="button button2">Register</button>
+          <button onClick={() => navigate("/partner/register")} className="button button2">Register</button>
           <div className="t2">
             <div>Contact Us</div>
             <div className="t2t1">+91-97-38383838</div>

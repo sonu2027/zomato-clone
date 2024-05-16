@@ -42,7 +42,7 @@ function PartnerRegister() {
         <PartnerRegisterForm setShowRegister={setShowRegister} handleChecked={handleChecked} setOtpSent={setOtpSent} agree={agree} setOtp={setOtp} setFullName={setFullName} fullName={fullName} email={email} setEmail={setEmail} />
       }
       {
-        otpSent && <VerifyOtp setOtpSent={setOtpSent} otp={otp} fullName={fullName} email={email} />
+        otpSent && <VerifyOtp task="registerUser" setOtpSent={setOtpSent} otp={otp} fullName={fullName} email={email} />
       }
       <div className="t1">
         <img src={img1} alt="" />

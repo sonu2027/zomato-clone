@@ -23,7 +23,7 @@ router.route("/registerrestaurant").post(
   registerRestaurant
 );
 
-router.route("/deleterestaurant").post(deleteRestaurant)
+router.route("/deleterestaurant").delete(deleteRestaurant)
 
 router.route("/sendemailotp").post(upload.fields([]), sendEmail);
 
