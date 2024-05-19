@@ -23,7 +23,12 @@ function PartnerLogin() {
   }
 
   return (
-    <div className="partnerLogin">
+    <div onClick={() => {
+      console.log("working", showRegister);
+      if (showRegister) {
+        setShowRegister(false)
+      }
+    }} className="partnerLogin">
       {
         otpSent && <VerifyOtp task="loginUser" setOtpSent={setOtpSent} otp={otp} email={email} />
       }
@@ -31,7 +36,9 @@ function PartnerLogin() {
         <img src={img1} alt="" />
       </div>
       <div className="body">
-        {showRegister && <PartnerLoginForm setShowRegister={setShowRegister} setOtpSent={setOtpSent} setOtp={setOtp} email={email} setEmail={setEmail} />}
+        {
+          showRegister && <PartnerLoginForm setShowRegister={setShowRegister} setOtpSent={setOtpSent} setOtp={setOtp} email={email} setEmail={setEmail} />
+        }
         <div className="body-child-div">
           <img src={img2} alt="" />
           <div className="t1">Zomato Restaurant Partner dashboard</div>

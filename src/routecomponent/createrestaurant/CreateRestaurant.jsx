@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./createRestaurant.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setResDetail } from "../../store/restaurantSlice";
+import { useLocation } from "react-router-dom";
 
 function CreateRestaurant() {
 
+  const location = useLocation()
+  const restaurantData = location.state
+  console.log("restaurantData: ", restaurantData);
   const dispatch = useDispatch()
   const ownerId = useSelector((s) => s.partner.id)
 
@@ -103,26 +107,27 @@ function CreateRestaurant() {
     const data = await response.json()
     console.log("response data: ", data);
     if (response.ok) {
-      dispatch(setResDetail({
-        resId: data.response._id,
-        resName: data.response.restaurant_name,
-        address: data.response.restaurant_complete_address,
-        location: data.response.restaurant_location,
-        resMobNo: data.response.mobile_number_at_restaurant,
-        landline_number: data.response.landline_number,
-        restaurant_type: data.response.restaurant_type,
-        describe_restaurant: data.response.describe_restaurant,
-        cuisines: data.response.cuisines,
-        hour: data.response.restaurant_hour,
-        day: data.response.restaurant_day,
-        menu_URL: data.response.restaurant_menu_URL,
-        menu_public_id: data.response.restaurant_menu_public_id,
-        image_URL: data.response.restaurant_image_URL,
-        image_public_id: data.response.restaurant_image_public_id,
-        food_image__URL: data.response.restaurant_food_image__URL,
-        food_image__public_id: data.response.restaurant_food_image__public_id,
-        ownerId: data.response.ownerId,
-      }))
+      // dispatch(setResDetail({
+      //   resId: data.response._id,
+      //   resName: data.response.restaurant_name,
+      //   address: data.response.restaurant_complete_address,
+      //   location: data.response.restaurant_location,
+      //   resMobNo: data.response.mobile_number_at_restaurant,
+      //   landline_number: data.response.landline_number,
+      //   restaurant_type: data.response.restaurant_type,
+      //   describe_restaurant: data.response.describe_restaurant,
+      //   cuisines: data.response.cuisines,
+      //   hour: data.response.restaurant_hour,
+      //   day: data.response.restaurant_day,
+      //   menu_URL: data.response.restaurant_menu_URL,
+      //   menu_public_id: data.response.restaurant_menu_public_id,
+      //   image_URL: data.response.restaurant_image_URL,
+      //   image_public_id: data.response.restaurant_image_public_id,
+      //   food_image__URL: data.response.restaurant_food_image__URL,
+      //   food_image__public_id: data.response.restaurant_food_image__public_id,
+      //   ownerId: data.response.ownerId,
+      // }))
+      dispatch(setResDetail(data.response))
       addRestauarntToPartner(data.response._id)
     }
     else {
@@ -1289,7 +1294,7 @@ function CreateRestaurant() {
       <label htmlFor="Wraps">Wraps</label>
 
       <div className="res-timing">Restaurant operarional hour</div>
-      {openingDayCount.map((e) => (
+      {openingDayCount.map((e, i) => (
         <div key={e}>
           <input type="time" name="restaurant_hour" id="" />
           <input type="time" name="restaurant_hour" id="" />

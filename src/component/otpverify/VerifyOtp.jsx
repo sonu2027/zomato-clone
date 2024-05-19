@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setPartnerDetail } from "../../store/partnerSlice";
+import { setPartnerDetail } from "../../store/partnerSlice.js";
+import { setResDetail } from "../../store/restaurantSlice.js";
 
 function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
 
@@ -50,6 +51,19 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
       const data = await response.json()
       console.log("data: ", data);
       dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id }))
+      const resRes = await fetch("http://localhost:7000/partnerrestaurant", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data: data.response.restaurantId })
+      })
+      console.log("resRes: ", resRes);
+      if (resRes.ok) {
+        const data = await resRes.json()
+        console.log("restaurant find data: ", data);
+        dispatch(setResDetail(data))
+      }
     }
     else {
       throw error

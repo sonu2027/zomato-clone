@@ -20,6 +20,8 @@ function PartnerRegister() {
       document.getElementsByClassName("PartnerRegister-grandChild")[0].style.opacity = "1"; // Show the box after 0 seconds
       document.getElementsByClassName("PartnerRegister-grandChild")[0].style.transform = "translateY(0)"; // Move the box from bottom to top
     });
+    document.getElementsByClassName("PartnerRegister2")[0].style.filter = "blur(5px)"
+    document.getElementsByClassName("PartnerRegister2")[0].style.backgroundColor = "rgba(0, 0 ,0, 0.9)"
   }
 
   const handleChecked = (e) => {
@@ -44,27 +46,29 @@ function PartnerRegister() {
       {
         otpSent && <VerifyOtp task="registerUser" setOtpSent={setOtpSent} otp={otp} fullName={fullName} email={email} />
       }
-      <div className="t1">
-        <img src={img1} alt="" />
-        <button onClick={() => navigate("/partner/login")}>Login</button>
-      </div>
-      <div className="body">
-        <div className="body-child">
-          <div className="t2">
-            <div>Partner with Zomato</div>
-            <div className="div2">at 0% commission for the 1st month!</div>
+      <div className="PartnerRegister2">
+        <div className="t1">
+          <img src={img1} alt="" />
+          <button onClick={() => navigate("/partner/login")}>Login</button>
+        </div>
+        <div className="body">
+          <div className="body-child">
+            <div className="t2">
+              <div>Partner with Zomato</div>
+              <div className="div2">at 0% commission for the 1st month!</div>
+            </div>
+            <div className="t3">
+              And get ads worth INR 1500. Valid for new restaurant partners in
+              select cities.
+            </div>
+            <div className="t4">
+              <button onClick={showLoginTab} className="b1">Register your restaurant</button>
+              <button onClick={() => navigate("/partner/login")} className="b2">
+                Login to view your existing restaurant
+              </button>
+            </div>
+            <div className="t5">Need help? Contact +91 97-38-38-38-38</div>
           </div>
-          <div className="t3">
-            And get ads worth INR 1500. Valid for new restaurant partners in
-            select cities.
-          </div>
-          <div className="t4">
-            <button onClick={showLoginTab} className="b1">Register your restaurant</button>
-            <button onClick={() => navigate("/partner/login")} className="b2">
-              Login to view your existing restaurant
-            </button>
-          </div>
-          <div className="t5">Need help? Contact +91 97-38-38-38-38</div>
         </div>
       </div>
     </div>

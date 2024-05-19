@@ -11,7 +11,7 @@ function PartnerRegisterForm({ setShowRegister, handleChecked, setOtpSent, agree
 
     const sendEmailOtp = async (e) => {
         console.log("e", e.target);
-        const generatedOtp =Math.floor(Math.random() * 900000)+100000;
+        const generatedOtp = Math.floor(Math.random() * 900000) + 100000;
         console.log("Generated otp: ", generatedOtp);
         const formData = new FormData(e.target)
         formData.append("otp", generatedOtp)
@@ -45,11 +45,19 @@ function PartnerRegisterForm({ setShowRegister, handleChecked, setOtpSent, agree
     }
 
     return (
-        <div className="PartnerRegister-child">
-            <div className="PartnerRegister-grandChild">
+        <div onClick={() => {
+            setShowRegister(false)
+            document.getElementsByClassName("PartnerRegister2")[0].style.filter = "blur(0)"
+            document.getElementsByClassName("PartnerRegister2")[0].style.backgroundColor = "rgba(0, 0 ,0, 0)"
+        }} className="PartnerRegister-child">
+            <div onClick={(e) => e.stopPropagation()} className="PartnerRegister-grandChild">
                 <div className="signup">
                     <div>Signup</div>
-                    <RxCross1 className="cross-icon" onClick={() => setShowRegister(false)} />
+                    <RxCross1 className="cross-icon" onClick={() => {
+                        setShowRegister(false)
+                        document.getElementsByClassName("PartnerRegister2")[0].style.filter = "blur(0)"
+                        document.getElementsByClassName("PartnerRegister2")[0].style.backgroundColor = "rgba(0, 0 ,0, 0)"
+                    }} />
                 </div>
                 <form onSubmit={handleOtp} encType='multipart/form-data'>
                     <input onChange={(e) => setFullName(e.target.value)} className="input" type="text" value={fullName} name="full_name" id="" placeholder="Full name" />

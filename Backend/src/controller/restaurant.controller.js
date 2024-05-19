@@ -70,11 +70,34 @@ const registerRestaurant = async (req, res) => {
   }
 };
 
-const deleteRestaurant=async(req,res)=>{
+const deleteRestaurant = async (req, res) => {
   console.log("req.body: ", req.body);
-  const response=await Restaurant.deleteOne({_id:req.body.resId})
+  const response = await Restaurant.deleteOne({ _id: req.body.resId });
   console.log(response);
-  return res.json(response)
-}
+  return res.json(response);
+};
 
-export { registerRestaurant, deleteRestaurant };
+const partnerRestaurant = async (req, res) => {
+  const restaurantIds = req.body.data;
+  console.log("req.body", req.body);
+  console.log("restaurantIds", restaurantIds); // is an array
+
+  new Promise((resolve, reject) => {
+    const restaurantPromises = restaurantIds.map((id) =>
+      Restaurant.findById(id)
+    );
+    Promise.all(restaurantPromises)
+      .then((restaurants) => resolve(restaurants))
+      .catch((error) => reject(error));
+  })
+    .then((restaurants) => {
+      console.log("restaurants are: ", restaurants);
+      res.status(200).json(restaurants);
+    })
+    .catch((error) => {
+      console.error("Error fetching restaurants:", error);
+      res.status(500).json({ error: "Failed to fetch restaurants" });
+    });
+};
+
+export { registerRestaurant, deleteRestaurant, partnerRestaurant };

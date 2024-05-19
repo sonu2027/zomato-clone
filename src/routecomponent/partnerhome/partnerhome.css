@@ -44,6 +44,7 @@
   row-gap: 0.2rem;
   padding: 1rem 0.5rem;
   border-radius: 6px;
+  border: 1px solid rgb(77, 76, 76);
 }
 
 .PartnerHome .header .profile-option img {
@@ -70,6 +71,20 @@
   align-items: center;
   padding: 4px 0;
   margin: 8px 0;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.PartnerHome .header .profile-option .t3 button{
+  background: #3773b8;
+  color: #fff;
+  border-radius: 4px;
+  padding: 4px 8px;
+  border: none;
+}
+
+.PartnerHome .header .profile-option .t3 button:hover{
+  background: #205a9c;
 }
 
 .PartnerHome .header .profile-option .t4 {
@@ -108,5 +123,11 @@
 }
 .PartnerHome .order-status {
   column-gap: 1rem;
+}
+.PartnerHome .header .profile-option .condition {
+  font-size: 0.7rem;
+}
+.PartnerHome .header .profile-option {
+  top: 3.5rem;
 }
 }

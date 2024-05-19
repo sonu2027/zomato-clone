@@ -87,6 +87,7 @@
   position: fixed;
   height: 100vh;
   width: 100vw;
+  z-index: 1;
 }
 
 .PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild {
@@ -100,6 +101,7 @@
   border-radius: 6px;
   transition: transform 1s ease;
   transform: translateY(100%);
+  border: 1px solid rgb(125, 125, 125);
 }
 
 .PartnerRegister .PartnerRegister-child .PartnerRegister-grandChild form {
@@ -234,6 +236,7 @@
   justify-content: center;
   align-items: center;
   border: 1px solid red;
+  z-index: 1;
 }
 .PartnerRegister .verify-otp .verify-otp-content{
   width: 30rem;

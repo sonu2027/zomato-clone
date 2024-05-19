@@ -45,7 +45,7 @@ function PartnerLoginForm({ setShowRegister, setOtpSent, setOtp, setEmail, email
     }
 
     return (
-        <div className="form-element">
+        <div onClick={(e)=>{e.stopPropagation()}} className="form-element">
             <div className="t1">
                 <div>Login</div>
                 <RxCross1 className="cross-icon" onClick={() => setShowRegister(false)} />
