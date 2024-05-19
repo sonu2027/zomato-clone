@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import "./partnerRestaurant.css"
 import { useNavigate } from 'react-router-dom'
 
-function partnerRestaurant() {
+function PartnerRestaurant() {
 
     const navigate = useNavigate()
 
@@ -32,4 +32,4 @@ function partnerRestaurant() {
     )
 }
 
-export default partnerRestaurant
+export default PartnerRestaurant

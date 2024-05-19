@@ -10,7 +10,7 @@ import PartnerLogin from "../routecomponent/partnerLogin/PartnerLogin"
 import PartnerRegister from "../routecomponent/partnerRegister/PartnerRegister"
 import CreateRestaurant from "../routecomponent/createrestaurant/CreateRestaurant"
 import PartnerHome from "../routecomponent/partnerhome/PartnerHome"
-import PartnerRestaurant from "../routecomponent/partnerrestaurant/partnerRestaurant.jsx"
+import PartnerRestaurant from "../routecomponent/partnerrestaurant/PartnerRestaurant.jsx"
 
 function CustomRoutes(){
     return (
