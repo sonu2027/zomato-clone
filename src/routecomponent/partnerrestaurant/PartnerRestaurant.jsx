@@ -1,5 +1,5 @@
 import React from 'react'
-import PartnerHomeHeader from '../../component/partnerhomeheader/PartnerHomeHeader'
+import PartnerHomeHeader from '../../component/partnerhomeheader/PartnerHomeHeader.jsx'
 import "../partnerhome/partnerhome.css"
 import { useSelector } from 'react-redux'
 import "./partnerRestaurant.css"
@@ -18,13 +18,14 @@ function PartnerRestaurant() {
             </div>
 
             {
-                restaurantDetails.data.map((e) => <div onClick={() => navigate("/partner/register/create-your-restaurant", { state: { data: e } })} key={e._id} className='restaurantData'>
+                restaurantDetails.data.map((e) => <div key={e._id} className='restaurantData'>
                     <div>{e.restaurant_name
                     } | RES ID {e._id}</div>
                     <div>{e.restaurant_complete_address}</div>
                     <div className='image'>
                         <img src={e.restaurant_image_URL} alt="" />
                     </div>
+                    <button onClick={() => navigate("/partner/register/create-your-restaurant", { state: { data: e } })} className='edit'>Edit Restaurant</button>
                 </div>)
 
             }

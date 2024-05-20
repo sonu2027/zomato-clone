@@ -1,15 +1,55 @@
-.CreateRestaurant .res-dtl, .owner-dtl{
+.CreateRestaurant .res-dtl,
+.owner-dtl {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.CreateRestaurant {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.CreateRestaurant .res-dtl > input,
+.owner-dtl > input {
+  width: 20rem;
+}
+
+.CreateRestaurant .res-img,
+.res-timing,
+.cuisine-type,
+.res-type,
+.res-des {
+  margin: 2rem 0 1rem 0;
+}
+
+.CreateRestaurant .res-type-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.5rem;
+}
+
+.CreateRestaurant.res-type-option .item {
+  display: flex;
+  column-gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.CreateRestaurant .res-des-option, .CreateRestaurant .cuisine-type-option {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 2rem 1rem ;
+}
+
+.CreateRestaurant .res-des-option .item, .CreateRestaurant .cuisine-type-option .item{
     display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-}
-
-.CreateRestaurant .res-dtl>input, .owner-dtl>input{
-    width: 20rem;
-}
-
-.CreateRestaurant .res-img, .res-timing, .cuisine-type, .res-type, .res-des{
-    margin: 2rem 0 1rem 0;
+    justify-content: start;
+    align-items: center;
+    column-gap: 0.5rem;
 }

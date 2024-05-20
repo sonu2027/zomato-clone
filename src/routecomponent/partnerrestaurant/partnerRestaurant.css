@@ -17,3 +17,29 @@
     overflow: hidden;
     border-radius: 4px;
 }
+
+.partnerRestaurant .restaurantData button{
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(57, 92, 196);
+    color: #fff;
+    font-size: 1.1rem;
+    position: relative;
+    float: right;
+    bottom: 3rem;
+}
+
+.partnerRestaurant .restaurantData button:hover{
+    cursor:default;
+    background-color: rgb(17, 45, 130);
+}
+
+@media screen and (max-width:500px){
+    .partnerRestaurant .restaurantData button{
+        bottom: 2.5rem;
+        padding: 6px 12px;
+        font-size: 1rem;
+        left: 0.5rem;
+    }
+}

@@ -17,11 +17,11 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
     const [arrow, setArraow] = useState(true)
 
     const showOption = (e) => {
-        setArraow(!arrow)
+        setArraow(false)
     }
 
     const closeOption = (e) => {
-        setArraow(!arrow)
+        setArraow(true)
     }
 
     const changeSection = (event) => {
@@ -45,19 +45,26 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
     }, [])
 
     return (
-        <div onClick={(e) => closeOption(e)}>
+        <div className='header-parent' onClick={(e) => closeOption(e)}>
             <div className="header">
                 <img src={img1} alt="" />
                 <div className='profile'>
-                    <img src="https://b.zmtcdn.com/mx-onboarding-hero87f77501659a5656cad54d98e72bf0d81627911821.webp" alt="" />
+                    <img src="" alt="" />
                     {PartnerName}
                     {
-                        arrow ? <IoMdArrowDropdown onClick={(e) => showOption(e)} /> : <IoMdArrowDropup onClick={(e) => closeOption(e)} />
+                        arrow ? <IoMdArrowDropdown onClick={(e) => {
+                            showOption(e)
+                            e.stopPropagation()
+                        }
+                        } /> : <IoMdArrowDropup onClick={(e) => {
+                            closeOption(e)
+                            e.stopPropagation()
+                        }} />
                     }
                 </div>
                 {
-                    !arrow && <div onClick={(e)=>e.stopPropagation()} className='profile-option'>
-                        <img src="https://b.zmtcdn.com/mx-onboarding-hero87f77501659a5656cad54d98e72bf0d81627911821.webp" alt="" />
+                    !arrow && <div onClick={(e) => e.stopPropagation()} className='profile-option'>
+                        <img src="" alt="" />
                         <div className='t1'>{PartnerName}</div>
                         <div className='t2'>{PartnerEmail}</div>
                         {/* <div onClick={() => { navigate("/partner/home/restaurant") }} className='t3'>My restaurant</div> */}

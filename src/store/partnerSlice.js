@@ -5,6 +5,7 @@ const initialState = {
   email:"",
   ppURL:"",
   ppPub_id:"",
+  restaurantId:[],
   id:""
 };
 
@@ -18,6 +19,7 @@ const partnerSlice = createSlice({
       state.email = action.payload.email;
       state.ppURL = action.payload.ppURL;
       state.ppPub_id = action.payload.ppPub_id;
+      state.restaurantId = action.payload.restaurantId;
       state.id = action.payload.id;
     },
     removePartnerDetail: (state) => {
@@ -25,6 +27,7 @@ const partnerSlice = createSlice({
         state.email = "";
         state.ppURL = "";
         state.ppPub_id = "";
+        state.restaurantId=[];
         state.id = "";
     },
   },

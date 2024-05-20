@@ -31,7 +31,7 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
     console.log("response: ", response);
     const data = await response.json()
     console.log("data: ", data);
-    dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id }))
+    dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id, restaurantId: "" }))
   }
 
   const loginUser = async () => {
@@ -50,7 +50,7 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
     if (response.ok) {
       const data = await response.json()
       console.log("data: ", data);
-      dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id }))
+      dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id, restaurantId: data.response.restaurantId }))
       const resRes = await fetch("http://localhost:7000/partnerrestaurant", {
         method: 'POST',
         headers: {

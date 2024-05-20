@@ -12,7 +12,7 @@
 .PartnerHome .profile img {
   height: 2rem;
   width: 2rem;
-  border: 1px solid red;
+  border: 2px solid #fff;
   border-radius: 50%;
 }
 
@@ -51,6 +51,7 @@
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
+  border: 2px solid #000;
 }
 
 .PartnerHome .header .profile-option .condition {
@@ -79,8 +80,9 @@
   background: #3773b8;
   color: #fff;
   border-radius: 4px;
-  padding: 4px 8px;
+  padding: 10px 2rem;
   border: none;
+  font-size: 1rem;
 }
 
 .PartnerHome .header .profile-option .t3 button:hover{
@@ -101,7 +103,8 @@
   justify-content: start;
   align-items: center;
   column-gap: 1.5rem;
-  margin: 45vh 10vw 0 10vw;
+  margin: 0 10vw 0 10vw;
+  padding-top: 45vh;
   color: black;
 }
 
