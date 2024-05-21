@@ -1,3 +1,4 @@
+import { Partner } from "../model/partner.model.js";
 import { Restaurant } from "../model/restaurant.model.js";
 import { uploadOnCloudinary } from "../utility/cloudinary.utility.js";
 
@@ -72,9 +73,17 @@ const registerRestaurant = async (req, res) => {
 
 const deleteRestaurant = async (req, res) => {
   console.log("req.body: ", req.body);
-  const response = await Restaurant.deleteOne({ _id: req.body.resId });
-  console.log(response);
-  return res.json(response);
+  const {resId:id}=req.body
+  try {
+    const response = await Restaurant.deleteOne({ _id: req.body.id});
+    console.log(response);
+    return res.status(200).json(response);
+  } catch (error) {
+    console.log("error while deleting restaurant: ", error);
+    return res
+      .status(500)
+      .json({ message: "Error while deleting restaurant: " });
+  }
 };
 
 const partnerRestaurant = async (req, res) => {
@@ -100,4 +109,32 @@ const partnerRestaurant = async (req, res) => {
     });
 };
 
-export { registerRestaurant, deleteRestaurant, partnerRestaurant };
+const deletePartnerRestaurant = async (req, res) => {
+  console.log("req.body: ", req.body);
+  const { id } = req.body;
+  const response = await Partner.find({
+    restaurantId: id,
+  });
+  console.log("response: ", response);
+
+  const newRestaurantId = response[0].restaurantId.filter((e) => e != id);
+  console.log("newresis: ", newRestaurantId);
+
+  const response2 = await Partner.updateOne(
+    { _id: response[0]._id },
+    {
+      // It will also work
+      // $set: { restaurantId: newRestaurantId },
+      restaurantId: newRestaurantId,
+    }
+  );
+  console.log("response2: ", response2);
+  return res.status(200).json({ res1: response, res2: response2 });
+};
+
+export {
+  registerRestaurant,
+  deleteRestaurant,
+  partnerRestaurant,
+  deletePartnerRestaurant,
+};

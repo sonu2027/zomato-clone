@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { sendEmail } from "../controller/partner.controller.js";
-import { deleteRestaurant, registerRestaurant, partnerRestaurant } from "../controller/restaurant.controller.js";
+import { deleteRestaurant, registerRestaurant, partnerRestaurant, deletePartnerRestaurant } from "../controller/restaurant.controller.js";
 import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
@@ -28,5 +28,7 @@ router.route("/deleterestaurant").delete(deleteRestaurant)
 router.route("/sendemailotp").post(upload.fields([]), sendEmail);
 
 router.route("/partnerrestaurant").post(partnerRestaurant);
+
+router.route("/deletepartnerrestaurant").put(deletePartnerRestaurant);
 
 export default router;

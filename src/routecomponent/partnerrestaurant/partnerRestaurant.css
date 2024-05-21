@@ -1,45 +1,107 @@
-.partnerRestaurant .restaurantData{
-    border: 1px solid rgb(108, 106, 106);
-    margin: 7rem 10vw 1rem 10vw;
-    padding: 6px 10px;
-    border-radius: 4px;
+.partnerRestaurant .restaurantData {
+  border: 1px solid rgb(108, 106, 106);
+  margin: 7rem 10vw 1rem 10vw;
+  padding: 6px 10px;
+  border-radius: 4px;
+  position: relative;
 }
 
-.partnerRestaurant .restaurantData .image img{
-    width: 100%;
+.partnerRestaurant .restaurantData .image img {
+  width: 100%;
 }
-.partnerRestaurant .restaurantData .image{
-    width: 10rem;
-    height: 10rem;
+.partnerRestaurant .restaurantData .image {
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.partnerRestaurant .restaurantData .dot {
+  padding: 8px;
+  margin: 8px;
+  border-radius: 4px;
+  border: none;
+  color: #101010;
+  font-size: 1.1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.partnerRestaurant .restaurantData .restaurantOption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 4px;
+  border: none;
+  color: #101010;
+  font-size: 1.1rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 2rem;
+  border: 1px solid black;
+}
+
+.partnerRestaurant .restaurantData .restaurantOption button {
+  width: 100%;
+  padding: 2px 12px;
+}
+
+.partnerRestaurant .restaurantData .dot:hover {
+  cursor: default;
+  background-color: rgb(159, 159, 159);
+  border-radius: 50%;
+}
+
+.partnerRestaurant .restaurantData .showDeleteRestaurantOption {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.partnerRestaurant .restaurantData .showDeleteRestaurantOption .box {
+    border: 1px solid rgb(136, 134, 134);
+    background-color: #fff;
+    padding: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    border-radius: 4px;
-}
+    flex-direction: column;
+    row-gap: 3px;
+    position: fixed;
+    z-index: 1;
+  }
 
-.partnerRestaurant .restaurantData button{
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: none;
-    background-color: rgb(57, 92, 196);
-    color: #fff;
+  .partnerRestaurant .restaurantData .showDeleteRestaurantOption .box .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .partnerRestaurant .restaurantData .showDeleteRestaurantOption .box .button button{
+    padding: 6px 12px;
     font-size: 1.1rem;
-    position: relative;
-    float: right;
-    bottom: 3rem;
-}
+  }
 
-.partnerRestaurant .restaurantData button:hover{
-    cursor:default;
-    background-color: rgb(17, 45, 130);
-}
-
-@media screen and (max-width:500px){
-    .partnerRestaurant .restaurantData button{
-        bottom: 2.5rem;
-        padding: 6px 12px;
-        font-size: 1rem;
-        left: 0.5rem;
-    }
+@media screen and (max-width: 500px) {
+  .partnerRestaurant .restaurantData .dot {
+    bottom: 2.5rem;
+    padding: 6px 12px;
+    font-size: 1rem;
+    left: 0.5rem;
+  }
 }

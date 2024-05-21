@@ -142,6 +142,7 @@ function CreateRestaurant() {
     console.log("data is: ", data);
     if (response.ok) {
       const restaurantIds = [...restaurantId, resId]
+      console.log("Restaurant Ids is: ", restaurantIds);
       dispatch(setPartnerDetail({ fullName: fullName, email: email, ppURL: ppURL, ppPub_id: ppPub_id, id: ownerId, restaurantId: [...restaurantId, resId] }))
       const resRes = await fetch("http://localhost:7000/partnerrestaurant", {
         method: 'POST',
