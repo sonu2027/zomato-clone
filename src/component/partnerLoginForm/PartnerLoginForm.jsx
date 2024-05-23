@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx"
 import { MdEmail } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
-import { sendEmailOtp } from "../../databaseCall/sendEmailOTP";
+import { sendEmailOtp } from "../../databaseCall/sendEmailOTP.js";
 
 function PartnerLoginForm({ setShowRegister, setOtpSent, setOtp, setEmail, email }) {
 
