@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPartnerDetail } from "../../store/partnerSlice.js";
 import { setResDetail } from "../../store/restaurantSlice.js";
+import { partnerRegistartion } from "../../databaseCall/partner.registration.js";
+import { partnerLogin } from "../../databaseCall/partner.login.js";
+import { partnerRestaurant } from "../../databaseCall/get.partner.restaurant.js";
 
 function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
 
@@ -14,61 +17,6 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
   const [inputOtp, setInputOtp] = useState(["", "", "", "", "", ""])
   const [timeRemaining, setTimeRemaining] = useState(59)
   const [somethingWentWrong, setSomethingWentWrong] = useState(false)
-
-  const registerUser = async () => {
-    const jsonData = {
-      owner_full_name: fullName,
-      owner_email: email
-    }
-    const response = await fetch("http://localhost:7000/registeruser", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(jsonData)
-    })
-
-    console.log("response: ", response);
-    const data = await response.json()
-    console.log("data: ", data);
-    dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id, restaurantId: "" }))
-  }
-
-  const loginUser = async () => {
-    const jsonData = {
-      owner_email: email
-    }
-    const response = await fetch("http://localhost:7000/loginuser", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(jsonData)
-    })
-
-    console.log("response: ", response);
-    if (response.ok) {
-      const data = await response.json()
-      console.log("data: ", data);
-      dispatch(setPartnerDetail({ fullName: data.response.owner_full_name, email: data.response.owner_email, ppURL: "", ppPub_id: "", id: data.response._id, restaurantId: data.response.restaurantId }))
-      const resRes = await fetch("http://localhost:7000/partnerrestaurant", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: data.response.restaurantId })
-      })
-      console.log("resRes: ", resRes);
-      if (resRes.ok) {
-        const data = await resRes.json()
-        console.log("restaurant find data: ", data);
-        dispatch(setResDetail(data))
-      }
-    }
-    else {
-      throw error
-    }
-  }
 
   useEffect(() => {
     const timeStart = setInterval(() => {
@@ -92,20 +40,51 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
       console.log("otp is", otp, typeof otp, Number(inputOtp.join("")), typeof Number(inputOtp.join("")));
 
       if (task == "registerUser") {
-        registerUser().
-          then(() => {
+        partnerRegistartion(fullName, email)
+          .then((data) => {
+            dispatch(
+              setPartnerDetail({
+                fullName: data.response.owner_full_name,
+                email: data.response.owner_email,
+                ppURL: "",
+                ppPub_id: "",
+                id: data.response._id,
+                restaurantId: "",
+              })
+            );
             navigate("/partner/register/create-your-restaurant")
           })
-          .catch((e) => {
-            console.log("error while registering: ", e);
+          .catch((error) => {
+            console.log("Something wnet wrong while creating account, please try again:", error);
           })
       }
       else if (task == "loginUser") {
-        loginUser()
-          .then(() => {
-            navigate("/partner/home")
+        partnerLogin(email)
+          .then((partnerDetails) => {
+            dispatch(
+              setPartnerDetail({
+                fullName: partnerDetails.response.owner_full_name,
+                email: partnerDetails.response.owner_email,
+                ppURL: "",
+                ppPub_id: "",
+                id: partnerDetails.response._id,
+                restaurantId: partnerDetails.response.restaurantId,
+              })
+            );
+            return partnerDetails.response.restaurantId
           })
-          .catch((e) => {
+          .then((restaurantId) => {
+            partnerRestaurant(restaurantId)
+              .then((restaurant) => {
+                dispatch(setResDetail(restaurant));
+                navigate("/partner/home")
+              })
+              .catch((error) => {
+                console.log("something went wrong: ", error);
+              })
+          })
+          .catch((error) => {
+            console.log("User doesn't exist: ", error);
             setSomethingWentWrong(true)
             setTimeout(() => {
               setSomethingWentWrong(false)
@@ -114,6 +93,7 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
             }, 3000)
             console.log("error while login: ", e);
           })
+
       }
     }
   }, [inputOtp])
@@ -178,7 +158,11 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
       <div className="verify-otp-content">
         <div className="otp-verif">
           <div>OTP Verification</div>
-          <RxCross1 onClick={() => setOtpSent(false)} />
+          <RxCross1 onClick={() => {
+            setOtpSent(false)
+            document.getElementsByClassName("PartnerRegister2")[0].style.filter = "blur(0)"
+            document.getElementsByClassName("PartnerRegister2")[0].style.backgroundColor = "rgba(0, 0 ,0, 0)"
+          }} />
         </div>
         <div className="para">
           Verification code has been sent to your email, s*****e@gmail.com,
@@ -197,7 +181,6 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
           somethingWentWrong && <div className="time-count">User doesn't exist</div>
         }
         <div className="time-count">00:{timeRemaining}</div>
-        {/* <div className="resend">Not received OTP? Resend Now</div> */}
       </div>
     </div>
   );

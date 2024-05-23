@@ -67,7 +67,6 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
                         <img src="" alt="" />
                         <div className='t1'>{PartnerName}</div>
                         <div className='t2'>{PartnerEmail}</div>
-                        {/* <div onClick={() => { navigate("/partner/home/restaurant") }} className='t3'>My restaurant</div> */}
                         <div className='t3'>
                             <button onClick={() => { navigate("/partner/home/restaurant") }} >My restaurant</button>
                             <button onClick={() => { navigate("/partner/register/create-your-restaurant") }}>Add Rstaurant</button>

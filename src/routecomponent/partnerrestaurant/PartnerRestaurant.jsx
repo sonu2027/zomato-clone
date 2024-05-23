@@ -8,6 +8,9 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { setPartnerDetail } from '../../store/partnerSlice.js'
 import { useDispatch } from 'react-redux'
 import { setResDetail } from '../../store/restaurantSlice.js'
+import { deleteRestaurant } from '../../databaseCall/restaurant.delete.js'
+import { deletePartnerRestaurant } from '../../databaseCall/partner.delete.restaurant.js'
+import { partnerRestaurant } from '../../databaseCall/get.partner.restaurant.js'
 
 function PartnerRestaurant() {
 
@@ -51,93 +54,36 @@ function PartnerRestaurant() {
         // document.body.style.filter = "blur(0)"
     }
 
-    const deleteRestaurant = async () => {
-        console.log("handleDeleteRestaurant button clicked: ");
-        console.log("restaurantDetails from store: ", restaurantDetails);
-        console.log("current elemnt selected for delete is: ", currentElement);
-        try {
-            const response = await fetch("http://localhost:7000/deleterestaurant", {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: currentElement._id })
-            })
-            console.log("Response of delete restaurant: ", response);
-            const data = await response.json()
-            console.log("data after deleting restaurant: ", data);
-
-            if (response.ok) {
-                return currentElement._id
-            }
-            else {
-                console.log("Error while deleting restaurant");
-                throw error
-            }
-        }
-        catch (error) {
-            console.log("Error while deleting restaurant: ", error);
-            throw error
-        }
-    }
-
     const handleDeleteRestaurant = async () => {
-        deleteRestaurant()
-            .then(async (id) => {
-                try {
-                    const response = await fetch("http://localhost:7000/deletepartnerrestaurant", {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ id })
-                    })
-                    console.log("Response of delete restaurant of partner: ", response);
-                    const data = await response.json()
-                    console.log("data after deleteing restaurant of partner: ", data);
-
-                    if (response.ok) {
-                        let newIds = data.res1[0].restaurantId.filter((e) => e != id)
+        deleteRestaurant(currentElement._id)
+            .then((id) => {
+                deletePartnerRestaurant(id)
+                    .then(async (data) => {
+                        let newIds = data.res1[0].restaurantId.filter((e) => e != id);
                         console.log("newids is: ", newIds);
-                        dispatch(setPartnerDetail({
-                            fullName: data.res1[0].owner_full_name, email: data.res1[0].owner_email, ppURL: "", ppPub_id: "", id: data.res1[0]._id, restaurantId: newIds
-                        }))
+                        dispatch(
+                            setPartnerDetail({
+                                fullName: data.res1[0].owner_full_name,
+                                email: data.res1[0].owner_email,
+                                ppURL: "",
+                                ppPub_id: "",
+                                id: data.res1[0]._id,
+                                restaurantId: newIds,
+                            })
+                        );
                         console.log("restaurant deleted successfully: ", data);
-                        const resRes = await fetch("http://localhost:7000/partnerrestaurant", {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ data: newIds })
-                        })
-                        console.log("resRes: ", resRes);
-                        if (resRes.ok) {
-                            const data = await resRes.json()
-                            console.log("restaurant find data: ", data);
-                            dispatch(setResDetail(data))
-                            setResDelSucc(true)
-                            setTimeout(() => {
-                                setResDelSucc(false)
-                                setShowDeleteRestaurantOption(false)
-                                setCurrentElement("")
-                                navigate("/partner/home")
-                            }, 3000)
-                        }
-                    }
-                    else {
-                        console.log("Error while deleting restauarnt of partner");
-                        throw error
-                    }
-                }
-                catch (error) {
-                    setResDelFail(true)
-                    setTimeout(() => {
-                        setResDelFail(false)
-                        setShowDeleteRestaurantOption(false)
-                        setCurrentElement("")
-                    }, 3000)
-                    console.log("Error while deleting restauarnt of partner");
-                }
+                        partnerRestaurant(newIds)
+                            .then((data) => {
+                                dispatch(setResDetail(data));
+                                setResDelSucc(true);
+                                setTimeout(() => {
+                                    setResDelSucc(false);
+                                    setShowDeleteRestaurantOption(false);
+                                    setCurrentElement("");
+                                    navigate("/partner/home");
+                                }, 3000);
+                            })
+                    })
             })
             .catch((error) => {
                 console.log("Error while deleting restauarnt", error);

@@ -41,14 +41,19 @@ const registerPartner = async (req, res) => {
   console.log("req.body: ", req.body);
   const { owner_full_name, owner_email } = req.body;
 
-  const response = await Partner.create({
-    owner_full_name,
-    owner_email,
-  });
+  try {
+    const response = await Partner.create({
+      owner_full_name,
+      owner_email,
+    });
 
-  console.log("response: ", response);
+    console.log("response: ", response);
 
-  return res.status(201).json({ response });
+    return res.status(200).json({ response });
+  } catch (error) {
+    console.log("Something went wrong while creating account: ", error);
+    return res.status(500).json({ response });
+  }
 };
 
 const addRestaurant = async (req, res) => {
@@ -84,7 +89,8 @@ const loginPartner = async (req, res) => {
       throw error;
     }
   } catch (error) {
-    return res.status(500).json({ error:error, message: "usernot found" });
+    console.log("user not found");
+    return res.status(500).json({ error: error, message: "usernot found" });
   }
 };
 

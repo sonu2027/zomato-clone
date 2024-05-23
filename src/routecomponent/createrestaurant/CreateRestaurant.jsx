@@ -5,6 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { setResDetail } from "../../store/restaurantSlice";
 import { useLocation } from "react-router-dom";
 import { setPartnerDetail } from "../../store/partnerSlice";
+import { restaurantRegistration } from "../../databaseCall/restaurant.register.js";
+import { addRestaurantToPartner } from "../../databaseCall/addRestaurant.Partner.js";
+import { partnerRestaurant } from "../../databaseCall/get.partner.restaurant.js";
+import { deleteRestaurant } from "../../databaseCall/restaurant.delete.js";
 
 function CreateRestaurant() {
 
@@ -124,83 +128,49 @@ function CreateRestaurant() {
       );
   };
 
-  const addRestauarntToPartner = async (resId) => {
-
-    const jsonData = {
-      ownerId: ownerId,
-      resId: resId
-    }
-
-    const response = await fetch("http://localhost:7000/addrestaurant", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(jsonData)
-    })
-    const data = await response.json()
-    console.log("data is: ", data);
-    if (response.ok) {
-      const restaurantIds = [...restaurantId, resId]
-      console.log("Restaurant Ids is: ", restaurantIds);
-      dispatch(setPartnerDetail({ fullName: fullName, email: email, ppURL: ppURL, ppPub_id: ppPub_id, id: ownerId, restaurantId: [...restaurantId, resId] }))
-      const resRes = await fetch("http://localhost:7000/partnerrestaurant", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: restaurantIds })
+  const handleRegistration = async (e) => {
+    restaurantRegistration(e, openingDayCount, describeRestaurant, cuisines, resType, ownerId)
+      .then((resId) => {
+        addRestaurantToPartner(ownerId, resId)
+          .then((obj) => {
+            if (obj.added == false) {
+              deleteRestaurant(obj.resId)
+            }
+            else {
+              const newRestaurantId = [...restaurantId, resId];
+              console.log("new restaurant are: ", newRestaurantId);
+              dispatch(
+                setPartnerDetail({
+                  fullName: fullName,
+                  email: email,
+                  ppURL: ppURL,
+                  ppPub_id: ppPub_id,
+                  id: ownerId,
+                  restaurantId: newRestaurantId,
+                })
+              );
+              return newRestaurantId
+            }
+          })
+          .then((newRestaurantId) => {
+            partnerRestaurant(newRestaurantId)
+              .then((data) => {
+                dispatch(setResDetail(data));
+                navigate("/partner/home");
+              })
+          })
+          .catch((error) => {
+            deleteRestaurant(obj.resId)
+            console.log("Restaurant doesn't added: ", error);
+          })
       })
-      console.log("resRes: ", resRes);
-      if (resRes.ok) {
-        const data = await resRes.json()
-        console.log("restaurant find data: ", data);
-        dispatch(setResDetail(data))
-        navigate("/partner/home")
-      }
-    }
-    else {
-      const jsonData = {
-        resId: resId
-      }
-      const response = await fetch("http://localhost:7000/deleterestaurant", {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jsonData)
+      .catch((error) => {
+        console.log("Restaurant registration failed: ", error)
+        setResRegStatus(false);
+        setTimeout(() => {
+          setResRegStatus(true);
+        }, 3000);
       })
-      console.log("response", response);
-      const data = await response.json()
-      console.log("data: ", data);
-    }
-  }
-
-  const handleForm = async (e) => {
-    e.preventDefault();
-    console.log("form event: ", e.target);
-    const formData = new FormData(e.target);
-    formData.append("restaurant_day", openingDayCount);
-    formData.append("describe_restaurant", describeRestaurant);
-    formData.append("cuisines", cuisines);
-    formData.append("restaurant_type", resType);
-    formData.append("ownerId", ownerId);
-    const response = await fetch("http://localhost:7000/registerrestaurant", {
-      method: "POST",
-      body: formData,
-    });
-    console.log("response: ", response);
-    const data = await response.json()
-    console.log("response data: ", data);
-    if (response.ok) {
-      addRestauarntToPartner(data.response._id)
-    }
-    else {
-      setResRegStatus(false)
-      setTimeout(() => {
-        setResRegStatus(true)
-      }, 3000)
-    }
   };
 
   console.log("Opening day count: ", openingDayCount);
@@ -209,7 +179,7 @@ function CreateRestaurant() {
 
   return (
     <form
-      onSubmit={handleForm}
+      onSubmit={handleRegistration}
       encType="multipart/form-data"
       className="CreateRestaurant"
     >
