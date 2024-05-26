@@ -1,9 +1,27 @@
 .partnerRestaurant .restaurantData {
   border: 1px solid rgb(108, 106, 106);
-  margin: 7rem 10vw 1rem 10vw;
+  /* margin: 7rem 10vw 1rem 10vw; */
+  margin: 2rem 0;
   padding: 6px 10px;
   border-radius: 4px;
   position: relative;
+}
+
+.partnerRestaurant .restaurantData .t1{
+  margin: 0.3rem 0;
+  color: rgb(36, 36, 36);
+}
+
+.partnerRestaurant .restaurantData .t2{
+ font-size: 1.1rem;
+}
+
+.partnerRestaurant .restaurantData .t3{
+  color: rgb(68, 67, 67);
+ }
+
+.partnerRestaurant .restaurant-section {
+  margin: 7rem 10vw 1rem 10vw;
 }
 
 .partnerRestaurant .restaurantData .image img {
@@ -47,6 +65,8 @@
   top: 0.5rem;
   right: 2rem;
   border: 1px solid black;
+  z-index: 2;
+  background-color: #fff;
 }
 
 .partnerRestaurant .restaurantData .restaurantOption button {
@@ -100,8 +120,7 @@
 @media screen and (max-width: 500px) {
   .partnerRestaurant .restaurantData .dot {
     bottom: 2.5rem;
-    padding: 6px 12px;
+    padding: 2px;
     font-size: 1rem;
-    left: 0.5rem;
   }
 }

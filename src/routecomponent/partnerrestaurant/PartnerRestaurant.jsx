@@ -102,50 +102,52 @@ function PartnerRestaurant() {
                 <PartnerHomeHeader />
             </div>
 
-            {
-                restaurantDetails.data.map((e) => <div key={e._id} className='restaurantData'>
-                    <div>{e.restaurant_name
-                    } | RES ID {e._id}</div>
-                    <div>{e.restaurant_complete_address}</div>
-                    <div className='image'>
-                        <img src={e.restaurant_image_URL} alt="" />
-                    </div>
-                    <BsThreeDotsVertical className='dot' onClick={(event) => handleOption(event, e)} />
-                    {
-                        (showResOption && currentElement === e) &&
-                        <div onClick={(e) => e.stopPropagation()} className='restaurantOption'>
-                            <button onClick={() => navigate("/partner/register/create-your-restaurant", { state: { data: e } })}>Edit</button>
-                            <button onClick={(e) => {
-                                setShowDeleteRestaurantOption(true)
-                                setShowResOption(false)
-                                // document.body.style.backgroundColor = "rgba(0, 0, 0, 0.9)"
-                                // document.body.style.filter = "blur(2px)"
-                            }}>Delete</button>
+            <div className="restaurant-section">
+                {
+                    restaurantDetails.data.map((e) => <div key={e._id} className='restaurantData'>
+                        <div className='t1 t2'>{e.restaurant_name
+                        } | RES ID {e._id}</div>
+                        <div className='t1 t3'>{e.restaurant_complete_address}</div>
+                        <div className='image t1'>
+                            <img src={e.restaurant_image_URL} alt="" />
                         </div>
+                        <BsThreeDotsVertical className='dot' onClick={(event) => handleOption(event, e)} />
+                        {
+                            (showResOption && currentElement === e) &&
+                            <div onClick={(e) => e.stopPropagation()} className='restaurantOption'>
+                                <button onClick={() => navigate("/partner/register/edit-your-restaurant", { state: { data: e } })}>Edit</button>
+                                <button onClick={(e) => {
+                                    setShowDeleteRestaurantOption(true)
+                                    setShowResOption(false)
+                                    // document.body.style.backgroundColor = "rgba(0, 0, 0, 0.9)"
+                                    // document.body.style.filter = "blur(2px)"
+                                }}>Delete</button>
+                            </div>
 
-                    }
-                    {
-                        (showDeleteRestaurantOption && currentElement === e) &&
-                        <div className='showDeleteRestaurantOption'>
-                            <div onClick={(e) => e.stopPropagation()} className='box'>
-                                <div>Are you sure you want to delete your restaurant?</div>
-                                <div>Customer will not able to order and view from your restaurant.</div>
-                                <div>It will delete premenantly</div>
-                                {
-                                    resDelSucc && <div><b>Restaurant deleted successfully</b></div>
-                                }
-                                {
-                                    resDelFail && <div><b>Something went wrong, please try again</b></div>
-                                }
-                                <div className='button'>
-                                    <button onClick={handleUndoDelete} >Cancel</button>
-                                    <button onClick={handleDeleteRestaurant}>Delete</button>
+                        }
+                        {
+                            (showDeleteRestaurantOption && currentElement === e) &&
+                            <div className='showDeleteRestaurantOption'>
+                                <div onClick={(e) => e.stopPropagation()} className='box'>
+                                    <div>Are you sure you want to delete your restaurant?</div>
+                                    <div>Customer will not able to order and view from your restaurant.</div>
+                                    <div>It will delete premenantly</div>
+                                    {
+                                        resDelSucc && <div><b>Restaurant deleted successfully</b></div>
+                                    }
+                                    {
+                                        resDelFail && <div><b>Something went wrong, please try again</b></div>
+                                    }
+                                    <div className='button'>
+                                        <button onClick={handleUndoDelete} >Cancel</button>
+                                        <button onClick={handleDeleteRestaurant}>Delete</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                </div>)
-            }
+                        }
+                    </div>)
+                }
+            </div>
         </div>
     )
 }

@@ -65,8 +65,9 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
               setPartnerDetail({
                 fullName: partnerDetails.response.owner_full_name,
                 email: partnerDetails.response.owner_email,
-                ppURL: "",
-                ppPub_id: "",
+                ppURL: partnerDetails.response.owner_profile_picture_URL || "",
+                ppPub_id: partnerDetails.response.owner_profile_picture_public_id
+                  || "",
                 id: partnerDetails.response._id,
                 restaurantId: partnerDetails.response.restaurantId,
               })

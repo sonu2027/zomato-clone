@@ -1,6 +1,9 @@
 import { Partner } from "../model/partner.model.js";
 import { Restaurant } from "../model/restaurant.model.js";
-import { uploadOnCloudinary } from "../utility/cloudinary.utility.js";
+import {
+  deleteFromCloudinary,
+  uploadOnCloudinary,
+} from "../utility/cloudinary.utility.js";
 
 const registerRestaurant = async (req, res) => {
   console.log("req.body: ", req.body);
@@ -73,9 +76,9 @@ const registerRestaurant = async (req, res) => {
 
 const deleteRestaurant = async (req, res) => {
   console.log("req.body: ", req.body);
-  const {resId:id}=req.body
+  const { resId: id } = req.body;
   try {
-    const response = await Restaurant.deleteOne({ _id: req.body.id});
+    const response = await Restaurant.deleteOne({ _id: req.body.id });
     console.log(response);
     return res.status(200).json(response);
   } catch (error) {
@@ -132,9 +135,111 @@ const deletePartnerRestaurant = async (req, res) => {
   return res.status(200).json({ res1: response, res2: response2 });
 };
 
+const updateRestaurant = async (req, res) => {
+  console.log("req.body: ", req.body);
+  console.log("req.files: ", req.files);
+  const restaurant = await Restaurant.findById(req.body.restaurantId);
+  console.log("restaurant: ", restaurant);
+
+  const { restaurant_menu, restaurant_food_image, restaurant_image } =
+    req.files;
+  let image1 = "";
+  let image2 = "";
+  let image3 = "";
+
+  try {
+    if (restaurant_menu) {
+      image1 = await uploadOnCloudinary(restaurant_menu[0].path);
+      const del1Res = await deleteFromCloudinary(
+        restaurant.restaurant_menu_public_id
+      );
+      console.log("Image1 and del1Res: ", image1, del1Res);
+    }
+
+    if (restaurant_image) {
+      image2 = await uploadOnCloudinary(restaurant_image[0].path);
+      const del2Res = await deleteFromCloudinary(
+        restaurant.restaurant_image_public_id
+      );
+      console.log("Image2 and del2Res: ", image2, del2Res);
+    }
+
+    if (restaurant_food_image) {
+      image3 = await uploadOnCloudinary(restaurant_food_image[0].path);
+      const del3Res = await deleteFromCloudinary(
+        restaurant.restaurant_food_image__public_id
+      );
+      console.log("Image3 and del3Res: ", image3, del3Res);
+    }
+
+    const response = await Restaurant.updateOne(
+      { _id: req.body.restaurantId },
+      {
+        restaurant_name: req.body.restaurant_name
+          ? req.body.restaurant_name
+          : restaurant.restaurant_name,
+        restaurant_complete_address: req.body.restaurant_complete_address
+          ? req.body.restaurant_complete_address
+          : restaurant.restaurant_complete_address,
+        restaurant_location: req.body.restaurant_location
+          ? req.body.restaurant_location
+          : restaurant.restaurant_location,
+        mobile_number_at_restaurant: req.body.mobile_number_at_restaurant
+          ? req.body.mobile_number_at_restaurant
+          : restaurant.mobile_number_at_restaurant,
+        landline_number: req.body.landline_number
+          ? req.body.landline_number
+          : restaurant.landline_number,
+        restaurant_hour: req.body.restaurant_hour
+          ? req.body.restaurant_hour
+          : restaurant.restaurant_hour,
+        restaurant_day: req.body.restaurant_day
+          ? req.body.restaurant_day
+          : restaurant.restaurant_day,
+        describe_restaurant: req.body.describe_restaurant
+          ? req.body.describe_restaurant
+          : restaurant.describe_restaurant,
+        cuisines: req.body.cuisines
+          ? req.body.cuisines
+          : restaurant.cuisines,
+        restaurant_type: req.body.restaurant_type
+          ? req.body.restaurant_type
+          : restaurant.restaurant_type,
+        restaurant_menu_URL: restaurant_menu
+          ? image1.url
+          : restaurant.restaurant_menu_URL,
+        restaurant_menu_public_id: restaurant_menu
+          ? image1.public_id
+          : restaurant.restaurant_menu_public_id,
+        restaurant_image_URL: restaurant_image
+          ? image2.url
+          : restaurant.restaurant_image_URL,
+        restaurant_image_public_id: restaurant_image
+          ? image2.public_id
+          : restaurant.restaurant_image_public_id,
+        restaurant_food_image__URL: restaurant_food_image
+          ? image3.url
+          : restaurant.restaurant_food_image__URL,
+        restaurant_food_image__public_id: restaurant_food_image
+          ? image3.public_id
+          : restaurant.restaurant_food_image__public_id,
+      }
+    );
+
+    console.log("Response: ", response);
+    return res.status(200).json({ response });
+  } catch (error) {
+    console.log("error updating restaurant: ", error);
+    return res
+      .status(500)
+      .json({ response, message: "Error updating the restaurant" });
+  }
+};
+
 export {
   registerRestaurant,
   deleteRestaurant,
   partnerRestaurant,
   deletePartnerRestaurant,
+  updateRestaurant,
 };

@@ -12,6 +12,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
 
     const PartnerName = useSelector((s) => s.partner.fullName)
     const PartnerEmail = useSelector((s) => s.partner.email)
+    const PartnerPP = useSelector((s) => s.partner.ppURL)
     console.log("partnetname", PartnerName);
 
     const [arrow, setArraow] = useState(true)
@@ -44,13 +45,19 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
         document.getElementsByClassName("received-order")[0].style.borderBottom = "2px solid rgb(94, 132, 246)"
     }, [])
 
+    window.addEventListener("click", () => {
+        if (arrow == false) {
+            setArraow(true)
+        }
+    })
+
     return (
-        <div className='header-parent' onClick={(e) => closeOption(e)}>
+        <div className='header-parent'>
             <div className="header">
                 <img src={img1} alt="" />
                 <div className='profile'>
-                    <img src="" alt="" />
-                    {PartnerName}
+                    <img src={PartnerPP} alt="" />
+                    <div>{PartnerName}</div>
                     {
                         arrow ? <IoMdArrowDropdown onClick={(e) => {
                             showOption(e)
@@ -64,12 +71,13 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
                 </div>
                 {
                     !arrow && <div onClick={(e) => e.stopPropagation()} className='profile-option'>
-                        <img src="" alt="" />
+                        <img src={PartnerPP} alt="" />
                         <div className='t1'>{PartnerName}</div>
                         <div className='t2'>{PartnerEmail}</div>
                         <div className='t3'>
-                            <button onClick={() => { navigate("/partner/home/restaurant") }} >My restaurant</button>
-                            <button onClick={() => { navigate("/partner/register/create-your-restaurant") }}>Add Rstaurant</button>
+                            <button onClick={() => { navigate("/partner/profile") }} >Profile</button>
+                            <button onClick={() => { navigate("/partner/home/restaurant") }} >Restaurant</button>
+                            <button onClick={() => { navigate("/partner/register/create-your-restaurant") }}>Add Restaurant</button>
                         </div>
                         <button onClick={logoutPartner} className='t4'>Logout</button>
                         <div className='condition'>

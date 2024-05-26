@@ -1,0 +1,19 @@
+.PartnerProfile .PartnerProfile-child1 input {
+  margin-top: 1rem;
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 4px 1px 4px 2px;
+}
+
+.PartnerProfile .PartnerProfile-child1 input:focus {
+  outline: none;
+}
+
+.PartnerProfile .PartnerProfile-child1 button {
+  background-color: rgb(239, 79, 95);
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+}

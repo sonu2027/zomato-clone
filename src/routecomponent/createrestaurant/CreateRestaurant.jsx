@@ -9,6 +9,7 @@ import { restaurantRegistration } from "../../databaseCall/restaurant.register.j
 import { addRestaurantToPartner } from "../../databaseCall/addRestaurant.Partner.js";
 import { partnerRestaurant } from "../../databaseCall/get.partner.restaurant.js";
 import { deleteRestaurant } from "../../databaseCall/restaurant.delete.js";
+import { updateRestaurant } from "../../databaseCall/restaurant.update.js";
 
 function CreateRestaurant() {
 
@@ -87,6 +88,8 @@ function CreateRestaurant() {
   const [cuisines, setCuisines] = useState([]);
   const [resType, setResType] = useState([]);
   const [resRegStatus, setResRegStatus] = useState(true)
+
+  // const [trackResSection, setTrackSection] = useState(0)
 
   const handleOpeningDayCount = (e) => {
     console.log("e: ", e);
@@ -177,13 +180,34 @@ function CreateRestaurant() {
   console.log("des res: ", describeRestaurant);
   console.log("received ownerid is is: ", ownerId);
 
+  const handleUpdateRestaurant = (e) => {
+    updateRestaurant(e, openingDayCount,
+      describeRestaurant,
+      cuisines,
+      resType,
+      ownerId,
+      restaurantData.data
+    )
+      .then((acknowledged) => {
+        partnerRestaurant(restaurantId)
+          .then(restaurant => {
+            console.log("Restaurant: ", restaurant);
+            dispatch(setResDetail(restaurant))
+            navigate("/partner/home/restaurant")
+          })
+      })
+      .catch((error) => {
+        console.log("Error while updating the restaurant: ", error);
+      })
+  }
+
   return (
     <form
-      onSubmit={handleRegistration}
+      onSubmit={restaurantData ? handleUpdateRestaurant : handleRegistration}
       encType="multipart/form-data"
       className="CreateRestaurant"
     >
-      <div>Restaurant Information</div>
+      <div className="res-dtl-title" style={{ marginTop: "1.5rem" }}>Restaurant Information</div>
       <div className="res-dtl">
         <input
           type="text"
@@ -211,7 +235,7 @@ function CreateRestaurant() {
           name="landline_number"
         />
       </div>
-
+      
       <div className="res-type">Restaurant type and timing</div>
 
       <div className="res-type-option">
@@ -228,7 +252,7 @@ function CreateRestaurant() {
           )
         }
       </div>
-
+      
       <div className="res-des">
         Select option which best describe your restaurant
       </div>
@@ -248,7 +272,7 @@ function CreateRestaurant() {
           )
         }
       </div>
-
+      
       <div className="cuisine-type">Types of cuisines</div>
       <div className="cuisine-type-option">
         {
@@ -265,7 +289,7 @@ function CreateRestaurant() {
           )
         }
       </div>
-
+      
       <div className="res-timing">Restaurant operarional hour</div>
       {openingDayCount.map((e, i) => (
         <div key={e}>
@@ -289,47 +313,77 @@ function CreateRestaurant() {
           )
         }
       </div>
-
+      
       <div className="res-img">Upload images</div>
 
       <label
+        className="CreateRestaurant restaurantImage"
         style={{ border: "1px solid black", padding: "6px 12px", borderRadius: "4px", margin: "4px 0" }}
         htmlFor="menuImage">
         Upload menu
       </label>
       <input
+        onChange={(e) => {
+          document.getElementsByClassName("CreateRestaurant restaurantImage")[0].style.backgroundColor = "rgb(239, 79, 95)"
+          document.getElementsByClassName("CreateRestaurant restaurantImage")[0].style.color = "#fff"
+        }}
         style={{ display: "none" }}
         type="file"
         id="menuImage"
         name="restaurant_menu" />
 
       <label
+        className="CreateRestaurant restaurantImage"
         style={{ border: "1px solid black", padding: "6px 12px", borderRadius: "4px", margin: "4px 0" }}
         htmlFor="foodImage">
         Upload food Image
       </label>
       <input
+        onChange={(e) => {
+          document.getElementsByClassName("CreateRestaurant restaurantImage")[1].style.backgroundColor = "rgb(239, 79, 95)"
+          document.getElementsByClassName("CreateRestaurant restaurantImage")[1].style.color = "#fff"
+        }}
         style={{ display: "none" }}
         type="file"
         id="foodImage"
         name="restaurant_food_image" />
 
       <label
+        className="CreateRestaurant restaurantImage"
         style={{ border: "1px solid black", padding: "6px 12px", borderRadius: "4px", margin: "4px 0" }}
         htmlFor="resImage">
         Upload restaurant image
       </label>
       <input
+        onChange={(e) => {
+          document.getElementsByClassName("CreateRestaurant restaurantImage")[2].style.backgroundColor = "rgb(239, 79, 95)"
+          document.getElementsByClassName("CreateRestaurant restaurantImage")[2].style.color = "#fff"
+        }}
         style={{ display: "none" }}
         type="file"
         id="resImage"
         name="restaurant_image" />
+      
 
       {
         !resRegStatus && <div>Something went wrong, please try again</div>
       }
 
-      <button style={{ padding: "8px 16px", margin: "1rem" }} type="submit">Submit</button>
+      {/* <div className="button">
+        <button onClick={(e) => {
+          setTrackSection(trackResSection - 1)
+          e.preventDefault()
+          e.stopPropagation()
+        }} disabled={trackResSection == 0}>Previous</button>
+        <button disabled={trackResSection == 5} onClick={(e) => {
+          setTrackSection(trackResSection + 1)
+          e.preventDefault()
+          e.stopPropagation()
+        }} style={{ backgroundColor: "rgb(239, 79, 95)", color: "#fff" }}>Next</button>
+      </div> */}
+
+      
+        <button style={{ padding: "8px 16px", margin: "1rem" }} type="submit">Submit</button>
     </form>
   );
 }

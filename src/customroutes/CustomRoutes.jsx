@@ -11,23 +11,28 @@ import PartnerRegister from "../routecomponent/partnerRegister/PartnerRegister"
 import CreateRestaurant from "../routecomponent/createrestaurant/CreateRestaurant"
 import PartnerHome from "../routecomponent/partnerhome/PartnerHome"
 import PartnerRestaurant from "../routecomponent/partnerrestaurant/PartnerRestaurant.jsx"
+import PartnerProfile from "../component/partnerprofile/PartnerProfile.jsx"
+import PartnerAccountSetting from "../component/partneraccountsetting/PartnerAccountSetting.jsx"
 
-function CustomRoutes(){
+function CustomRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<HomePage/>} />
-            <Route path="/login" element={<LoginPage/>} />
-            <Route path="/login/loggedin/:status" element={<HomePage/>} />
-            <Route path="/Diningout/:status" element={<DiningOut/>}/>
-            <Route path="/nightlife/:status" element={<NightLife/>}/>
-            <Route path="/login/loggedin" element={<ProductListing/>}/>
-            <Route path="/login/loggedin/bookmark/:status" element={<BookmarkPage/>}/>
-            <Route path="/login/loggedin/profile/:status" element={<Profile/>}/>
-            <Route path="/partner/login" element={<PartnerLogin/>}/>
-            <Route path="/partner/register" element={<PartnerRegister/>}/>
-            <Route path="/partner/register/create-your-restaurant" element={<CreateRestaurant/>}/>
-            <Route path="/partner/home/restaurant" element={<PartnerRestaurant/>}/>
-            <Route path="/partner/home" element={<PartnerHome/>}/>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login/loggedin/:status" element={<HomePage />} />
+            <Route path="/Diningout/:status" element={<DiningOut />} />
+            <Route path="/nightlife/:status" element={<NightLife />} />
+            <Route path="/login/loggedin" element={<ProductListing />} />
+            <Route path="/login/loggedin/bookmark/:status" element={<BookmarkPage />} />
+            <Route path="/login/loggedin/profile/:status" element={<Profile />} />
+            <Route path="/partner/login" element={<PartnerLogin />} />
+            <Route path="/partner/register" element={<PartnerRegister />} />
+            <Route path="/partner/register/create-your-restaurant" element={<CreateRestaurant />} />
+            <Route path="/partner/register/edit-your-restaurant" element={<CreateRestaurant />} />
+            <Route path="/partner/home/restaurant" element={<PartnerRestaurant />} />
+            <Route path="/partner/home" element={<PartnerHome />} />
+            <Route path="/partner/profile" element={<PartnerProfile />} />
+            <Route path="/partner/setting/:change" element={<PartnerAccountSetting />} />
         </Routes>
     )
 }

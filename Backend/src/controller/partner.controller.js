@@ -1,8 +1,14 @@
 import nodemailer from "nodemailer";
 import { Partner } from "../model/partner.model.js";
+import { Restaurant } from "../model/restaurant.model.js";
+import {
+  deleteFromCloudinary,
+  uploadOnCloudinary,
+} from "../utility/cloudinary.utility.js";
 
 const sendEmail = async (req, res) => {
   console.log("req.body", req.body);
+  console.log("req.body: ", req.body);
 
   const { full_name, email, otp } = req.body;
 
@@ -94,4 +100,118 @@ const loginPartner = async (req, res) => {
   }
 };
 
-export { sendEmail, registerPartner, addRestaurant, loginPartner };
+const deleteAccount = async (req, res) => {
+  console.log("req.body: ", req.body);
+  const partner = await Partner.findById(req.body.id);
+  console.log("partner: ", partner);
+
+  try {
+    if (partner.owner_profile_picture_public_id) {
+      const cloudinaryDeleteRes = await deleteFromCloudinary(
+        owner_profile_picture_public_id
+      );
+      console.log("cloudinaryDeleteRes: ", cloudinaryDeleteRes);
+    }
+    const restaurantRes = await Promise.all(
+      partner.restaurantId.map((id) => Restaurant.deleteMany({ _id: id }))
+    );
+    const partnerRes = await Partner.deleteOne({ _id: req.body.id });
+
+    return res.status(200).json({ restaurantRes, partnerRes });
+  } catch (error) {
+    console.log("Error while deleting account: ", error);
+    return res
+      .status(500)
+      .json({ error: error, message: "error while deleting account" });
+  }
+};
+
+const updateProfilePicture = async (req, res) => {
+  console.log("req.body: ", req.body);
+  console.log("req.files: ", req.files);
+
+  try {
+    const cloudinaryUploadRes = await uploadOnCloudinary(
+      req.files.profilePicture[0].path
+    );
+    console.log("cloudinaryUploadRes: ", cloudinaryUploadRes);
+    const res1 = await Partner.updateOne(
+      { _id: req.body.id },
+      {
+        owner_profile_picture_URL: cloudinaryUploadRes.url,
+        owner_profile_picture_public_id: cloudinaryUploadRes.public_id,
+      }
+    );
+    console.log("rseponse: ", res1);
+
+    const res2 = await Partner.findById(req.body.id);
+
+    return res.status(200).json({ res1, res2 });
+  } catch (error) {
+    console.log("error while updating profile picture");
+    return res
+      .status(500)
+      .json({ error: error, message: "Error while updating profile picture" });
+  }
+};
+
+const updatePartnerName = async (req, res) => {
+  console.log("req.body: ", req.body);
+  const { partnerId, newName } = req.body;
+
+  try {
+    const resposne = await Partner.updateOne(
+      { _id: partnerId },
+      { owner_full_name: newName }
+    );
+    console.log("Response: ", resposne);
+    const partner = await Partner.findById(partnerId);
+    console.log("partner: ", partner);
+    if (partner && resposne) {
+      return res.status(200).json({ partner, resposne });
+    } else {
+      throw error;
+    }
+  } catch (error) {
+    console.log("Error while updating name: ", error);
+    return res
+      .status(500)
+      .json({ error, message: "Error while updating name" });
+  }
+};
+
+const updatePartnerEmail = async (req, res) => {
+  console.log("req.body: ", req.body);
+  const { partnerId, newEmail } = req.body;
+
+  try {
+    const resposne = await Partner.updateOne(
+      { _id: partnerId },
+      { owner_email: newEmail }
+    );
+    console.log("Response: ", resposne);
+    const partner = await Partner.findById(partnerId);
+    console.log("partner: ", partner);
+    if (partner && resposne) {
+      return res.status(200).json({ partner, resposne });
+    } else {
+      throw error;
+    }
+  } catch (error) {
+    console.log("Error while updating email: ", error);
+    return res
+      .status(500)
+      .json({ error, message: "Error while updating email" });
+  }
+};
+
+export {
+  sendEmail,
+  registerPartner,
+  addRestaurant,
+  loginPartner,
+  deleteAccount,
+  updateProfilePicture,
+  updatePartnerName,
+  updatePartnerEmail,
+};
