@@ -25,7 +25,7 @@ router.route("/registerrestaurant").post(
 
 router.route("/deleterestaurant").delete(deleteRestaurant)
 
-router.route("/sendemailotp").post(upload.fields([]), sendEmail);
+router.route("/sendemailotp").post(sendEmail);
 
 router.route("/partnerrestaurant").post(partnerRestaurant);
 

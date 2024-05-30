@@ -16,7 +16,7 @@ function PartnerLoginForm({ setShowRegister, setOtpSent, setOtp, setEmail, email
             setOtpSent(true)
             setShowRegister(false)
 
-            sendEmailOtp(e)
+            sendEmailOtp(email)
                 .then((generatedOtp) => {
                     setOtp(generatedOtp)
                 })

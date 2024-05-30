@@ -56,14 +56,14 @@ function PartnerAccountSetting() {
         e.preventDefault()
         console.log("clicked on update email", e);
         if (inputData.includes("@gmail.com")) {
-            sendEmailOtp(e)
-            .then((otp)=>{
-                setOtpGenerated(true)
-                setOtpSent(otp)
-            })
-            .catch((error)=>{
-                console.log("Error while sending email otp: ", error);
-            })
+            sendEmailOtp(inputData)
+                .then((otp) => {
+                    setOtpGenerated(true)
+                    setOtpSent(otp)
+                })
+                .catch((error) => {
+                    console.log("Error while sending email otp: ", error);
+                })
 
         }
     }
@@ -113,10 +113,10 @@ function PartnerAccountSetting() {
                 </div>}
 
                 {
-                    change == "email" && !otpGenerated && <form onSubmit={handlePartnerEmail} encType='multipart/form-data'>
+                    change == "email" && !otpGenerated && <div>
                         <input value={inputData} onChange={(e) => setInputData(e.target.value)} type="email" name='email' placeholder="Enter your new email" />
-                        <button type='submit'>Update</button>
-                    </form>
+                        <button onClick={handlePartnerEmail}>Update</button>
+                    </div>
                 }
                 {
                     otpGenerated && <div>

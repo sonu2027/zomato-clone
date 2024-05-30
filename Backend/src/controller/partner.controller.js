@@ -8,9 +8,8 @@ import {
 
 const sendEmail = async (req, res) => {
   console.log("req.body", req.body);
-  console.log("req.body: ", req.body);
 
-  const { full_name, email, otp } = req.body;
+  const {email, otp } = req.body;
 
   // Create a transporter object using SMTP transport
   let transporter = nodemailer.createTransport({

@@ -16,7 +16,7 @@ function PartnerRegisterForm({ setShowRegister, handleChecked, setOtpSent, agree
             setOtpSent(true)
             setShowRegister(false)
 
-            sendEmailOtp(e)
+            sendEmailOtp(email)
                 .then((generatedOtp) => {
                     setOtp(generatedOtp)
                 })
