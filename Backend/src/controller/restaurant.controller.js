@@ -78,7 +78,7 @@ const deleteRestaurant = async (req, res) => {
   console.log("req.body: ", req.body);
   const { resId: id } = req.body;
   try {
-    const response = await Restaurant.deleteOne({ _id: req.body.id });
+    const response = await Restaurant.deleteOne({ _id: id });
     console.log(response);
     return res.status(200).json(response);
   } catch (error) {
