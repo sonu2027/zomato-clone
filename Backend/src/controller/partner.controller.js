@@ -107,7 +107,7 @@ const deleteAccount = async (req, res) => {
   try {
     if (partner.owner_profile_picture_public_id) {
       const cloudinaryDeleteRes = await deleteFromCloudinary(
-        owner_profile_picture_public_id
+        partner.owner_profile_picture_public_id
       );
       console.log("cloudinaryDeleteRes: ", cloudinaryDeleteRes);
     }
