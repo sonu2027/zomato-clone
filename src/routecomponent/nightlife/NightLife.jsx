@@ -46,6 +46,13 @@ function NightLife() {
         setFilter(!filter)
     }
 
+    window.addEventListener("click", () => {
+        if (filter) {
+            setFilter(false)
+        }
+        setInputval("")
+    })
+
     return (
         <>
             <Header search={handleSearch} emptySearch={setInputval} status={status} />

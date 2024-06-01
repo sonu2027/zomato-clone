@@ -56,7 +56,7 @@ function HomePage() {
         }
     }
 
-    function handleFilter() {
+    function handleFilter(e) {
         if (filter == true) {
             document.body.style.overflow = "visible"
         }
@@ -65,6 +65,14 @@ function HomePage() {
         }
         setFilter(!filter)
     }
+
+    window.addEventListener("click", () => {
+        console.log("clicked on window: ", filter);
+        if (filter) {
+            setFilter(false)
+        }
+        setInputval("")
+    })
 
     return (
         <>

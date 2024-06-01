@@ -1,7 +1,7 @@
 const updatePartnerEmail = async (partnerId, newEmail) => {
   console.log("received partner id and new email is: ", partnerId, newEmail);
   try {
-    const response = await fetch("http://localhost:7000/partner/updateemail", {
+    const response = await fetch("/api/partner/updateemail", {
       headers: {
         "Content-Type": "application/json",
       },

@@ -1,7 +1,7 @@
 const deleteAccount = async (id) => {
   const jsonData = { id };
   try {
-    const response = await fetch("http://localhost:7000/deleteaccount", {
+    const response = await fetch("/api/deleteaccount", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

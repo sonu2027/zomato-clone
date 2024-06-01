@@ -134,7 +134,7 @@ function BookmarkPage() {
 
     return (
         <div>
-            <Header search={handleSearch} status={1} />
+            <Header emptySearch={setInputval} search={handleSearch} status={1} />
             {
                 inputval != "" ?
                     <>

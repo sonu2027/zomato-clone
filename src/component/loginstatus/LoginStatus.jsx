@@ -7,6 +7,12 @@ function LoginStatus(props) {
     console.log("status in loginstatsu: Ending here", props.status);
 
     const [getOption, setGetOption] = useState(true)
+    window.addEventListener("click", () => {
+        if (!getOption) {
+            setGetOption(true)
+        }
+    })
+
     return (
         <div id="login-status">
 
@@ -16,22 +22,29 @@ function LoginStatus(props) {
                         <>
                             <span onClick={() => setGetOption(false)} id="account">&nbsp;S&nbsp;</span>&nbsp;
                             <span onClick={() => setGetOption(false)} >Sonu</span>
-                            <MdOutlineKeyboardArrowDown onClick={() => setGetOption(false)} className="after-login-option" />
+                            <MdOutlineKeyboardArrowDown onClick={(e) => {
+                                e.stopPropagation()
+                                setGetOption(false)
+                                e.stopPropagation()
+                            }} className="after-login-option" />
                         </>
                         :
                         <>
                             <span onClick={() => setGetOption(true)}
                                 id="account">&nbsp;S&nbsp;</span>&nbsp;
                             <span onClick={() => setGetOption(true)}>Sonu</span>
-                            <MdOutlineKeyboardArrowUp onClick={() => setGetOption(true)}
+                            <MdOutlineKeyboardArrowUp onClick={(e) => {
+                                e.stopPropagation()
+                                setGetOption(true)
+                            }}
                                 className="after-login-option" />
                             <div id="option">
                                 <Link to={`/login/loggedin/profile/${props.status}`}>
-                                <button className="make-border-radius-8px-top">Profile</button>
+                                    <button className="make-border-radius-8px-top">Profile</button>
                                 </Link>
                                 <button>Notifications</button>
                                 <Link to={`/login/loggedin/bookmark/${props.status}`}>
-                                <button>Bookmark</button>
+                                    <button>Bookmark</button>
                                 </Link>
                                 <button>Reviews</button>
                                 <button>Network</button>

@@ -41,6 +41,13 @@ function DiningOut() {
         setFilter(!filter)
     }
 
+    window.addEventListener("click", () => {
+        if (filter) {
+            setFilter(false)
+        }
+        setInputval("")
+    })
+
 
     function handleSearch(e) {
         if (e != "") {

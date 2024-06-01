@@ -36,18 +36,25 @@ function Filter(props) {
         setRange(4)
         setToApply(modifiedToApply)
     }
+
     return (
         <div className="filter-parent">
             {
                 countFilter == 0 ?
                     <>
-                        <button onClick={props.setFilter} className="filter">
+                        <button onClick={(e) => {
+                            e.stopPropagation()
+                            props.setFilter(e)
+                        }} className="filter">
                             <img src={f1} alt="" />
                             <div>Filters</div>
                         </button>
                     </> :
                     <>
-                        <button style={{ padding: "9px 16px" }} onClick={props.setFilter} className="filter">
+                        <button style={{ padding: "9px 16px" }} onClick={(e) => {
+                            e.stopPropagation()
+                            props.setFilter(e)
+                        }} className="filter">
                             <div style={{ backgroundColor: "rgb(239, 79, 95)", color: "#fff", padding: "3px 6px", borderRadius: "4px" }}>{countFilter}</div>
                             <div>Filters</div>
                         </button>

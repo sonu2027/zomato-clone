@@ -93,6 +93,10 @@ function ProductListing() {
     console.log("bookmarks: ", bookmarks);
     console.log("bookmarked: ", bookmarked);
 
+    window.addEventListener("click", () => {
+        setInputval("")
+    })
+
 
     return (
         <>

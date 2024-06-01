@@ -4,8 +4,16 @@ import { MdPersonOutline } from "react-icons/md"
 import { Link } from "react-router-dom"
 
 function Zomato(props) {
+
     console.log("status in zomato", props.status);
     const [getOption, setGetOption] = useState(false)
+
+    window.addEventListener("click", ()=>{
+        if(getOption){
+            setGetOption(false)
+        }
+    })
+
     return (
         <div id="zomato">
             {props.status == 1 ? (
@@ -19,7 +27,10 @@ function Zomato(props) {
                     {
                         getOption == true ?
                             <>
-                                <MdPersonOutline onClick={() => setGetOption(false)} id="zomato-button" />
+                                <MdPersonOutline onClick={(e) => {
+                                    e.stopPropagation()
+                                    setGetOption(false)
+                                }} id="zomato-button" />
                                 <div id="option">
                                     <Link to={`/login/loggedin/profile/${props.status}`}>
                                         <button className="make-border-radius-8px-top">Profile</button>
@@ -37,7 +48,10 @@ function Zomato(props) {
                                     </Link>
                                 </div>
                             </> :
-                            <MdPersonOutline onClick={() => setGetOption(true)} id="zomato-button" />
+                            <MdPersonOutline onClick={(e) => {
+                                e.stopPropagation()
+                                setGetOption(true)
+                            }} id="zomato-button" />
                     }
                 </>
             ) :

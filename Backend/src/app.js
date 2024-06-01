@@ -15,9 +15,9 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 
 import restaurantRouter from "./route/restaurant.route.js";
-app.use("/", restaurantRouter)
+app.use("/api", restaurantRouter)
 
 import partnerRouter from "./route/partner.route.js";
-app.use("/", partnerRouter)
+app.use("/api", partnerRouter)
 
 export default app;

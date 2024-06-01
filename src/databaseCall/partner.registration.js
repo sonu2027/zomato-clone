@@ -12,7 +12,7 @@ const partnerRegistartion = async (fullName, email) => {
   };
 
   try {
-    const response = await fetch("http://localhost:7000/registeruser", {
+    const response = await fetch("/api/registeruser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

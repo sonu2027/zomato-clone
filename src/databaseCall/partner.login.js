@@ -7,7 +7,7 @@ const partnerLogin = async (email) => {
   };
 
   try {
-    const response = await fetch("http://localhost:7000/loginuser", {
+    const response = await fetch("/api/loginuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

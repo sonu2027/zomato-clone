@@ -4,7 +4,7 @@ const sendEmailOtp = async (email) => {
   console.log("Generated otp: ", generatedOtp);
 
   try {
-    const response = await fetch("http://localhost:7000/sendemailotp", {
+    const response = await fetch("/api/sendemailotp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -20,7 +20,7 @@ function FilterOption(props) {
 
     return (
         <div className="filter-option">
-            <div className="child-div">
+            <div onClick={(e)=>e.stopPropagation()} className="child-div">
 
                 <div className="child-div-filter">
                     <h2>Filters</h2>
@@ -32,7 +32,7 @@ function FilterOption(props) {
                     <div className="box1">
                         <button onClick={() => { showRating(false), showCost(false), showSortBy(true) }} className="box1-button">
                             <div>Sort By</div>
-                            <div style={{ color: "rgb(239, 79, 95)", fontSize: "1.1rem" }}>{selectSort}</div>
+                            <div className="box1-button-div2">{selectSort}</div>
                         </button>
                         <button>Cuisines</button>
                         <button onClick={() => { showRating(true), showCost(false), showSortBy(false) }}>Rating</button>

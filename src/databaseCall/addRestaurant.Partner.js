@@ -5,7 +5,7 @@ const addRestaurantToPartner = async (ownerId, resId) => {
   };
 
   try {
-    const response = await fetch("http://localhost:7000/addrestaurant", {
+    const response = await fetch("/api/addrestaurant", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 const updatePartnerName = async (partnerId, newName) => {
   console.log("Received partner id and newName is: ", partnerId, newName);
   try {
-    const response = await fetch("http://localhost:7000/partner/updatename", {
+    const response = await fetch("/api/partner/updatename", {
       headers: {
         "Content-Type": "application/json",
       },

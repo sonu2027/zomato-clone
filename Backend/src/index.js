@@ -17,8 +17,8 @@ connectDB().then(() => {
     res.send("<h1>no projects</h1>");
   });
 
-  app.listen(7000, () => {
-    console.log(`server is running at http://localhost:7000`);
+  app.listen(process.env.PORT, () => {
+    console.log(`server is running at http://localhost:${process.env.PORT}`);
   });
 })
 .catch((err) => {

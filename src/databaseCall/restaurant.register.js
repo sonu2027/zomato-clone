@@ -19,7 +19,7 @@ const restaurantRegistration = async (
   formData.append("ownerId", ownerId);
 
   try {
-    const response = await fetch("http://localhost:7000/registerrestaurant", {
+    const response = await fetch("/api/registerrestaurant", {
       method: "POST",
       body: formData,
     });

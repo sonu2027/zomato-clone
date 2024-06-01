@@ -4,7 +4,7 @@ const uploadPartnerProfilePicture = async (e, id) => {
   const formData = new FormData(e.target);
   formData.append("id", id);
   try {
-    const response = await fetch("http://localhost:7000/updateprofilepicture", {
+    const response = await fetch("/api/updateprofilepicture", {
       method: "POST",
       body: formData,
     });

@@ -1,5 +1,5 @@
 const deleteRestaurant = async (resId) => {
-  const response = await fetch("http://localhost:7000/deleterestaurant", {
+  const response = await fetch("/api/deleterestaurant", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

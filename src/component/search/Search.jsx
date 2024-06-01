@@ -27,18 +27,26 @@ function Search(props) {
         }
     }, [searchBox])
 
-    const removeSearch = () => {
+    const removeSearch = (e) => {
+        e.stopPropagation()
         props.emptySearch("")
         setSearchBox(false)
     }
 
-    const handlesearch = () => {
+    const handlesearch = (e) => {
+        e.stopPropagation()
         setSearchBox(true)
         setTimeout(function () {
             document.getElementsByClassName("open-search")[0].style.opacity = "1"; // Show the box after 0 seconds
             document.getElementsByClassName("open-search")[0].style.transform = "translateY(0)"; // Move the box from bottom to top
         });
     }
+
+    window.addEventListener("click", ()=>{
+        if(searchBox){
+            setSearchBox(false)
+        }
+    })
 
     return (
         <div id="search-box-main">
@@ -50,7 +58,7 @@ function Search(props) {
                 {
                     searchBox == true ?
                         <>
-                            <div className="open-search">
+                            <div onClick={(e)=>e.stopPropagation()} className="open-search">
                                 <RxCross1 className="cross-icon-open-search" onClick={removeSearch} />
                                 <div className="open-search-child">
                                     <div className="open-search-grand-child">

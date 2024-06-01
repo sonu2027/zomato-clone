@@ -3,7 +3,7 @@ const partnerRestaurant = async (restaurantId) => {
   console.log("Restaurant Ids are: ", restaurantId);
 
   try {
-    const response = await fetch("http://localhost:7000/partnerrestaurant", {
+    const response = await fetch("/api/partnerrestaurant", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

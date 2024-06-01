@@ -1,7 +1,7 @@
 const deletePartnerRestaurant = async (id) => {
   try {
     const response = await fetch(
-      "http://localhost:7000/deletepartnerrestaurant",
+      "/api/deletepartnerrestaurant",
       {
         method: "PUT",
         headers: {
