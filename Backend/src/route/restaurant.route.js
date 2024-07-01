@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { sendEmail } from "../controller/partner.controller.js";
-import { deleteRestaurant, registerRestaurant, partnerRestaurant, deletePartnerRestaurant, updateRestaurant } from "../controller/restaurant.controller.js";
+import { deleteRestaurant, registerRestaurant, partnerRestaurant, deletePartnerRestaurant, updateRestaurant, addCuisines, getCuisines } from "../controller/restaurant.controller.js";
 import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
@@ -45,5 +45,8 @@ router.route("/updaterestaurant").put(upload.fields([
     maxCount: 1,
   },
 ]),updateRestaurant);
+
+router.route("/addcuisines").post(addCuisines);
+router.route("/getcuisines").post(getCuisines);
 
 export default router;

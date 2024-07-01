@@ -11,6 +11,7 @@ import { setResDetail } from '../../store/restaurantSlice.js'
 import { deleteRestaurant } from '../../databaseCall/restaurant.delete.js'
 import { deletePartnerRestaurant } from '../../databaseCall/partner.delete.restaurant.js'
 import { partnerRestaurant } from '../../databaseCall/get.partner.restaurant.js'
+import AddCuisine from '../../component/addeditcuisine/AddCuisine.jsx'
 
 function PartnerRestaurant() {
 
@@ -18,13 +19,14 @@ function PartnerRestaurant() {
     const dispatch = useDispatch()
 
     const restaurantDetails = useSelector((s) => s.restaurant)
-    console.log("resdet: ", restaurantDetails);
+    console.log("resdet in partnerRestaurant: ", restaurantDetails.data);
 
     const [showResOption, setShowResOption] = useState(false)
     const [currentElement, setCurrentElement] = useState("")
     const [showDeleteRestaurantOption, setShowDeleteRestaurantOption] = useState(false)
     const [resDelSucc, setResDelSucc] = useState(false)
     const [resDelFail, setResDelFail] = useState(false)
+    const [openCuisineTab, setOpenCuisineTab] = useState(false)
 
     const handleOption = (event, element) => {
         setShowResOption(!showResOption)
@@ -96,6 +98,18 @@ function PartnerRestaurant() {
             })
     }
 
+    const hand = (e) => {
+        foundRestaurantOfCuisines = e
+    }
+
+    const [restauarntId, setRestauarntId] = useState(false)
+
+    const handleCuine = (restaurantIds) => {
+        setRestauarntId(restaurantIds)
+        setOpenCuisineTab(true)
+        setShowResOption(false)
+    }
+
     return (
         <div className='partnerRestaurant'>
             <div className='PartnerHome'>
@@ -122,9 +136,13 @@ function PartnerRestaurant() {
                                     // document.body.style.backgroundColor = "rgba(0, 0, 0, 0.9)"
                                     // document.body.style.filter = "blur(2px)"
                                 }}>Delete</button>
+                                <button onClick={() => handleCuine(e._id)}>Add/Edit cuisines</button>
                             </div>
 
                         }
+                        {/* {
+                            openCuisineTab && <AddCuisine restaurantId={e._id} setOpenCuisineTab={setOpenCuisineTab} openCuisineTab={openCuisineTab} />
+                        } */}
                         {
                             (showDeleteRestaurantOption && currentElement === e) &&
                             <div className='showDeleteRestaurantOption'>
@@ -148,6 +166,9 @@ function PartnerRestaurant() {
                     </div>)
                 }
             </div>
+            {
+                openCuisineTab && <AddCuisine restaurantId={restauarntId} setOpenCuisineTab={setOpenCuisineTab} openCuisineTab={openCuisineTab} />
+            }
         </div>
     )
 }

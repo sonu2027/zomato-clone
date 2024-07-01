@@ -7,13 +7,15 @@ import { removePartnerDetail } from '../../store/partnerSlice.js';
 import { useSelector } from 'react-redux'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, setPrevOrdeSectionr }) {
 
     const PartnerName = useSelector((s) => s.partner.fullName)
     const PartnerEmail = useSelector((s) => s.partner.email)
     const PartnerPP = useSelector((s) => s.partner.ppURL)
-    console.log("partnetname", PartnerName);
+    const partnerRestaurant=useSelector((s)=>s.restaurant)
+    console.log("partnetname", PartnerName, partnerRestaurant.data);
 
     const [arrow, setArraow] = useState(true)
 
@@ -54,7 +56,9 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
     return (
         <div className='header-parent'>
             <div className="header">
+                <Link to="/partner/home">
                 <img src={img1} alt="" />
+                </Link>
                 <div className='profile'>
                     <img src={PartnerPP} alt="" />
                     <div>{PartnerName}</div>
@@ -98,7 +102,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
                         <div onClick={changeSection} className='order-completed'>Order completed(0)</div>
                     </div> :
                     <div className='order-status'>
-                        <div className='received-order'>My restaurant(0)</div>
+                        <div className='received-order'>{`My restaurant (${partnerRestaurant.data.length})`}</div>
                     </div>
             }
             <hr />

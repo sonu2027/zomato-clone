@@ -4,6 +4,7 @@ import {
   deleteFromCloudinary,
   uploadOnCloudinary,
 } from "../utility/cloudinary.utility.js";
+import { Cuisines } from "../model/cuisines.model.js";
 
 const registerRestaurant = async (req, res) => {
   console.log("req.body: ", req.body);
@@ -199,9 +200,7 @@ const updateRestaurant = async (req, res) => {
         describe_restaurant: req.body.describe_restaurant
           ? req.body.describe_restaurant
           : restaurant.describe_restaurant,
-        cuisines: req.body.cuisines
-          ? req.body.cuisines
-          : restaurant.cuisines,
+        cuisines: req.body.cuisines ? req.body.cuisines.split(",") : restaurant.cuisines,
         restaurant_type: req.body.restaurant_type
           ? req.body.restaurant_type
           : restaurant.restaurant_type,
@@ -236,10 +235,60 @@ const updateRestaurant = async (req, res) => {
   }
 };
 
+const addCuisines = async (req, res) => {
+  console.log("req.body: ", req.body);
+  const { restaurantId, cuisinesData, partnerId } = req.body;
+
+  const cuisine = await Cuisines.find({ restaurantId: restaurantId });
+  console.log("Cuisine: ", cuisine);
+
+  if (cuisine[0]) {
+    console.log("update cuisine");
+    try {
+      const response = await Cuisines.updateOne(
+        { restaurantId: restaurantId },
+        { cuisines: cuisinesData }
+      );
+      console.log("Response: ", response);
+      res.status(200).json({ response });
+    } catch (error) {
+      console.log("Error while updating cuisines: ", error);
+      res
+        .status(500)
+        .json({ message: "Error while updating cuisines", response: response });
+    }
+  } else {
+    console.log("add cuisine");
+    try {
+      const response = await Cuisines.create({restaurantId, cuisines:cuisinesData, partnerId});
+      console.log("Response: ", response);
+      res.status(200).json(response);
+    } catch (error) {
+      console.log("Error while added cuisines");
+      res.status(500).json({ message: "cuisines added failed" });
+    }
+  }
+};
+
+const getCuisines = async (req, res) => {
+  console.log("req.body in getCuisines: ", req.body);
+  const { partnerId: id } = req.body;
+  try {
+    const response = await Cuisines.find({ partnerId: id });
+    console.log("Response in getCuisines: ", response);
+    res.status(200).json(response);
+  } catch (error) {
+    console.log("Error while fetching cuisines");
+    res.status(500).json({ message: "fetching cuisines failed" });
+  }
+};
+
 export {
   registerRestaurant,
   deleteRestaurant,
   partnerRestaurant,
   deletePartnerRestaurant,
   updateRestaurant,
+  addCuisines,
+  getCuisines,
 };

@@ -19,11 +19,11 @@ const partnerSchema = new Schema(
     },
     owner_profile_picture_URL: {
       type: String,
-      requires: false,
+      required: false,
     },
     owner_profile_picture_public_id: {
       type: String,
-      requires: false,
+      required: false,
     },
   },
   {

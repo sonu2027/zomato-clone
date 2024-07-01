@@ -7,6 +7,8 @@ import { setResDetail } from "../../store/restaurantSlice.js";
 import { partnerRegistartion } from "../../databaseCall/partner.registration.js";
 import { partnerLogin } from "../../databaseCall/partner.login.js";
 import { partnerRestaurant } from "../../databaseCall/get.partner.restaurant.js";
+import { getCuisines } from "../../databaseCall/getCuisines.js";
+import { setCuisines } from "../../store/cuisinesSlice.js";
 
 function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
 
@@ -72,6 +74,14 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
                 restaurantId: partnerDetails.response.restaurantId,
               })
             );
+            getCuisines(partnerDetails.response._id)
+              .then((cuisines) => {
+                console.log("received cuisines are: ", cuisines);
+                dispatch(setCuisines(cuisines))
+              })
+              .catch((error) => {
+                console.log("error: ", error);
+              })
             return partnerDetails.response.restaurantId
           })
           .then((restaurantId) => {

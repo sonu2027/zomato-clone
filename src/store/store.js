@@ -17,11 +17,13 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import partnerSlice from "./partnerSlice";
 import restaurantSlice from "./restaurantSlice";
 import { combineReducers } from "redux";
+import cuisinesSlice from "./cuisinesSlice.js";
 
 // Combine your slices into a root reducer
 const rootReducer = combineReducers({
   partner: partnerSlice,
   restaurant: restaurantSlice,
+  cuisines:cuisinesSlice
 });
 
 // Persist configuration
