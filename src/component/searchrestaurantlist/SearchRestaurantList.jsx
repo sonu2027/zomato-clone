@@ -16,6 +16,8 @@ function SearchRestaurantList(props) {
 
     const { searchBox, setSearchBox } = useContext(openSearch)
 
+    console.log('PROPS: ', props);
+
     return (
         <>
             {
@@ -23,13 +25,13 @@ function SearchRestaurantList(props) {
                     <div onClick={() => setSearchBox(false)} className="restaurant">
                         <Link
                             style={{ textDecoration: "none" }}
-                            to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.aboutShop}&rating=${props.rating}&price=${props.price}&time=${props.time}&calling=${props.calling}&img=${props.image}`}
+                            to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.cuisines}&rating=${props.rating}&price=${props.price}&time=${props.time}&calling=${props.calling}&img=${props.image}&id=${props.id}`}
                         >
                             <img src={props.image} alt="Image" />
                             <div className="item-parent">
                                 <Item1
                                     shopName={props.shopName}
-                                    aboutShop={props.aboutShop}
+                                    aboutShop={props.cuisines}
                                 />
                                 <Item2
                                     rating={props.rating}
@@ -47,13 +49,13 @@ function SearchRestaurantList(props) {
                                     <div onClick={() => setSearchBox(false)} className="restaurant">
                                         <Link
                                             style={{ textDecoration: "none" }}
-                                            to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.aboutShop}&rating=${props.rating}&price=${props.price}&distance=${props.distance}&calling=${props.calling}&address=${props.address}&img=${props.image}`}
+                                            to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.cuisines}&rating=${props.rating}&price=${props.price}&distance=${props.distance}&calling=${props.calling}&address=${props.address}&img=${props.image}&id=${props.id}`}
                                         >
                                             <img src={props.image} alt="Image" />
                                             <div className="item-parent">
                                                 <Item1
                                                     shopName={props.shopName}
-                                                    aboutShop={props.aboutShop}
+                                                    aboutShop={props.cuisines}
                                                     address={props.address}
                                                 />
                                                 <Item2
@@ -69,13 +71,13 @@ function SearchRestaurantList(props) {
                                     <div onClick={() => setSearchBox(false)} className="restaurant">
                                         <Link
                                             style={{ textDecoration: "none" }}
-                                            to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.aboutShop}&rating=${props.rating}&price=${props.price}&distance=${props.distance}&calling=${props.calling}&address=${props.address}&img=${props.image}`}
+                                            to={`/login/loggedin?status=${props.status}&shopName=${props.shopName}&aboutShop=${props.cuisines}&rating=${props.rating}&price=${props.price}&distance=${props.distance}&calling=${props.calling}&address=${props.address}&img=${props.image}&id=${props.id}`}
                                         >
                                             <img src={props.image} alt="Image" />
                                             <div className="item-parent">
                                                 <Item1
                                                     shopName={props.shopName}
-                                                    aboutShop={props.aboutShop}
+                                                    aboutShop={props.cuisines}
                                                     address={props.address}
                                                 />
                                                 <Item2

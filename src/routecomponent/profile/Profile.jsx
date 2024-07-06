@@ -4,11 +4,9 @@ import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 import "./Profile.css"
 import { useState } from "react"
 // importing custom hooks
-import useHomepageAsset from "../../hooks/useHomepageAssets"
 import Footer from "../../component/footer/Footer"
 
 function Profile() {
-    let obj = useHomepageAsset()
     const { status } = useParams()
     const [inputval, setInputval] = useState("")
     function handleSearch(e) {
@@ -23,7 +21,7 @@ function Profile() {
                 inputval != "" ?
                     <>
                         <div className="search-box">
-                            <SerachRestaurant inputvalue={inputval} status={status || 0} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} time={obj.time} title={"Best Restaurant in Kolkata"} calling="delivery" />
+                            {/* <SerachRestaurant inputvalue={inputval} status={status || 0} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} time={obj.time} title={"Best Restaurant in Kolkata"} calling="delivery" /> */}
                         </div>
                     </> :
                     <>

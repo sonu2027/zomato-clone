@@ -10,20 +10,31 @@ import Footer from "../../component/footer/Footer"
 import DiscountImage from "../../component/discountimage/DiscountImage"
 import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
-// importing custom hooks
-import useDiningoutPageAsset from "../../hooks/useDiningoutPageAsset"
-
 // importing default hooks
 import { useParams } from "react-router-dom"
 import { useState } from "react"
 
 import FilterOption from "../../component/filteroption/FilterOption"
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
 
 
 function DiningOut() {
 
-    // custom hooks
-    const obj = useDiningoutPageAsset()
+    const [filteredRestaurant, setFilteredRestaurant] = useState([])
+
+    const restaurant = useSelector((s) => s.allRestaurant)
+    console.log("Restaurant fetched from store: ", restaurant);
+    useEffect(() => {
+        let newArr = []
+        restaurant.data.map((e, i) => {
+            if (e.restaurant_type[0] == "Dinie-in" || (e.restaurant_type[1] && e.restaurant_type[1] == "Dinie-in") || (e.restaurant_type[2] && e.restaurant_type[2] == "Dinie-in")) {
+                console.log("e.name: ", e.restaurant_name);
+                newArr.push(e)
+            }
+        })
+        setFilteredRestaurant(newArr)
+    }, [])
 
     // default hooks
     const { status } = useParams()
@@ -62,7 +73,7 @@ function DiningOut() {
                 inputval != "" ?
                     <>
                         <div className="search-box">
-                            <SerachRestaurant inputvalue={inputval} status={status} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} distance={obj.distance} address={obj.address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" />
+                            <SerachRestaurant inputvalue={inputval} status={status} calling="dining-out" restaurant={filteredRestaurant}/>
                         </div>
                     </> :
                     <>
@@ -75,7 +86,7 @@ function DiningOut() {
                 filter && <FilterOption passing={"diningout"} setFilter={handleFilter} />
             }
             <DiscountImage />
-            <Restaurant inputvalue={inputval} status={status} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} distance={obj.distance} address={obj.address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" />
+            <Restaurant status={status} rating={[4,3,2,3,5]} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" restaurant={filteredRestaurant} />
             <Footer />
         </>
     )

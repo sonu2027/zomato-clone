@@ -4,27 +4,26 @@ import "./LoginPage.css"
 import { RxCross1 } from "react-icons/rx"
 import { useNavigate } from "react-router-dom"
 import { MdEmail } from "react-icons/md";
+import { loginCustomer } from "../../databaseCall/customerlogin.js"
+import { useDispatch } from "react-redux"
+import { setCustomerDetail } from "../../store/customerSlice.js"
 
 function LoginPage() {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showStatus, setShowStatus] = useState("")
 
-    function authenticateUser() {
-        if (email == "admin" && password == "password") {
-            navigate(`/login/loggedin/${1}`)
-        }
-        else {
-            setShowStatus("Verification failed")
-            setEmail("")
-            setPassword("")
-            setTimeout(() => {
-                setShowStatus("")
-            }, 3000)
-        }
+    function authenticateUser(e) {
+        e.preventDefault()
+        loginCustomer(email, password)
+            .then((data) => {
+                dispatch(setCustomerDetail(data))
+                navigate("/delivery")
+            })
     }
 
     useEffect(() => {
@@ -46,9 +45,9 @@ function LoginPage() {
                 </div>
                 <form id="input-tag">
                     <input value={email} onChange={(e) => setEmail(e.target.value)}
-                        type="text" placeholder="Enter username as admin" />
+                        type="text" placeholder="Email" />
                     <input value={password} onChange={(e) => setPassword(e.target.value)}
-                        type="password" name="" id="" placeholder="Enter password as password" />
+                        type="password" name="" id="" placeholder="Password" />
                     <button onClick={authenticateUser}>Log in</button>
                 </form>
                 <div className="line">

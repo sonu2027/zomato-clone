@@ -10,21 +10,31 @@ import Section from "../../containercomponent/section/Section"
 import Filter from "../../component/filters/Filter"
 import Footer from "../../component/footer/Footer"
 import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
-
-// importing default hooks
-import { useParams } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 
-// importing custom hooks
-import useHomepageAsset from "../../hooks/useHomepageAssets"
 import FilterOption from "../../component/filteroption/FilterOption"
 import applyFilter from "../../context/applyFilter"
-import { apply } from "file-loader"
+import { useSelector } from "react-redux"
 
 function HomePage() {
 
+    const [filteredRestaurant, setFilteredRestaurant] = useState([])
+
+    const restaurant = useSelector((s) => s.allRestaurant)
+    console.log("Restaurant fetched from store: ", restaurant);
+
     const { toApply, setApply } = useContext(applyFilter)
     const [brand, setBrand] = useState(true)
+
+    useEffect(() => {
+        let newArr = []
+        restaurant.data.map((e, i) => {
+            if (e.restaurant_type[0] == "Delivery" || (e.restaurant_type[1] && e.restaurant_type[1] == "Delivery") || (e.restaurant_type[2] && e.restaurant_type[2] == "Delivery")) {
+                newArr.push(e)
+            }
+        })
+        setFilteredRestaurant(newArr)
+    }, [])
 
     useEffect(() => {
         if (toApply[0] != "Popularity") {
@@ -41,11 +51,8 @@ function HomePage() {
         }
     }, [toApply])
 
-    // custom hooks
-    let obj = useHomepageAsset()
-
     // default hooks
-    const { status } = useParams()
+    // const { status } = useParams()
     const [inputval, setInputval] = useState("")
     const [filter, setFilter] = useState(false)
 
@@ -70,6 +77,7 @@ function HomePage() {
         console.log("clicked on window: ", filter);
         if (filter) {
             setFilter(false)
+            document.body.style.overflow = "visible"
         }
         setInputval("")
     })
@@ -81,7 +89,7 @@ function HomePage() {
                 inputval != "" ?
                     <>
                         <div className="search-box">
-                            <SerachRestaurant inputvalue={inputval} status={status || 0} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} time={obj.time} title={"Best Restaurant in Kolkata"} calling="delivery" />
+                            <SerachRestaurant inputvalue={inputval} status={status || 0} calling="delivery" restaurant={filteredRestaurant} />
                         </div>
                     </> :
                     <>
@@ -100,7 +108,7 @@ function HomePage() {
                 </>
             }
 
-            <Restaurant inputvalue={inputval} status={status || 0} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} time={obj.time} title={"Best Restaurant in Kolkata"} calling="delivery" />
+            <Restaurant status={status || 0} title={"Best Restaurant in Kolkata"} rating={[4, 3, 2, 3, 5]} calling="delivery" restaurant={filteredRestaurant} />
             <Footer />
         </>
     )

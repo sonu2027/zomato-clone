@@ -200,7 +200,9 @@ const updateRestaurant = async (req, res) => {
         describe_restaurant: req.body.describe_restaurant
           ? req.body.describe_restaurant
           : restaurant.describe_restaurant,
-        cuisines: req.body.cuisines ? req.body.cuisines.split(",") : restaurant.cuisines,
+        cuisines: req.body.cuisines
+          ? req.body.cuisines.split(",")
+          : restaurant.cuisines,
         restaurant_type: req.body.restaurant_type
           ? req.body.restaurant_type
           : restaurant.restaurant_type,
@@ -260,7 +262,11 @@ const addCuisines = async (req, res) => {
   } else {
     console.log("add cuisine");
     try {
-      const response = await Cuisines.create({restaurantId, cuisines:cuisinesData, partnerId});
+      const response = await Cuisines.create({
+        restaurantId,
+        cuisines: cuisinesData,
+        partnerId,
+      });
       console.log("Response: ", response);
       res.status(200).json(response);
     } catch (error) {
@@ -283,6 +289,17 @@ const getCuisines = async (req, res) => {
   }
 };
 
+const getAllRes = async (req, res) => {
+  try {
+    const response = await Restaurant.find();
+    console.log("Response is: ", response);
+    res.status(200).json(response);
+  } catch (error) {
+    console.log("Error while fetching all restaurat");
+    res.status(500).json({ message: "fetching restaurat failed" });
+  }
+};
+
 export {
   registerRestaurant,
   deleteRestaurant,
@@ -291,4 +308,5 @@ export {
   updateRestaurant,
   addCuisines,
   getCuisines,
+  getAllRes
 };

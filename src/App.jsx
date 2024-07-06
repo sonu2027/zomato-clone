@@ -1,12 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./App.css"
-import Bookmark from "./context/bookmark"
 import openSearch from "./context/openSearch"
 import CustomRoutes from "./customroutes/CustomRoutes"
 import ApplyFilter from "./context/applyFilter"
+import { getAllRes } from "./databaseCall/getAllRes.js"
+import { useDispatch } from "react-redux"
+import { setAllRes } from "./store/allRestaurantSlice.js"
 
 function App() {
-  const [bookmarks, setBookmarks] = useState([])
+  const dispatch = useDispatch()
   const [searchBox, setSearchBox] = useState()
 
   const [rangeVal, setRangeVal] = useState(0)
@@ -18,14 +20,22 @@ function App() {
   const [selectSort, setSelectSort] = useState("Popularity")
   const [apply, setApply] = useState(false)
   const [toApply, setToApply] = useState(["Popularity", range, price])
-  const [countFilter, setCountFilter]=useState(0)
+  const [countFilter, setCountFilter] = useState(0)
+
+  useEffect(() => {
+    getAllRes()
+      .then((data) => {
+        dispatch(setAllRes(data))
+      })
+      .catch((error) => {
+        console.log("error is: ", error);
+      })
+  }, [])
 
   return (
-    <ApplyFilter.Provider value={{ apply, setApply, toApply, setToApply, rangeVal, setRangeVal, range, setRange, costVal, setCostVal, price, setPrice, selectSort, setSelectSort, countFilter, setCountFilter}}>
+    <ApplyFilter.Provider value={{ apply, setApply, toApply, setToApply, rangeVal, setRangeVal, range, setRange, costVal, setCostVal, price, setPrice, selectSort, setSelectSort, countFilter, setCountFilter }}>
       <openSearch.Provider value={{ searchBox, setSearchBox }}>
-        <Bookmark.Provider value={{ bookmarks, setBookmarks }}>
           <CustomRoutes />
-        </Bookmark.Provider>
       </openSearch.Provider>
     </ApplyFilter.Provider>
   )

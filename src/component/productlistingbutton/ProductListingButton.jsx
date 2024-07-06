@@ -5,10 +5,13 @@ import "./ProductListingButton.css"
 import { MdOutlineDirections } from "react-icons/md";
 import { BsBookmarkPlus, BsFillBookmarkFill } from "react-icons/bs";
 import { PiShareFatLight } from "react-icons/pi";
-
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ProductListingButton(props) {
+
+    const customerDetails = useSelector((s) => s.customer.data)
+    console.log("props.bookmarked: ", props.bookmarked);
 
     return (
         <div className="button">
@@ -16,17 +19,17 @@ function ProductListingButton(props) {
                 <MdOutlineDirections className="icon" />
                 <span>Direction</span>
             </button>
-            {props.status == 1 ?
+            {customerDetails ?
                 <>
-                    {props.bookmarked == true ?
+                    {props.bookmarked ?
                         <>
-                            <button onClick={props.handleBookmark} >
+                            <button onClick={props.handleRemoveBookmark} >
                                 <BsFillBookmarkFill style={{ color: "rgb(255, 126, 139)" }} className="icon" />
                                 <span>Bookmark</span>
                             </button>
                         </> :
                         <>
-                            <button onClick={props.handleBookmark}>
+                            <button onClick={props.handleAddBookmark}>
                                 <BsBookmarkPlus className="icon" />
                                 <span>Bookmark</span>
                             </button>

@@ -8,37 +8,39 @@ import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 import ProductSection from "../../component/productlistingsectionbutton/ProductSection";
 import AboutProductListing from "../../component/aboutproductlisting/AboutProductListing";
 
-// importing useContext hooks
-import bookmark from "../../context/bookmark";
-
-// importing routing
-import { Link } from "react-router-dom";
-
 // importing default hooks
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"
 
 // importing custom hooks
-import useHomepageAsset from "../../hooks/useHomepageAssets";
-import useDiningoutPageAsset from "../../hooks/useDiningoutPageAsset";
-import useNightlifePageAsset from "../../hooks/useNightlifePageAsset";
 import ProductListingButton from "../../component/productlistingbutton/ProductListingButton";
+import { updateCustomerDetails } from "../../databaseCall/updateCustomerDetails";
+import { useDispatch, useSelector } from "react-redux";
+import { loginCustomer } from "../../databaseCall/customerlogin";
+import { setCustomerDetail } from "../../store/customerSlice";
 
 function ProductListing() {
 
+    const [filteredRestaurant, setFilteredRestaurant] = useState([])
+    const [bookmarked, setBookmarked] = useState(false)
+
+    const restaurant = useSelector((s) => s.allRestaurant)
+
+    const dispatch = useDispatch()
     const location = useLocation()
+
+    const customerDetails = useSelector((s) => s.customer.data)
+
     const queryParams = new URLSearchParams(location.search);
 
     // Access individual query parameters
+    const id = queryParams.get('id');
     const status = queryParams.get('status');
     const shopName = queryParams.get('shopName');
     const rating = queryParams.get('rating');
-    const price = queryParams.get('price');
-    const time = queryParams.get('time');
     const calling = queryParams.get('calling')
 
     const address = queryParams.get('address')
-    const distance = queryParams.get('distance')
     const image = queryParams.get('img')
     const aboutShop = queryParams.get('aboutShop')
     const arr = aboutShop.split(/\s*,\s*/);
@@ -46,10 +48,44 @@ function ProductListing() {
     // default hooks
     const [inputval, setInputval] = useState("")
 
-    // custom hooks
-    const obj1 = useHomepageAsset()
-    const obj2 = useDiningoutPageAsset()
-    const obj3 = useNightlifePageAsset()
+    useEffect(() => {
+        console.log("1st one is running");
+        let newArr = []
+        if (calling == "delivery") {
+            restaurant.data.map((e, i) => {
+                if (e.restaurant_type[0] == "Delivery" || (e.restaurant_type[1] && e.restaurant_type[1] == "Delivery") || (e.restaurant_type[2] && e.restaurant_type[2] == "Delivery")) {
+                    newArr.push(e)
+                }
+            })
+        }
+        else if (calling == "dining-out") {
+            restaurant.data.map((e, i) => {
+                if (e.restaurant_type[0] == "Dinie-in" || (e.restaurant_type[1] && e.restaurant_type[1] == "Dinie-in") || (e.restaurant_type[2] && e.restaurant_type[2] == "Dinie-in")) {
+                    newArr.push(e)
+                }
+            })
+        }
+        else {
+            restaurant.data.map((e, i) => {
+                if (e.restaurant_type[0] == "Nightlife" || (e.restaurant_type[1] && e.restaurant_type[1] == "Nightlife") || (e.restaurant_type[2] && e.restaurant_type[2] == "Nightlife")) {
+                    newArr.push(e)
+                }
+            })
+        }
+        setFilteredRestaurant(newArr)
+    }, [restaurant, calling])
+
+    useEffect(() => {
+        console.log("2nd one is running");
+        console.log("custom det is: ", customerDetails);
+        customerDetails.bookmarkedRes.map((e) => {
+            console.log("props.resId: ", id);
+            if (e == id) {
+                console.log("e and props.resId: ", e, id);
+                setBookmarked(true)
+            }
+        })
+    }, [customerDetails, id, bookmarked])
 
     function handleSearch(e) {
         if (e == "") {
@@ -60,43 +96,43 @@ function ProductListing() {
         }
     }
 
-    console.log("props.search", inputval);
-
-    const { bookmarks, setBookmarks } = useContext(bookmark)
-    const [bookmarked, setBookmarked] = useState(false)
-
-    useEffect(()=>{
-        bookmarks.map((e)=>{
-            if(e==shopName)
-                setBookmarked(true)
-        })
-    },[shopName])
-
-    function handleBookmark() {
-        let foundItem = false
-        if (!bookmarked) {
-            foundItem = bookmarks.filter((e) => {
-                if (e == shopName)
-                    return true
+    const handleRemoveBookmark = () => {
+        updateCustomerDetails("removeBookmark", customerDetails._id, id)
+            .then((data) => {
+                loginCustomer(customerDetails.email, customerDetails.password)
+                    .then((data) => {
+                        dispatch(setCustomerDetail(data))
+                        setBookmarked(false)
+                    })
+                    .catch((error) => {
+                        throw error
+                    })
             })
-            if (foundItem == false)
-                setBookmarks((s) => [...s, shopName])
-        }
-        else {
-            foundItem = bookmarks.filter((e) => {
-                return e != shopName
+            .catch((error) => {
+                console.log("error is: ", error);
             })
-            setBookmarks(foundItem)
-        }
-        setBookmarked(!bookmarked)
     }
-    console.log("bookmarks: ", bookmarks);
-    console.log("bookmarked: ", bookmarked);
+
+    const handleAddBookmark = () => {
+        updateCustomerDetails("bookmark", customerDetails._id, id)
+            .then((data) => {
+                loginCustomer(customerDetails.email, customerDetails.password)
+                    .then((data) => {
+                        dispatch(setCustomerDetail(data))
+                        setBookmarked(true)
+                    })
+                    .catch((error) => {
+                        throw error
+                    })
+            })
+            .catch((error) => {
+                console.log("error is: ", error);
+            })
+    }
 
     window.addEventListener("click", () => {
         setInputval("")
     })
-
 
     return (
         <>
@@ -107,8 +143,8 @@ function ProductListing() {
                         inputval != "" ?
                             <>
                                 <div className="search-box">
-                                    <div onClick={() => { setInputval(""), setBookmarked(false) }}>
-                                        <SerachRestaurant inputvalue={inputval} status={status || 0} img={obj1.img} shopName={obj1.shopName} aboutShop={obj1.aboutShop} rating={obj1.rating} price={obj1.price} time={obj1.time} title={"Best Restaurant in Kolkata"} calling="delivery" />
+                                    <div onClick={() => setBookmarked(false)}>
+                                        <SerachRestaurant inputvalue={inputval} status={status || 0} calling="delivery" restaurant={filteredRestaurant} />
                                     </div>
                                 </div>
                             </> :
@@ -122,8 +158,8 @@ function ProductListing() {
                             aboutShop={aboutShop} rating={rating}
                         />
                         <ProductListingButton
-                            status={status} bookmarked={bookmarked}
-                            handleBookmark={handleBookmark}
+                            status={status}
+                            handleRemoveBookmark={handleRemoveBookmark} handleAddBookmark={handleAddBookmark} setBookmarked={setBookmarked} bookmarked={bookmarked}
                         />
                         <ProductSection arr={arr} />
 
@@ -138,8 +174,8 @@ function ProductListing() {
                                     inputval != "" ?
                                         <>
                                             <div className="search-box">
-                                                <div onClick={() => { setInputval(""), setBookmarked(false) }}>
-                                                    <SerachRestaurant inputvalue={inputval} status={status || 0} img={obj2.img} shopName={obj2.shopName} aboutShop={obj2.aboutShop} rating={obj2.rating} price={obj2.price} distance={obj2.distance} title={"Best Restaurant in Kolkata"} address={obj2.address} calling="dining-out" />
+                                                <div onClick={() => setBookmarked(false)}>
+                                                    <SerachRestaurant inputvalue={inputval} status={status || 0} calling="dining-out" restaurant={filteredRestaurant} />
                                                 </div>
                                             </div>
                                         </> :
@@ -155,8 +191,8 @@ function ProductListing() {
                                         address={address}
                                     />
                                     <ProductListingButton
-                                        status={status} bookmarked={bookmarked}
-                                        handleBookmark={handleBookmark}
+                                        status={status}
+                                        handleRemoveBookmark={handleRemoveBookmark} handleAddBookmark={handleAddBookmark} setBookmarked={setBookmarked} bookmarked={bookmarked}
                                     />
                                     <ProductSection arr={arr} />
                                 </div>
@@ -167,8 +203,8 @@ function ProductListing() {
                                     inputval != "" ?
                                         <>
                                             <div className="search-box">
-                                                <div onClick={() => { setInputval(""), setBookmarked(false) }}>
-                                                    <SerachRestaurant inputvalue={inputval} status={status || 0} img={obj3.img} shopName={obj3.shopName} aboutShop={obj3.aboutShop} rating={obj3.rating} price={obj3.price} title={"Best Restaurant in Kolkata"} calling="night-life" distance={obj3.distance} address={obj3.address} />
+                                                <div onClick={() => setBookmarked(false)}>
+                                                    <SerachRestaurant inputvalue={inputval} status={status || 0} calling="nightlife" restaurant={filteredRestaurant} />
                                                 </div>
                                             </div>
                                         </> :
@@ -183,8 +219,8 @@ function ProductListing() {
                                         aboutShop={aboutShop} address={address} rating={rating}
                                     />
                                     <ProductListingButton
-                                        status={status} bookmarked={bookmarked}
-                                        handleBookmark={handleBookmark}
+                                        status={status}
+                                        handleRemoveBookmark={handleRemoveBookmark} handleAddBookmark={handleAddBookmark} setBookmarked={setBookmarked} bookmarked={bookmarked}
                                     />
                                     <ProductSection arr={arr} />
                                 </div>

@@ -54,6 +54,7 @@
   margin: 2rem 0;
   background-color: #f6f6f6;
   border-radius: 6px;
+  border: 1px solid rgb(159, 157, 157);
 }
 .filter-option .child-div-filter {
   padding: 0 2rem;

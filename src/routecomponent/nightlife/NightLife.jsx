@@ -10,19 +10,29 @@ import Footer from "../../component/footer/Footer"
 import Restaurant from "../../containercomponent/restaurant/Restaurant"
 import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
-// importing custom hooks
-import useNightlifePageAsset from "../../hooks/useNightlifePageAsset"
-
 // importing default hooks
 import { useParams } from "react-router-dom"
 import { useState } from "react"
 
 import FilterOption from "../../component/filteroption/FilterOption"
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
 
 function NightLife() {
 
-    // custom hooks
-    const obj = useNightlifePageAsset()
+    const [filteredRestaurant, setFilteredRestaurant] = useState([])
+
+    const restaurant = useSelector((s) => s.allRestaurant)
+    console.log("Restaurant fetched from store: ", restaurant);
+    useEffect(() => {
+        let newArr = []
+        restaurant.data.map((e, i) => {
+            if (e.restaurant_type[0] == "Nightlife" || (e.restaurant_type[1] && e.restaurant_type[1] == "Nightlife") || (e.restaurant_type[2] && e.restaurant_type[2] == "Nightlife")) {
+                newArr.push(e)
+            }
+        })
+        setFilteredRestaurant(newArr)
+    }, [])
 
     // default hooks
     const { status } = useParams()
@@ -60,19 +70,19 @@ function NightLife() {
                 inputval != "" ?
                     <>
                         <div className="search-box">
-                            <SerachRestaurant inputvalue={inputval} status={status} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} distance={obj.distance} address={obj.address} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="night-life" />
+                            <SerachRestaurant inputvalue={inputval} calling={"nightLife"} status={status} restaurant={filteredRestaurant} />
                         </div>
                     </> :
                     <>
                     </>
             }
             <Section status={status} page="night-life" />
-            <Filter setFilter={handleFilter}/>
+            <Filter setFilter={handleFilter} />
             {
                 filter && <FilterOption passing={"nightlife"} setFilter={handleFilter} />
             }
             <DiscountImage />
-            <Restaurant inputvalue={inputval} status={status} img={obj.img} shopName={obj.shopName} aboutShop={obj.aboutShop} rating={obj.rating} price={obj.price} distance={obj.distance} address={obj.address} title={"Nightlife Restaurants in Behala"} calling="night-life" />
+            <Restaurant status={status} rating={[4, 3, 2, 3, 5]} title={"Nightlife Restaurants in Behala"} calling="night-life" restaurant={filteredRestaurant} />
             <Footer />
         </>
     )

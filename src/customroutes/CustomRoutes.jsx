@@ -19,11 +19,11 @@ function CustomRoutes() {
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/login/loggedin/:status" element={<HomePage />} />
-            <Route path="/Diningout/:status" element={<DiningOut />} />
-            <Route path="/nightlife/:status" element={<NightLife />} />
+            <Route path="/delivery" element={<HomePage />} />
+            <Route path="/Diningout" element={<DiningOut />} />
+            <Route path="/nightlife" element={<NightLife />} />
             <Route path="/login/loggedin" element={<ProductListing />} />
-            <Route path="/login/loggedin/bookmark/:status" element={<BookmarkPage />} />
+            <Route path="/bookmark" element={<BookmarkPage />} />
             <Route path="/login/loggedin/profile/:status" element={<Profile />} />
             <Route path="/partner/login" element={<PartnerLogin />} />
             <Route path="/partner/register" element={<PartnerRegister />} />

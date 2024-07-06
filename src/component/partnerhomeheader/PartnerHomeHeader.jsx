@@ -4,6 +4,8 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { removePartnerDetail } from '../../store/partnerSlice.js';
+import { removeResDetail } from '../../store/restaurantSlice.js';
+import { removeCuisines } from '../../store/cuisinesSlice.js';
 import { useSelector } from 'react-redux'
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -37,6 +39,8 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
 
     const logoutPartner = () => {
         dispatch(removePartnerDetail())
+        dispatch(removeResDetail())
+        dispatch(removeCuisines())
         navigate("/partner/login")
     }
 

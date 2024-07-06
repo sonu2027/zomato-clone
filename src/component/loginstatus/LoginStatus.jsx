@@ -2,7 +2,15 @@ import "./LoginStatus.css"
 import { Link } from "react-router-dom"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { removeCustomerDetail } from "../../store/customerSlice"
+
 function LoginStatus(props) {
+
+    const dispatch=useDispatch()
+
+    const customerDetail = useSelector((s) => s.customer.data)
+    console.log("customer detail is: ", customerDetail);
 
     console.log("status in loginstatsu: Ending here", props.status);
 
@@ -13,15 +21,19 @@ function LoginStatus(props) {
         }
     })
 
+    const handleLogoutCustomer=(e)=>{
+        dispatch(removeCustomerDetail())
+    }
+
     return (
         <div id="login-status">
 
-            {props.status == 1 ? (
+            {customerDetail ? (
                 <div id="after-login">
                     {getOption == true ?
                         <>
                             <span onClick={() => setGetOption(false)} id="account">&nbsp;S&nbsp;</span>&nbsp;
-                            <span onClick={() => setGetOption(false)} >Sonu</span>
+                            <span onClick={() => setGetOption(false)} >{customerDetail.firstName}</span>
                             <MdOutlineKeyboardArrowDown onClick={(e) => {
                                 e.stopPropagation()
                                 setGetOption(false)
@@ -32,7 +44,7 @@ function LoginStatus(props) {
                         <>
                             <span onClick={() => setGetOption(true)}
                                 id="account">&nbsp;S&nbsp;</span>&nbsp;
-                            <span onClick={() => setGetOption(true)}>Sonu</span>
+                            <span onClick={() => setGetOption(true)}>{customerDetail.firstName}</span>
                             <MdOutlineKeyboardArrowUp onClick={(e) => {
                                 e.stopPropagation()
                                 setGetOption(true)
@@ -43,16 +55,14 @@ function LoginStatus(props) {
                                     <button className="make-border-radius-8px-top">Profile</button>
                                 </Link>
                                 <button>Notifications</button>
-                                <Link to={`/login/loggedin/bookmark/${props.status}`}>
+                                <Link to={`/bookmark`}>
                                     <button>Bookmark</button>
                                 </Link>
                                 <button>Reviews</button>
                                 <button>Network</button>
                                 <button>Find Friends</button>
                                 <button>Setting</button>
-                                <Link to={`/login/loggedin/${0}`}>
-                                    <button className="make-border-radius-8px-bottom">Log out</button>
-                                </Link>
+                                <button onClick={handleLogoutCustomer} className="make-border-radius-8px-bottom">Log out</button>
                             </div>
                         </>
                     }

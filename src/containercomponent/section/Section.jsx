@@ -17,7 +17,8 @@ function Section(props) {
         <div id="section-main-div">
             <section id="section">
 
-                <Link to={`/login/loggedin/${props.status || defaultValue}`}
+                {/* <Link to={`/login/loggedin/${props.status || defaultValue}`} */}
+                <Link to={`/delivery`}
                     style={{ textDecoration: "none" }}>
                     <div id="delivery">
                         {props.page == "delivery" ?
@@ -32,7 +33,8 @@ function Section(props) {
                     </div>
                 </Link>
 
-                <Link to={`/diningout/${props.status || defaultValue}`} style={{ textDecoration: "none" }}>
+                {/* <Link to={`/diningout/${props.status || defaultValue}`} style={{ textDecoration: "none" }}> */}
+                <Link to={`/diningout`} style={{ textDecoration: "none" }}>
                     <div id="dining-out">
                         {props.page == "dining-out" ?
                             <div className="border" style={{ borderBottom: "2px solid rgb(239, 79, 95)" }}>
@@ -46,7 +48,8 @@ function Section(props) {
                     </div>
                 </Link>
 
-                <Link to={`/nightlife/${props.status || defaultValue}`} style={{ textDecoration: "none" }}>
+                {/* <Link to={`/nightlife/${props.status || defaultValue}`} style={{ textDecoration: "none" }}> */}
+                <Link to={`/nightlife`} style={{ textDecoration: "none" }}>
                     <div id="night-life">
                         {props.page == "night-life" ?
                             <div className="border" style={{ borderBottom: "2px solid rgb(239, 79, 95)" }}>

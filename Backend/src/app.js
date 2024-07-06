@@ -20,4 +20,8 @@ app.use("/api", restaurantRouter)
 import partnerRouter from "./route/partner.route.js";
 app.use("/api", partnerRouter)
 
+import customerRouter from "./route/customer.route.js"
+app.use("/user", customerRouter)
+app.use("/api", customerRouter)
+
 export default app;

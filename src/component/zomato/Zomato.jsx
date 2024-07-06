@@ -18,10 +18,10 @@ function Zomato(props) {
         <div id="zomato">
             {props.status == 1 ? (
                 <>
-                    <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/login/loggedin/${props.status}`}>
+                    <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
                         <h2><i>Zomato</i></h2>
                     </Link>
-                    <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/login/loggedin/${props.status}`}>
+                    <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
                         <h1><i>Zomato</i></h1>
                     </Link>
                     {
@@ -57,10 +57,10 @@ function Zomato(props) {
             ) :
                 (
                     <>
-                        <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/login/loggedin/${props.status}`}>
+                        <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
                             <h2><i>Zomato</i></h2>
                         </Link>
-                        <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/login/loggedin/${props.status}`}>
+                        <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
                             <h1><i>Zomato</i></h1>
                         </Link>
                         <Link to="/login">
