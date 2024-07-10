@@ -47,13 +47,13 @@ function ProductSection(props) {
             <div>
                 <hr className="productsection-overview" />
                 {
-                    prevSection === "productsection-overview" ? <Overview arr={props.arr} /> :
+                    prevSection === "productsection-overview" ? <Overview resId={props.resId} arr={props.arr} /> :
 
-                        prevSection === "productsection-orderonline" ? <OrderOnline /> :
+                        prevSection === "productsection-orderonline" ? <OrderOnline resId={props.resId} /> :
 
                             prevSection === "productsection-reviews" ? <Reviews /> :
 
-                                prevSection === "productsection-photos" ? <Photos /> : <Menu />
+                                prevSection === "productsection-photos" ? <Photos /> : <Menu resId={props.resId} />
                 }
             </div>
         </>

@@ -13,6 +13,7 @@ import PartnerHome from "../routecomponent/partnerhome/PartnerHome"
 import PartnerRestaurant from "../routecomponent/partnerrestaurant/PartnerRestaurant.jsx"
 import PartnerProfile from "../component/partnerprofile/PartnerProfile.jsx"
 import PartnerAccountSetting from "../component/partneraccountsetting/PartnerAccountSetting.jsx"
+import Cart from "../routecomponent/cart/Cart.jsx"
 
 function CustomRoutes() {
     return (
@@ -33,6 +34,7 @@ function CustomRoutes() {
             <Route path="/partner/home" element={<PartnerHome />} />
             <Route path="/partner/profile" element={<PartnerProfile />} />
             <Route path="/partner/setting/:change" element={<PartnerAccountSetting />} />
+            <Route path="/cart" element={<Cart />} />
         </Routes>
     )
 }

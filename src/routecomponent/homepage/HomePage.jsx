@@ -15,12 +15,14 @@ import { useContext, useEffect, useState } from "react"
 import FilterOption from "../../component/filteroption/FilterOption"
 import applyFilter from "../../context/applyFilter"
 import { useSelector } from "react-redux"
+import OrderStatus from "../../component/orderStatus/OrderStatus.jsx"
 
 function HomePage() {
 
     const [filteredRestaurant, setFilteredRestaurant] = useState([])
 
     const restaurant = useSelector((s) => s.allRestaurant)
+    const order = useSelector((s) => s.order)
     console.log("Restaurant fetched from store: ", restaurant);
 
     const { toApply, setApply } = useContext(applyFilter)
@@ -110,6 +112,9 @@ function HomePage() {
 
             <Restaurant status={status || 0} title={"Best Restaurant in Kolkata"} rating={[4, 3, 2, 3, 5]} calling="delivery" restaurant={filteredRestaurant} />
             <Footer />
+            {
+                order.data.length>0 && <OrderStatus />
+            }
         </>
     )
 }

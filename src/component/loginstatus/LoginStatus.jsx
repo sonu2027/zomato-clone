@@ -4,10 +4,14 @@ import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icon
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { removeCustomerDetail } from "../../store/customerSlice"
+import { removeOrderDetail } from "../../store/orderSlice"
+import { removeCuisines } from "../../store/cuisinesSlice"
+import { useNavigate } from "react-router-dom"
 
 function LoginStatus(props) {
 
     const dispatch=useDispatch()
+    const navigate=useNavigate()
 
     const customerDetail = useSelector((s) => s.customer.data)
     console.log("customer detail is: ", customerDetail);
@@ -23,6 +27,9 @@ function LoginStatus(props) {
 
     const handleLogoutCustomer=(e)=>{
         dispatch(removeCustomerDetail())
+        dispatch(removeOrderDetail())
+        dispatch(removeCuisines())
+        navigate("/")
     }
 
     return (

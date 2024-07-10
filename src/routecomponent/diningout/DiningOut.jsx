@@ -17,12 +17,13 @@ import { useState } from "react"
 import FilterOption from "../../component/filteroption/FilterOption"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
+import OrderStatus from "../../component/orderStatus/OrderStatus.jsx"
 
 
 function DiningOut() {
 
     const [filteredRestaurant, setFilteredRestaurant] = useState([])
-
+    const order = useSelector((s) => s.order)
     const restaurant = useSelector((s) => s.allRestaurant)
     console.log("Restaurant fetched from store: ", restaurant);
     useEffect(() => {
@@ -73,7 +74,7 @@ function DiningOut() {
                 inputval != "" ?
                     <>
                         <div className="search-box">
-                            <SerachRestaurant inputvalue={inputval} status={status} calling="dining-out" restaurant={filteredRestaurant}/>
+                            <SerachRestaurant inputvalue={inputval} status={status} calling="dining-out" restaurant={filteredRestaurant} />
                         </div>
                     </> :
                     <>
@@ -86,8 +87,11 @@ function DiningOut() {
                 filter && <FilterOption passing={"diningout"} setFilter={handleFilter} />
             }
             <DiscountImage />
-            <Restaurant status={status} rating={[4,3,2,3,5]} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" restaurant={filteredRestaurant} />
+            <Restaurant status={status} rating={[4, 3, 2, 3, 5]} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" restaurant={filteredRestaurant} />
             <Footer />
+            {
+                order.data.length>0 && <OrderStatus />
+            }
         </>
     )
 }

@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RxCross1 } from "react-icons/rx";
 import { IoMdAdd } from "react-icons/io";
 import { MdDeleteOutline } from "react-icons/md";
-import cuisinesSlice, { setCuisines } from '../../store/cuisinesSlice';
+import { setCuisines } from '../../store/cuisinesSlice.js';
 import { updateCuisines } from '../../databaseCall/updateCuisine';
 import { getCuisines } from '../../databaseCall/getCuisines';
 import { useRef } from 'react';
 
-function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
+function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab, setShowPopoupForCuisinesUpdated }) {
 
     const dispatch = useDispatch()
     const inputRef = useRef(null)
@@ -17,10 +17,12 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
     const [cuisinesData, setCuisinesData] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
     const [currentCuisine, setCurrentCuisine] = useState([])
-    const restaurantCuisinesTypes = useSelector((s) => s.cuisines.data)
-    console.log("restaurantCuisines: ", restaurantCuisinesTypes);
-    const restaurantCuisines = useSelector((s) => s.restaurant.data)
-    console.log("resdet: ", restaurantCuisines);
+
+    const cuisine = useSelector((s) => s.cuisines.data)
+    console.log("cuisine: ", cuisine);
+    const restaurant = useSelector((s) => s.restaurant.data)
+    console.log("restaurant: ", restaurant);
+
     const partnerId = useSelector((s) => s.partner.id)
 
     const [showWarning, setWarning] = useState("")
@@ -28,10 +30,8 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
 
     useEffect(() => {
 
-        console.log("given data: ", restaurantId, setOpenCuisineTab, openCuisineTab);
-
         let found = false
-        restaurantCuisinesTypes.map((e) => {
+        cuisine.map((e) => {
             if (e.restaurantId == restaurantId) {
                 console.log("res found", e.restaurantId);
                 found = true
@@ -40,13 +40,13 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
             }
         })
         if (!found) {
-            console.log("not found any cuisines item: ", restaurantCuisines, restaurantCuisines[0].cuisines);
+            console.log("not found any cuisines item: ", restaurant, restaurant[0].cuisines);
             let obj = {}
-            restaurantCuisines.map((elem, ind) => {
+            restaurant.map((elem, ind) => {
                 if (restaurantId == elem._id) {
-                    restaurantCuisines[ind].cuisines.map((e, i) => {
-                        obj[restaurantCuisines[ind].cuisines[i]] = [{ name: "", price: "" }]
-                        setCuisinesData((s) => ({ ...s, [restaurantCuisines[ind].cuisines[i]]: [{ name: "", price: "" }] }))
+                    restaurant[ind].cuisines.map((e, i) => {
+                        obj[restaurant[ind].cuisines[i]] = [{ name: "", price: "" }]
+                        setCuisinesData((s) => ({ ...s, [restaurant[ind].cuisines[i]]: [{ name: "", price: "" }] }))
                     })
                 }
             })
@@ -74,18 +74,26 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
     })
 
 
-
     const handleName = (event, index) => {
-        let array = [...currentCuisine]
-        array[1][index].name = event.target.value
-        setCurrentCuisine(array)
-    }
+        const newArray = currentCuisine.map((item, i) =>
+            i == 1 ? item.map((nestedItem, j) =>
+                j === index ? { ...nestedItem, name: event.target.value } : nestedItem
+            ) : item
+        );
+
+        setCurrentCuisine(newArray);
+    };
 
     const handlePrice = (event, index) => {
-        let array = [...currentCuisine]
-        array[1][index].price = event.target.value
-        setCurrentCuisine(array)
-    }
+        const newArray = currentCuisine.map((item, i) =>
+            i === 1 ? item.map((nestedItem, j) =>
+                j === index ? { ...nestedItem, price: event.target.value } : nestedItem
+            ) : item
+        );
+
+        setCurrentCuisine(newArray);
+    };
+
 
     const handleNext = () => {
         let dontGo = false
@@ -95,8 +103,13 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
             }
         })
         if (!dontGo) {
+            console.log("cuisinesdata is inside: ", cuisinesData);
+            console.log("currentcuisines is inside: ", currentCuisine);
+            console.log("currentIndex is inside: ", currentIndex);
+            console.log("Object.entries(cuisinesData)[currentIndex + 1]: ", Object.entries(cuisinesData)[currentIndex + 1]);
             setCurrentCuisine(Object.entries(cuisinesData)[currentIndex + 1])
             setCurrentIndex(currentIndex + 1)
+            setCuisinesData((s) => ({ ...s, [currentCuisine[0]]: currentCuisine[1] }))
             setFocus(0)
         }
         else {
@@ -107,6 +120,7 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
         }
     }
 
+
     const handlePrev = () => {
         let dontGo = false
         currentCuisine[1].map((e) => {
@@ -115,8 +129,11 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
             }
         })
         if (!dontGo) {
-            setCurrentCuisine(Object.entries(cuisinesData)[currentIndex - 1])
+            console.log("Object.entries(cuisinesData): ", Object.entries(cuisinesData));
+            console.log("Object.entries(cuisinesData)[currentIndex - 1]: ", Object.entries(cuisinesData)[currentIndex - 1]);
+            console.log("currentIndex: ", currentIndex);
             setCurrentIndex(currentIndex - 1)
+            setCurrentCuisine(Object.entries(cuisinesData)[currentIndex - 1])
             setFocus(0)
         }
         else {
@@ -128,34 +145,38 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
     }
 
     const handleAddItems = () => {
-        let array = [...currentCuisine]
-        console.log("array is: ", array);
-        console.log("cuisineData:", cuisinesData);
-        array[1].push({ name: "", price: "" })
-        console.log("array is: ", array);
-        console.log("cuisineData:", cuisinesData);
-        setCurrentCuisine(array)
+        const newArray = currentCuisine.map((item, i) =>
+            i === 1 ?
+                [...item, { name: "", price: "" }]
+                :
+                item
+        );
 
-        // let obj = { ...cuisinesData }
-        // console.log("obj: ", obj, Object.keys(obj), Object.values(obj));
-        // console.log("obj[currentIndex] is: ", Object.keys(obj)[currentIndex]);
-        // // Object.keys(obj)[currentIndex] = array
-        // console.log("obj is: ", obj);
-        // setCuisinesData(obj)
-    }
+        console.log("array is: ", newArray);
+        console.log("cuisineData:", cuisinesData);
+
+        setCurrentCuisine(newArray);
+    };
+
 
     const handleUpdate = () => {
+        let obj = cuisinesData
+        obj[currentCuisine[0]] = currentCuisine[1]
+        setCuisinesData((s) => ({ ...s, [currentCuisine[0]]: currentCuisine[1] }))
         console.log("cuisinedata while ipdt:", cuisinesData);
-        updateCuisines(restaurantId, cuisinesData, partnerId)
+        updateCuisines(restaurantId, obj, partnerId)
             .then((data) => {
                 console.log("data after error handling: ", data);
                 getCuisines(partnerId)
                     .then((cuisines) => {
                         console.log("received cuisines are: ", cuisines);
                         dispatch(setCuisines(cuisines))
+                        setShowPopoupForCuisinesUpdated([true, "Your cuisines has been updated"])
+                        setOpenCuisineTab(false)
                     })
                     .catch((error) => {
                         console.log("error: ", error);
+                        setShowPopoupForCuisinesUpdated([true, "Your cuisines updation failed, please try again"])
                     })
             })
             .catch((error) => {
@@ -166,22 +187,19 @@ function AddCuisine({ restaurantId, setOpenCuisineTab, openCuisineTab }) {
     const updateCurrentCuisine = (event, index) => {
         if (currentCuisine[1].length > 1) {
             console.log("event , element", event, index, currentCuisine);
-            let array = currentCuisine[1].filter((e, i) => i != index)
-            let newArray = [currentCuisine[0], array]
+
+            const array = currentCuisine[1].filter((e, i) => i !== index);
+            const newArray = [currentCuisine[0], array];
+
             console.log("array: ", array, newArray);
-            setCurrentCuisine([currentCuisine[0], array])
-            console.log("cuisinedata: ", cuisinesData);
 
-            let obj = Object.entries(cuisinesData)
-            obj[currentIndex] = newArray
-            console.log("obj is: ", obj);
-            setCuisinesData(obj)
+            setCurrentCuisine(newArray);
         }
-    }
+    };
 
 
-    console.log("cuisinedata is: ", cuisinesData);
-    console.log("currentcuisines is: ", currentCuisine);
+    console.log("cuisinedata is outside: ", cuisinesData);
+    console.log("currentcuisines is outside: ", currentCuisine);
     console.log("currentindex cuisines: ", Object.entries(cuisinesData));
     console.log("currentIndex and cuisineData.length: ", currentIndex, Object.keys(cuisinesData).length);
 

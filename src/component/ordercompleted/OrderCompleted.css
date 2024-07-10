@@ -1,11 +1,11 @@
 .OrderCompleted {
-    margin: 1rem 10vw 0 10vw;
-    color: black;
-    border: 1px solid rgb(179, 178, 178);
-    background: rgb(235, 235, 236);
-    border-radius: 6px;
+  background: rgb(235, 235, 236);
+  padding: 1rem 0;
 }
-
-.OrderCompleted .order-text {
-  margin: 1rem 0 1rem 1rem;
+.OrderCompleted .order-details {
+  color: black;
+  margin: 1.5rem 10vw;
+  background-color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 6px;
 }

@@ -20,6 +20,9 @@ import { combineReducers } from "redux";
 import cuisinesSlice from "./cuisinesSlice.js";
 import allRestaurantSlice from "./allRestaurantSlice.js";
 import customerSlice from "./customerSlice.js";
+import allCuisinesSlice from "./allCuisinesSlice.js";
+import orderSlice from "./orderSlice.js";
+import partnerOrderSlice from "./partnerOrderSlice.js";
 
 // Combine your slices into a root reducer
 const rootReducer = combineReducers({
@@ -28,6 +31,9 @@ const rootReducer = combineReducers({
   cuisines: cuisinesSlice,
   allRestaurant: allRestaurantSlice,
   customer: customerSlice,
+  allCuisines: allCuisinesSlice,
+  order: orderSlice,
+  partnerOrder: partnerOrderSlice,
 });
 
 // Persist configuration

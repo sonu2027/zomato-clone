@@ -18,9 +18,12 @@ import { updateCustomerDetails } from "../../databaseCall/updateCustomerDetails"
 import { useDispatch, useSelector } from "react-redux";
 import { loginCustomer } from "../../databaseCall/customerlogin";
 import { setCustomerDetail } from "../../store/customerSlice";
+import OrderStatus from "../../component/orderStatus/OrderStatus";
 
 function ProductListing() {
 
+    const order = useSelector((s) => s.order)
+    console.log("order in product listine: ", order);
     const [filteredRestaurant, setFilteredRestaurant] = useState([])
     const [bookmarked, setBookmarked] = useState(false)
 
@@ -161,7 +164,7 @@ function ProductListing() {
                             status={status}
                             handleRemoveBookmark={handleRemoveBookmark} handleAddBookmark={handleAddBookmark} setBookmarked={setBookmarked} bookmarked={bookmarked}
                         />
-                        <ProductSection arr={arr} />
+                        <ProductSection resId={id} arr={arr} />
 
                     </div>
                 </> :
@@ -194,7 +197,7 @@ function ProductListing() {
                                         status={status}
                                         handleRemoveBookmark={handleRemoveBookmark} handleAddBookmark={handleAddBookmark} setBookmarked={setBookmarked} bookmarked={bookmarked}
                                     />
-                                    <ProductSection arr={arr} />
+                                    <ProductSection resId={id} arr={arr} />
                                 </div>
                             </> :
                             <>
@@ -222,11 +225,14 @@ function ProductListing() {
                                         status={status}
                                         handleRemoveBookmark={handleRemoveBookmark} handleAddBookmark={handleAddBookmark} setBookmarked={setBookmarked} bookmarked={bookmarked}
                                     />
-                                    <ProductSection arr={arr} />
+                                    <ProductSection resId={id} arr={arr} />
                                 </div>
                             </>
                     }
                 </>
+            }
+            {
+                order.data.length > 0 && <OrderStatus />
             }
         </>
     )

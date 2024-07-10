@@ -3,37 +3,33 @@ import { Schema } from "mongoose";
 
 const orderSchema = new Schema(
   {
-    from: {
+    customerId: {
       type: String,
       required: true,
     },
-    to: { type: String, required: true },
-    accepted: {
+    restaurantId: { type: String, required: true },
+    completed: {
       type: Boolean,
+      default: false,
     },
-    completed: { type: Boolean },
+    orderedDone: {
+      type: Boolean,
+      default: false,
+    },
     price: { type: Number },
     items: {
       type: Array,
       required: true,
     },
-    houseNumber: {
+    receiverAddress: {
       type: String,
       required: true,
     },
-    streetName: {
+    receiverName: {
       type: String,
       required: true,
     },
-    locality: {
-      type: String,
-      required: true,
-    },
-    pinCode: {
-      type: Number,
-      required: true,
-    },
-    phoneNo: {
+    receiverPhoneNo: {
       type: String,
       required: true,
     },

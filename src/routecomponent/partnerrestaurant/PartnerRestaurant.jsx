@@ -41,8 +41,6 @@ function PartnerRestaurant() {
             setCurrentElement("")
         }
         if (showDeleteRestaurantOption) {
-            // document.body.style.backgroundColor = "rgba(0, 0, 0, 0)"
-            // document.body.style.filter = "blur(0)"
             setShowDeleteRestaurantOption(false)
             setCurrentElement("")
         }
@@ -52,8 +50,6 @@ function PartnerRestaurant() {
         event.stopPropagation()
         setShowDeleteRestaurantOption(false)
         setCurrentElement("")
-        // document.body.style.backgroundColor = "rgba(0, 0, 0, 0)"
-        // document.body.style.filter = "blur(0)"
     }
 
     const handleDeleteRestaurant = async () => {
@@ -110,6 +106,14 @@ function PartnerRestaurant() {
         setShowResOption(false)
     }
 
+    const [showPopoupForCuisinesUpdated, setShowPopoupForCuisinesUpdated] = useState([false, false])
+
+    window.addEventListener("click", () => {
+        if (showPopoupForCuisinesUpdated) {
+            setShowPopoupForCuisinesUpdated([false, false])
+        }
+    })
+
     return (
         <div className='partnerRestaurant'>
             <div className='PartnerHome'>
@@ -133,16 +137,11 @@ function PartnerRestaurant() {
                                 <button onClick={(e) => {
                                     setShowDeleteRestaurantOption(true)
                                     setShowResOption(false)
-                                    // document.body.style.backgroundColor = "rgba(0, 0, 0, 0.9)"
-                                    // document.body.style.filter = "blur(2px)"
                                 }}>Delete</button>
                                 <button onClick={() => handleCuine(e._id)}>Add/Edit cuisines</button>
                             </div>
 
                         }
-                        {/* {
-                            openCuisineTab && <AddCuisine restaurantId={e._id} setOpenCuisineTab={setOpenCuisineTab} openCuisineTab={openCuisineTab} />
-                        } */}
                         {
                             (showDeleteRestaurantOption && currentElement === e) &&
                             <div className='showDeleteRestaurantOption'>
@@ -167,7 +166,21 @@ function PartnerRestaurant() {
                 }
             </div>
             {
-                openCuisineTab && <AddCuisine restaurantId={restauarntId} setOpenCuisineTab={setOpenCuisineTab} openCuisineTab={openCuisineTab} />
+                openCuisineTab && <AddCuisine restaurantId={restauarntId} setOpenCuisineTab={setOpenCuisineTab} openCuisineTab={openCuisineTab} setShowPopoupForCuisinesUpdated={setShowPopoupForCuisinesUpdated} />
+            }
+            {
+                showPopoupForCuisinesUpdated[0] && <div style={{ position: "fixed", height: "100vh", width: "100vw", top: '0', left: "0", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <div onClick={(e) => {
+                        e.stopPropagation()
+                    }} style={{ background: "white", padding: "1rem 2rem", borderRadius: "6px", border: "1px solid black", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", rowGap: "1rem" }}>
+                        <div>
+                            <pre>{showPopoupForCuisinesUpdated[1]}</pre>
+                        </div>
+                        <button style={{ padding: "0.5rem 1.5rem" }} onClick={(e) =>
+                            setShowPopoupForCuisinesUpdated([false, false])
+                        }>ok</button>
+                    </div>
+                </div>
             }
         </div>
     )

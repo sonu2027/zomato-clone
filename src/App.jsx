@@ -6,6 +6,8 @@ import ApplyFilter from "./context/applyFilter"
 import { getAllRes } from "./databaseCall/getAllRes.js"
 import { useDispatch } from "react-redux"
 import { setAllRes } from "./store/allRestaurantSlice.js"
+import { getAllCuisines } from "./databaseCall/getAllCuisines.js"
+import { setAllCuisines } from "./store/allCuisinesSlice.js"
 
 function App() {
   const dispatch = useDispatch()
@@ -26,6 +28,16 @@ function App() {
     getAllRes()
       .then((data) => {
         dispatch(setAllRes(data))
+        return data
+      })
+      .then((data) => {
+        getAllCuisines()
+          .then((data) => {
+            dispatch(setAllCuisines(data))
+          })
+          .catch(() => {
+
+          })
       })
       .catch((error) => {
         console.log("error is: ", error);
@@ -35,7 +47,7 @@ function App() {
   return (
     <ApplyFilter.Provider value={{ apply, setApply, toApply, setToApply, rangeVal, setRangeVal, range, setRange, costVal, setCostVal, price, setPrice, selectSort, setSelectSort, countFilter, setCountFilter }}>
       <openSearch.Provider value={{ searchBox, setSearchBox }}>
-          <CustomRoutes />
+        <CustomRoutes />
       </openSearch.Provider>
     </ApplyFilter.Provider>
   )

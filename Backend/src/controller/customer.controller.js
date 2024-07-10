@@ -1,4 +1,5 @@
 import { Customer } from "../customer_model/customer.model.js";
+import { Order } from "../model/order.model.js";
 
 const registerCustomer = async (req, res) => {
   console.log("reached here: ", req.body);
@@ -85,4 +86,45 @@ const updateCustomerDetails = async (req, res) => {
   }
 };
 
-export { registerCustomer, loginCustomer, updateCustomerDetails };
+const createOrder = async (req, res) => {
+  console.log("req.body: ", req.body);
+  try {
+    console.log("its");
+    const response = await Order.create(req.body);
+    console.log("response: ", response);
+    res.status(200).json(response);
+  } catch (error) {}
+};
+
+const getCustomerOrder = async (req, res) => {
+  const { customerId } = req.body;
+  console.log("customer id for customer order is: ", customerId);
+  try {
+    const response = await Order.findOne({ customerId, completed: false });
+    console.log("res is: ", response);
+    res.status(200).json(response);
+  } catch (error) {}
+};
+
+const markOrderCompleted = async (req, res) => {
+  console.log("req.body: ", req.body);
+  try {
+    const response1 = await Order.updateOne(
+      { _id: req.body.orderId },
+      { completed: true }
+    );
+    console.log("response1 is: ", response1);
+    const response2 = await Order.findOne({ _id: req.body.orderId });
+    console.log("response2: ", response2);
+    res.status(200).json(response2);
+  } catch (error) {}
+};
+
+export {
+  registerCustomer,
+  loginCustomer,
+  updateCustomerDetails,
+  createOrder,
+  getCustomerOrder,
+  markOrderCompleted,
+};

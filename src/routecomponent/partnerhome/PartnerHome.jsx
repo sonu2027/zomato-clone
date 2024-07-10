@@ -24,9 +24,9 @@ function PartnerHome() {
       {
         orderSection == "received-order" && <ReceivedOrder />
       }
-      {
+      {/* {
         orderSection == "accepted-order" && <AcceptedOrder />
-      }
+      } */}
       {
         orderSection == "order-completed" && <OrderCompleted />
       }

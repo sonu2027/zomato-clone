@@ -1,0 +1,100 @@
+.cart {
+  background-color: rgb(244, 244, 244);
+  height: 100vh;
+}
+
+.cart-child1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-child1 .div2 {
+  background-color: #fff;
+  margin-top: 1rem;
+  border-radius: 6px;
+}
+
+.cart .cart-child1 .div22 {
+  display: flex;
+  column-gap: 10rem;
+  padding: 1.5rem 2rem;
+}
+
+.cart .cart-child1 .div23 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.3rem;
+}
+
+.cart .cart-child1 .div24 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart .cart-child1 .div24 button {
+  border: 1px solid rgb(255, 126, 139);
+  background-color: rgb(255, 238, 240);
+  padding: 0.3rem 0;
+  border-radius: 4px;
+}
+
+.cart .cart-child1 .div24 button .icon {
+  padding: 0 0.5rem;
+}
+
+.cart .child2 {
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid rgb(255, 126, 139);
+  border-radius: 1.5rem;
+}
+
+.cart .child2 .button {
+  width: 100vw;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.5rem;
+
+}
+
+.cart .child3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.cart .child31 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+  background-color: #fff;
+  padding: 1.5rem 5rem;
+  margin-top: 1rem;
+}
+
+.cart .details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4px;
+  border: 1px solid rgb(70, 69, 69);
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+.cart .details input {
+  padding: 0.5rem 0 0.5rem 2px;
+  border: none;
+}
+
+.cart .details input:focus {
+    outline: none;
+  }

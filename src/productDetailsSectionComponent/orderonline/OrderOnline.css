@@ -1,0 +1,47 @@
+.orderOnline {
+  display: flex;
+  border: 1px solid red;
+}
+
+.orderOnline .div1 {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  font-size: 1.3rem;
+}
+.orderOnline .div11 {
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+}
+.orderOnline .div2 {
+  border: 1px solid green;
+  /* color: rgb(255, 238, 240); */
+}
+.orderOnline .div21 {
+  font-size: 1.5rem;
+  padding: 0.5rem 2rem;
+}
+.orderOnline .div22 {
+  display: flex;
+  column-gap: 1.5rem;
+  padding: 0.5rem 2rem;
+}
+
+.orderOnline .div23 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.3rem;
+}
+
+.orderOnline .div24 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.orderOnline .div24 button{
+    border: 1px solid rgb(255, 126, 139);
+    background-color: rgb(255, 238, 240);
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+  }

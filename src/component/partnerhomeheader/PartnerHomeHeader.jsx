@@ -10,13 +10,15 @@ import { useSelector } from 'react-redux'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { removePartnerOrder } from '../../store/partnerOrderSlice.js';
 
 function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, setPrevOrdeSectionr }) {
 
+    const partnerOrder = useSelector((s) => s.partnerOrder.data)
     const PartnerName = useSelector((s) => s.partner.fullName)
     const PartnerEmail = useSelector((s) => s.partner.email)
     const PartnerPP = useSelector((s) => s.partner.ppURL)
-    const partnerRestaurant=useSelector((s)=>s.restaurant)
+    const partnerRestaurant = useSelector((s) => s.restaurant)
     console.log("partnetname", PartnerName, partnerRestaurant.data);
 
     const [arrow, setArraow] = useState(true)
@@ -41,14 +43,30 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
         dispatch(removePartnerDetail())
         dispatch(removeResDetail())
         dispatch(removeCuisines())
+        dispatch(removePartnerOrder())
         navigate("/partner/login")
     }
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const [receivedOrder, setReceivedOrder] = useState(0)
+    const [completedOrder, setCompletedOrder] = useState(0)
+
     useEffect(() => {
         document.getElementsByClassName("received-order")[0].style.borderBottom = "2px solid rgb(94, 132, 246)"
+        let receivedorder = 0
+        let completedorder = 0
+        partnerOrder.map((e) => {
+            if (e.orderedDone == false) {
+                receivedOrder++
+            }
+            else {
+                completedorder++
+            }
+        })
+        setReceivedOrder(receivedorder)
+        setCompletedOrder(completedorder)
     }, [])
 
     window.addEventListener("click", () => {
@@ -61,7 +79,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
         <div className='header-parent'>
             <div className="header">
                 <Link to="/partner/home">
-                <img src={img1} alt="" />
+                    <img src={img1} alt="" />
                 </Link>
                 <div className='profile'>
                     <img src={PartnerPP} alt="" />
@@ -101,9 +119,9 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
             {
                 orderSection ?
                     <div className='order-status'>
-                        <div onClick={changeSection} className='received-order'>Received order(0)</div>
-                        <div onClick={changeSection} className='accepted-order'>Accepted order(0)</div>
-                        <div onClick={changeSection} className='order-completed'>Order completed(0)</div>
+                        <div onClick={changeSection} className='received-order'>Received order({receivedOrder})</div>
+                        {/* <div onClick={changeSection} className='accepted-order'>Accepted order()</div> */}
+                        <div onClick={changeSection} className='order-completed'>Order completed({completedOrder})</div>
                     </div> :
                     <div className='order-status'>
                         <div className='received-order'>{`My restaurant (${partnerRestaurant.data.length})`}</div>

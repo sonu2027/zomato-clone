@@ -5,6 +5,7 @@ import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 import Restaurant from "../../containercomponent/restaurant/Restaurant"
 import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
+import OrderStatus from "../../component/orderStatus/OrderStatus.jsx"
 
 function BookmarkPage() {
 
@@ -16,6 +17,7 @@ function BookmarkPage() {
     }
 
     const customerDetails = useSelector((s) => s.customer.data)
+    const order = useSelector((s) => s.order)
     const restaurant = useSelector((s) => s.allRestaurant)
     console.log("Restaurant fetched from store: ", restaurant);
     const [filteredRestaurant, setFilteredRestaurant] = useState([])
@@ -32,7 +34,7 @@ function BookmarkPage() {
         setFilteredRestaurant(newArr)
     }, [])
 
-    window.addEventListener("click", ()=>{
+    window.addEventListener("click", () => {
         setInputval("")
     })
 
@@ -52,6 +54,9 @@ function BookmarkPage() {
             <Restaurant status={status || 0} title={"Best Restaurant in Kolkata"} rating={[4, 3, 2, 3, 5]} calling="delivery" restaurant={filteredRestaurant} />
 
             <Footer />
+            {
+                order.data.length>0 && <OrderStatus />
+            }
         </div>
     )
 }

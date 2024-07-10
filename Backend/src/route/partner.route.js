@@ -7,6 +7,7 @@ import {
   updateProfilePicture,
   updatePartnerName,
   updatePartnerEmail,
+  getPartnerOrder,
 } from "../controller/partner.controller.js";
 import { upload } from "../middleware/multer.middleware.js";
 
@@ -27,5 +28,6 @@ router.route("/updateprofilepicture").post(
 );
 router.route("/partner/updatename").put(updatePartnerName);
 router.route("/partner/updateemail").put(updatePartnerEmail);
+router.route("/getpartnerorder").post(getPartnerOrder);
 
 export default router;

@@ -17,11 +17,12 @@ import { useState } from "react"
 import FilterOption from "../../component/filteroption/FilterOption"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
+import OrderStatus from "../../component/orderStatus/OrderStatus.jsx"
 
 function NightLife() {
 
     const [filteredRestaurant, setFilteredRestaurant] = useState([])
-
+    const order = useSelector((s) => s.order)
     const restaurant = useSelector((s) => s.allRestaurant)
     console.log("Restaurant fetched from store: ", restaurant);
     useEffect(() => {
@@ -84,6 +85,9 @@ function NightLife() {
             <DiscountImage />
             <Restaurant status={status} rating={[4, 3, 2, 3, 5]} title={"Nightlife Restaurants in Behala"} calling="night-life" restaurant={filteredRestaurant} />
             <Footer />
+            {
+                order.data.length>0 && <OrderStatus />
+            }
         </>
     )
 }

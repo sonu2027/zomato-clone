@@ -17,7 +17,6 @@ function Section(props) {
         <div id="section-main-div">
             <section id="section">
 
-                {/* <Link to={`/login/loggedin/${props.status || defaultValue}`} */}
                 <Link to={`/delivery`}
                     style={{ textDecoration: "none" }}>
                     <div id="delivery">
@@ -33,7 +32,6 @@ function Section(props) {
                     </div>
                 </Link>
 
-                {/* <Link to={`/diningout/${props.status || defaultValue}`} style={{ textDecoration: "none" }}> */}
                 <Link to={`/diningout`} style={{ textDecoration: "none" }}>
                     <div id="dining-out">
                         {props.page == "dining-out" ?
@@ -48,7 +46,6 @@ function Section(props) {
                     </div>
                 </Link>
 
-                {/* <Link to={`/nightlife/${props.status || defaultValue}`} style={{ textDecoration: "none" }}> */}
                 <Link to={`/nightlife`} style={{ textDecoration: "none" }}>
                     <div id="night-life">
                         {props.page == "night-life" ?

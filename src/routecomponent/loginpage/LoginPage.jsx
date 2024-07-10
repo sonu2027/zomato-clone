@@ -7,6 +7,8 @@ import { MdEmail } from "react-icons/md";
 import { loginCustomer } from "../../databaseCall/customerlogin.js"
 import { useDispatch } from "react-redux"
 import { setCustomerDetail } from "../../store/customerSlice.js"
+import { getCustomerOrder } from "../../databaseCall/getCustomerOrder.js"
+import { setOrderFoundDetail, setOrderFound, setCustomerId } from "../../store/orderSlice.js"
 
 function LoginPage() {
 
@@ -21,8 +23,22 @@ function LoginPage() {
         e.preventDefault()
         loginCustomer(email, password)
             .then((data) => {
+                console.log("data while login: ", data);
                 dispatch(setCustomerDetail(data))
-                navigate("/delivery")
+                return data._id
+            })
+            .then((customerId) => {
+                getCustomerOrder(customerId)
+                    .then((data) => {
+                        if (data) {
+                            dispatch(setOrderFound())
+                            dispatch(setOrderFoundDetail(data))
+                        }
+                        else{
+                            dispatch(setCustomerId(customerId))
+                        }
+                        navigate("/delivery")
+                    })
             })
     }
 

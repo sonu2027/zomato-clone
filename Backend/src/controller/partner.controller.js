@@ -5,11 +5,12 @@ import {
   deleteFromCloudinary,
   uploadOnCloudinary,
 } from "../utility/cloudinary.utility.js";
+import { Order } from "../model/order.model.js";
 
 const sendEmail = async (req, res) => {
   console.log("req.body", req.body);
 
-  const {email, otp } = req.body;
+  const { email, otp } = req.body;
 
   // Create a transporter object using SMTP transport
   let transporter = nodemailer.createTransport({
@@ -204,6 +205,26 @@ const updatePartnerEmail = async (req, res) => {
   }
 };
 
+const getPartnerOrder = async (req, res) => {
+  const { restaurantId } = req.body;
+  console.log("restaurant ids for partner order is: ", restaurantId);
+  try {
+    const response1 = await Order.find();
+    console.log("res1 is: ", response1);
+    const response2 = [];
+    restaurantId.map((e) => {
+      response1.map((elem) => {
+        if (elem.restaurantId == e) {
+          response2.push(elem);
+        }
+      });
+    });
+
+    console.log("response of partner order is: ", response2);
+    res.status(200).json(response2);
+  } catch (error) {}
+};
+
 export {
   sendEmail,
   registerPartner,
@@ -213,4 +234,5 @@ export {
   updateProfilePicture,
   updatePartnerName,
   updatePartnerEmail,
+  getPartnerOrder,
 };

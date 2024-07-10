@@ -9,6 +9,8 @@ import { partnerLogin } from "../../databaseCall/partner.login.js";
 import { partnerRestaurant } from "../../databaseCall/get.partner.restaurant.js";
 import { getCuisines } from "../../databaseCall/getCuisines.js";
 import { setCuisines } from "../../store/cuisinesSlice.js";
+import { getPartnerOrder } from "../../databaseCall/getPartnerOrder.js";
+import { setPartnerOrder } from "../../store/partnerOrderSlice.js";
 
 function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
 
@@ -82,9 +84,9 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
               .catch((error) => {
                 console.log("error: ", error);
               })
-            return partnerDetails.response.restaurantId
+            return { restaurantId: partnerDetails.response.restaurantId, partnerId: partnerDetails.response._id }
           })
-          .then((restaurantId) => {
+          .then(({ restaurantId, partnerId }) => {
             partnerRestaurant(restaurantId)
               .then((restaurant) => {
                 dispatch(setResDetail(restaurant));
@@ -92,6 +94,18 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
               })
               .catch((error) => {
                 console.log("something went wrong: ", error);
+              })
+            return restaurantId
+          })
+          .then((restaurantId) => {
+            console.log("restaurantId is for partner order: ", restaurantId);
+            getPartnerOrder(restaurantId)
+              .then((data) => {
+                console.log("data of partner order is: ", data);
+                dispatch(setPartnerOrder(data))
+              })
+              .catch(() => {
+
               })
           })
           .catch((error) => {

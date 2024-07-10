@@ -289,6 +289,17 @@ const getCuisines = async (req, res) => {
   }
 };
 
+const getAllCuisines = async (req, res) => {
+  try {
+    const response = await Cuisines.find();
+    console.log("Response in getAllCuisines: ", response);
+    res.status(200).json(response);
+  } catch (error) {
+    console.log("Error while fetching all cuisines");
+    res.status(500).json({ message: "fetching all cuisines failed" });
+  }
+};
+
 const getAllRes = async (req, res) => {
   try {
     const response = await Restaurant.find();
@@ -308,5 +319,6 @@ export {
   updateRestaurant,
   addCuisines,
   getCuisines,
-  getAllRes
+  getAllRes,
+  getAllCuisines
 };
