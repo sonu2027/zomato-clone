@@ -81,13 +81,15 @@ function ProductListing() {
     useEffect(() => {
         console.log("2nd one is running");
         console.log("custom det is: ", customerDetails);
-        customerDetails.bookmarkedRes.map((e) => {
-            console.log("props.resId: ", id);
-            if (e == id) {
-                console.log("e and props.resId: ", e, id);
-                setBookmarked(true)
-            }
-        })
+        if(customerDetails.bookmarkedRes){
+            customerDetails.bookmarkedRes.map((e) => {
+                console.log("props.resId: ", id);
+                if (e == id) {
+                    console.log("e and props.resId: ", e, id);
+                    setBookmarked(true)
+                }
+            })
+        }
     }, [customerDetails, id, bookmarked])
 
     function handleSearch(e) {

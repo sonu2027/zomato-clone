@@ -14,6 +14,9 @@ import { removePartnerOrder } from '../../store/partnerOrderSlice.js';
 
 function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, setPrevOrdeSectionr }) {
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const partnerOrder = useSelector((s) => s.partnerOrder.data)
     const PartnerName = useSelector((s) => s.partner.fullName)
     const PartnerEmail = useSelector((s) => s.partner.email)
@@ -47,9 +50,6 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
         navigate("/partner/login")
     }
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-
     const [receivedOrder, setReceivedOrder] = useState(0)
     const [completedOrder, setCompletedOrder] = useState(0)
 
@@ -67,7 +67,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
         })
         setReceivedOrder(receivedorder)
         setCompletedOrder(completedorder)
-    }, [])
+    }, [partnerOrder])
 
     window.addEventListener("click", () => {
         if (arrow == false) {
@@ -120,7 +120,6 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
                 orderSection ?
                     <div className='order-status'>
                         <div onClick={changeSection} className='received-order'>Received order({receivedOrder})</div>
-                        {/* <div onClick={changeSection} className='accepted-order'>Accepted order()</div> */}
                         <div onClick={changeSection} className='order-completed'>Order completed({completedOrder})</div>
                     </div> :
                     <div className='order-status'>

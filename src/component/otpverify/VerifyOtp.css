@@ -1,0 +1,10 @@
+/* styles.css */
+.verify-otp .inputTag::-webkit-outer-spin-button,
+.verify-otp .inputTag::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.verify-otp .inputTag {
+  -moz-appearance: textfield; /* Firefox */
+}

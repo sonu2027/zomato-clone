@@ -77,19 +77,32 @@ const orderSlice = createSlice({
 
     setCustomerDetails: (state, action) => {
       console.log("action.payload in setCustomerDetls is : ", action.payload);
+      console.log(
+        "action.payload in setCustomerDetls is : ",
+        action.payload.name
+      );
+
       if (action.payload.name) {
         state.receiverName = action.payload.name;
-      }
-      if (action.payload.address) {
+      } else if (action.payload.address) {
         state.receiverAddress = action.payload.address;
-      }
-      if (action.payload.phoneNo) {
+      } else if (action.payload.phoneNo) {
         state.receiverPhoneNo = action.payload.phoneNo;
+      }
+
+      if(action.payload.name==""){
+        state.receiverName=""
+      }
+      else if(action.payload.address===""){
+        state.receiverAddress=""
+      }
+      else if(action.payload.phoneNo===""){
+        state.receiverPhoneNo=""
       }
     },
     removeOrderDetail: (state) => {
       state.orderId = "";
-      state.customerId = "";
+      // state.customerId = "";
       state.restaurantId = "";
       state.completed = false;
       state.orderedDone = false;

@@ -11,6 +11,7 @@ import { getCuisines } from "../../databaseCall/getCuisines.js";
 import { setCuisines } from "../../store/cuisinesSlice.js";
 import { getPartnerOrder } from "../../databaseCall/getPartnerOrder.js";
 import { setPartnerOrder } from "../../store/partnerOrderSlice.js";
+import "./VerifyOtp.css"
 
 function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
 
@@ -126,11 +127,14 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
   const handleInputOtp = (e, i) => {
     const form = document.querySelectorAll("form")
     console.log("form: ", form[0][1]);
+
     if (i == "i1") {
       if (e.target.value) {
         form[0][1].focus()
       }
-      setInputOtp([e.target.value, inputOtp[1], inputOtp[2], inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
+      if (e.target.value < 10) {
+        setInputOtp([e.target.value, inputOtp[1], inputOtp[2], inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
+      }
     }
     else if (i == "i2") {
       if (e.target.value) {
@@ -139,7 +143,9 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
       else {
         form[0][0].focus()
       }
-      setInputOtp([inputOtp[0], e.target.value, inputOtp[2], inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
+      if (e.target.value < 10) {
+        setInputOtp([inputOtp[0], e.target.value, inputOtp[2], inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
+      }
     }
     else if (i == "i3") {
       if (e.target.value) {
@@ -148,7 +154,9 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
       else {
         form[0][1].focus()
       }
-      setInputOtp([inputOtp[0], inputOtp[1], e.target.value, inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
+      if (e.target.value < 10) {
+        setInputOtp([inputOtp[0], inputOtp[1], e.target.value, inputOtp[3], inputOtp[4], inputOtp[5], inputOtp[6]])
+      }
     }
     else if (i == "i4") {
       if (e.target.value) {
@@ -157,7 +165,9 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
       else {
         form[0][2].focus()
       }
-      setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], e.target.value, inputOtp[4], inputOtp[5], inputOtp[6]])
+      if (e.target.value < 10) {
+        setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], e.target.value, inputOtp[4], inputOtp[5], inputOtp[6]])
+      }
     }
     else if (i == "i5") {
       if (e.target.value) {
@@ -166,13 +176,17 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
       else {
         form[0][3].focus()
       }
-      setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], inputOtp[3], e.target.value, inputOtp[5], inputOtp[6]])
+      if (e.target.value < 10) {
+        setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], inputOtp[3], e.target.value, inputOtp[5], inputOtp[6]])
+      }
     }
     else {
       if (!e.target.value) {
         form[0][4].focus()
       }
-      setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], inputOtp[3], inputOtp[4], e.target.value])
+      if (e.target.value < 10) {
+        setInputOtp([inputOtp[0], inputOtp[1], inputOtp[2], inputOtp[3], inputOtp[4], e.target.value])
+      }
     }
   }
 
@@ -195,12 +209,12 @@ function VerifyOtp({ task, setOtpSent, otp, fullName, email }) {
           minutes.
         </div>
         <form>
-          <input onChange={(e) => handleInputOtp(e, "i1")} type="text" name="" id="" />
-          <input onChange={(e) => handleInputOtp(e, "i2")} type="text" name="" id="" />
-          <input onChange={(e) => handleInputOtp(e, "i3")} type="text" name="" id="" />
-          <input onChange={(e) => handleInputOtp(e, "i4")} type="text" name="" id="" />
-          <input onChange={(e) => handleInputOtp(e, "i5")} type="text" name="" id="" />
-          <input onChange={(e) => handleInputOtp(e, "i6")} type="text" name="" id="" />
+          <input className="inputTag" onChange={(e) => handleInputOtp(e, "i1")} type="number" name="" id="" />
+          <input className="inputTag" onChange={(e) => handleInputOtp(e, "i2")} type="number" name="" id="" />
+          <input className="inputTag" onChange={(e) => handleInputOtp(e, "i3")} type="number" name="" id="" />
+          <input className="inputTag" onChange={(e) => handleInputOtp(e, "i4")} type="number" name="" id="" />
+          <input className="inputTag" onChange={(e) => handleInputOtp(e, "i5")} type="number" name="" id="" />
+          <input className="inputTag" onChange={(e) => handleInputOtp(e, "i6")} type="number" name="" id="" />
         </form>
         {
           somethingWentWrong && <div className="time-count">User doesn't exist</div>

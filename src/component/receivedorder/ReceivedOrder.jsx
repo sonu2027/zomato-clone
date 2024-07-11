@@ -1,23 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import "./ReceivedOrder.css"
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import { getPartnerOrder } from '../../databaseCall/getPartnerOrder.js';
+import { setPartnerOrder } from '../../store/partnerOrderSlice.js';
 
 function ReceivedOrder() {
 
+    const dispatch = useDispatch()
+
     const partnerOrder = useSelector((s) => s.partnerOrder.data)
     console.log("PartnerOrder is: ", partnerOrder);
+    const partner = useSelector((s) => s.partner)
 
     const [filteredOrder, setFilteredOrder] = useState([])
 
     useEffect(() => {
-        let array=[]
-        partnerOrder.map((e)=>{
-            if(e.completed==false){
+        let array = []
+        partnerOrder.map((e) => {
+            if (e.completed == false) {
                 array.push(e)
             }
         })
         setFilteredOrder(array)
+    }, [partnerOrder])
+
+    const fetchPartnerOrder = () => {
+        getPartnerOrder(partner.restaurantId)
+            .then((data) => {
+                console.log("Partner all order fetched successfully");
+                dispatch(setPartnerOrder(data))
+            })
+            .catch((error) => {
+                console.log("failed fetching partner all order: ", error);
+            })
+    }
+
+    useEffect(() => {
+        setInterval(fetchPartnerOrder, 10000)
     }, [])
+
 
     console.log("filtered order is:", filteredOrder);
 

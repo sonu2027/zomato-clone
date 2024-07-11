@@ -34,7 +34,7 @@ function LoginPage() {
                             dispatch(setOrderFound())
                             dispatch(setOrderFoundDetail(data))
                         }
-                        else{
+                        else {
                             dispatch(setCustomerId(customerId))
                         }
                         navigate("/delivery")
@@ -49,15 +49,20 @@ function LoginPage() {
         });
     }, [])
 
+    const goBack=()=>{
+        navigate(-1)
+    }
+
 
     return (
         <div id="login-form-main-div">
             <div id="login-form">
                 <div id="cross-icon">
                     <h3>Login</h3>
-                    <Link to="/">
+                    <RxCross1 onClick={goBack}/>
+                    {/* <Link to="/">
                         <RxCross1 />
-                    </Link>
+                    </Link> */}
                 </div>
                 <form id="input-tag">
                     <input value={email} onChange={(e) => setEmail(e.target.value)}
