@@ -81,7 +81,7 @@ function ProductListing() {
     useEffect(() => {
         console.log("2nd one is running");
         console.log("custom det is: ", customerDetails);
-        if(customerDetails.bookmarkedRes){
+        if (customerDetails.bookmarkedRes) {
             customerDetails.bookmarkedRes.map((e) => {
                 console.log("props.resId: ", id);
                 if (e == id) {
@@ -159,6 +159,7 @@ function ProductListing() {
                     <hr style={{ border: "1px solid rgb(244, 241, 241)" }} />
                     <div className="all-about-restaurant">
                         <AboutProductListing
+                            resId={id}
                             image={image} shopName={shopName}
                             aboutShop={aboutShop} rating={rating}
                         />
@@ -191,6 +192,7 @@ function ProductListing() {
                                 <hr style={{ border: "1px solid rgb(244, 241, 241)" }} />
                                 <div className="all-about-restaurant">
                                     <AboutProductListing
+                                        resId={id}
                                         image={image} shopName={shopName}
                                         aboutShop={aboutShop} rating={rating}
                                         address={address}
@@ -220,6 +222,7 @@ function ProductListing() {
                                 <hr style={{ border: "1px solid rgb(244, 241, 241)" }} />
                                 <div className="all-about-restaurant">
                                     <AboutProductListing
+                                        resId={id}
                                         image={image} shopName={shopName}
                                         aboutShop={aboutShop} address={address} rating={rating}
                                     />

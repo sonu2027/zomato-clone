@@ -1,3 +1,55 @@
 span{
     font-size: 1.3rem;
 }
+.overview-time{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.overview-time .time span{
+    font-size: 1rem;
+}
+
+.overview-time-child{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 8rem;
+}
+
+.overview-time .day{
+    width: 5rem;
+}
+
+.overview-time-parent{
+    display: flex;
+    column-gap: 1rem;
+    margin-top: 1rem;
+}
+
+.overview-time-parent .clock-icon{
+    color: rgb(16, 62, 202);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.overview-contact-parent{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    row-gap: 1rem;
+}
+
+.overview-contact-parent .child{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.overview-contact-parent .child .clock-icon{
+    color: rgb(16, 62, 202);
+    font-size: 1.3rem;
+    font-weight: 700;
+}

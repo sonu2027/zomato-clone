@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  data: "",
+  data: [],
 };
 
 const allRestaurantSlice = createSlice({
@@ -13,7 +13,7 @@ const allRestaurantSlice = createSlice({
       state.data = action.payload;
     },
     removeAllRes: (state) => {
-      state.data = "";
+      state.data = [];
     },
   },
 });

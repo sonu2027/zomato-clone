@@ -3,20 +3,24 @@ import img1 from "../../assets/zomato/zomatoPartnerBusiness.png";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { removePartnerDetail } from '../../store/partnerSlice.js';
+import { removePartnerDetail, setPartnerDetail } from '../../store/partnerSlice.js';
 import { removeResDetail } from '../../store/restaurantSlice.js';
 import { removeCuisines } from '../../store/cuisinesSlice.js';
 import { useSelector } from 'react-redux'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { removePartnerOrder } from '../../store/partnerOrderSlice.js';
+import { removePartnerOrder, setPartnerOrder } from '../../store/partnerOrderSlice.js';
+import { SlRefresh } from "react-icons/sl";
+import { getPartnerOrder } from '../../databaseCall/getPartnerOrder.js';
+
 
 function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, setPrevOrdeSectionr }) {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const partner = useSelector((s) => s.partner)
     const partnerOrder = useSelector((s) => s.partnerOrder.data)
     const PartnerName = useSelector((s) => s.partner.fullName)
     const PartnerEmail = useSelector((s) => s.partner.email)
@@ -37,7 +41,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
     const changeSection = (event) => {
         console.log(event);
         setOrderSection(event.target.className)
-        document.getElementsByClassName(prevOrderSection)[0].style.border = "none"
+        document.getElementsByClassName(prevOrderSection)[0].style.borderBottom = "none"
         setPrevOrdeSectionr(event.target.className)
         event.target.style.borderBottom = "2px solid rgb(94, 132, 246)"
     }
@@ -74,6 +78,20 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
             setArraow(true)
         }
     })
+
+    const fetchPartnerOrder = () => {
+        getPartnerOrder(partner.restaurantId)
+            .then((data) => {
+                console.log("Partner all order fetched successfully");
+                dispatch(setPartnerOrder(data))
+                setOrderSection("received-order")
+                setPrevOrdeSectionr("received-order")
+                document.getElementsByClassName(prevOrderSection)[0].style.borderBottom = "none"
+            })
+            .catch((error) => {
+                console.log("failed fetching partner all order: ", error);
+            })
+    }
 
     return (
         <div className='header-parent'>
@@ -121,6 +139,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
                     <div className='order-status'>
                         <div onClick={changeSection} className='received-order'>Received order({receivedOrder})</div>
                         <div onClick={changeSection} className='order-completed'>Order completed({completedOrder})</div>
+                        <SlRefresh onClick={fetchPartnerOrder} style={{ fontSize: "1.2rem", cursor: "pointer" }} />
                     </div> :
                     <div className='order-status'>
                         <div className='received-order'>{`My restaurant (${partnerRestaurant.data.length})`}</div>
