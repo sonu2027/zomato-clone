@@ -13,7 +13,7 @@ const loginCustomer = async (email, password) => {
     );
     console.log("receiveed res is: ", response);
     console.log("data is: ", response.data);
-    if (response.statusText == "OK") {
+    if (response.status == 200) {
       return response.data;
     } else {
       throw "login failed";
