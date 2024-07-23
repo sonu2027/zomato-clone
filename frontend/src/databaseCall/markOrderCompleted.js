@@ -3,7 +3,7 @@ import axios from "axios";
 const markOrderCompleted = async (orderId) => {
   try {
     const response = await axios.put(
-      "/api/markordercompleted",
+      `${import.meta.env.VITE_API_URL}/api/markordercompleted`,
       JSON.stringify({ orderId }),
       {
         headers: {

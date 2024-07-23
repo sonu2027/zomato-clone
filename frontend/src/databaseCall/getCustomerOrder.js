@@ -3,7 +3,7 @@ import axios from "axios";
 const getCustomerOrder = async (customerId) => {
   try {
     const response = await axios.post(
-      "/api/getcustomerorder",
+      `${import.meta.env.VITE_API_URL}api/getcustomerorder`,
       JSON.stringify({ customerId }),
       {
         headers: {

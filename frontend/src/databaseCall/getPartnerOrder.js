@@ -4,7 +4,7 @@ const getPartnerOrder = async (restaurantId) => {
   console.log("restaurant id is: ", restaurantId);
   try {
     const response = await axios.post(
-      "/api/getpartnerorder",
+      `${import.meta.env.VITE_API_URL}/api/getpartnerorder`,
       JSON.stringify({ restaurantId }),
       {
         headers: {

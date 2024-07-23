@@ -1,7 +1,7 @@
 const deletePartnerRestaurant = async (id) => {
   try {
     const response = await fetch(
-      "/api/deletepartnerrestaurant",
+      `${import.meta.env.VITE_API_URL}/api/deletepartnerrestaurant`,
       {
         method: "PUT",
         headers: {

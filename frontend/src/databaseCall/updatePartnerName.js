@@ -1,7 +1,7 @@
 const updatePartnerName = async (partnerId, newName) => {
   console.log("Received partner id and newName is: ", partnerId, newName);
   try {
-    const response = await fetch("/api/partner/updatename", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/partner/updatename`, {
       headers: {
         "Content-Type": "application/json",
       },

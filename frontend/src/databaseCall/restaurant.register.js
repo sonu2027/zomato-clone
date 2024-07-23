@@ -19,7 +19,7 @@ const restaurantRegistration = async (
   formData.append("ownerId", ownerId);
 
   try {
-    const response = await fetch("/api/registerrestaurant", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/registerrestaurant`, {
       method: "POST",
       body: formData,
     });

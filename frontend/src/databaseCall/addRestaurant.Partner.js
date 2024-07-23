@@ -5,7 +5,7 @@ const addRestaurantToPartner = async (ownerId, resId) => {
   };
 
   try {
-    const response = await fetch("/api/addrestaurant", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/addrestaurant`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

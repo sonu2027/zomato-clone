@@ -4,10 +4,13 @@ const uploadPartnerProfilePicture = async (e, id) => {
   const formData = new FormData(e.target);
   formData.append("id", id);
   try {
-    const response = await fetch("/api/updateprofilepicture", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/updateprofilepicture`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
     const data = await response.json();
     console.log("data: ", data);
     if (response.ok) {

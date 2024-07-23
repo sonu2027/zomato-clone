@@ -1,7 +1,7 @@
 const deleteAccount = async (id) => {
   const jsonData = { id };
   try {
-    const response = await fetch("/api/deleteaccount", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/deleteaccount`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

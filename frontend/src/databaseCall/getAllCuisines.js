@@ -1,6 +1,6 @@
 const getAllCuisines = async () => {
   try {
-    const response = await fetch("/api/getallcuisines", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/getallcuisines`, {
       method: "GET",
     });
     console.log("Response in fetching all cuisines: ", response);

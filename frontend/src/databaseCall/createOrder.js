@@ -16,7 +16,7 @@ const createOrder = async (order) => {
   };
   try {
     const response = await axios.post(
-      "/api/createorder",
+      `${import.meta.env.VITE_API_URL}/api/createorder`,
       JSON.stringify(data),
       {
         headers: {

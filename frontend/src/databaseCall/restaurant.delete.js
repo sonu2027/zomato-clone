@@ -1,5 +1,5 @@
 const deleteRestaurant = async (resId) => {
-  const response = await fetch("/api/deleterestaurant", {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/deleterestaurant`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

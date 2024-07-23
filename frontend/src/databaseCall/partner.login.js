@@ -7,7 +7,7 @@ const partnerLogin = async (email) => {
   };
 
   try {
-    const response = await fetch("/api/loginuser", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/loginuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -2,7 +2,7 @@ const getAllRes = async () => {
   console.log("Fetching all restaurant started");
 
   try {
-    const response = await fetch("/api/allrestaurant", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/allrestaurant`, {
       method: "GET",
     });
     console.log("Response: ", response);

@@ -3,7 +3,7 @@ const partnerRestaurant = async (restaurantId) => {
   console.log("Restaurant Ids are: ", restaurantId);
 
   try {
-    const response = await fetch("/api/partnerrestaurant", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/partnerrestaurant`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

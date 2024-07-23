@@ -4,7 +4,7 @@ const sendEmailOtp = async (email) => {
   console.log("Generated otp: ", generatedOtp);
 
   try {
-    const response = await fetch("/api/sendemailotp", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/sendemailotp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

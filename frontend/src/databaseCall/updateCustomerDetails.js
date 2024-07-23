@@ -4,7 +4,7 @@ const updateCustomerDetails = async (task, customerId, data) => {
   console.log("received data in updtcus is: ", task, customerId, data);
   try {
     const response = await axios.put(
-      "/api/updatecustomerdetails",
+      `${import.meta.env.VITE_API_URL}/api/updatecustomerdetails`,
       JSON.stringify({ task, customerId, data }),
       {
         headers: {

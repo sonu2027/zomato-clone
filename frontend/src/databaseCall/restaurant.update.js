@@ -31,7 +31,7 @@ const updateRestaurant = async (
   formData.append("restaurantId", restaurantData._id);
 
   try {
-    const response = await fetch("/api/updaterestaurant", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/updaterestaurant`, {
       method: "PUT",
       body: formData,
     });

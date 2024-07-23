@@ -1,7 +1,7 @@
 const getCuisines = async (partnerId) => {
   console.log("PartnerId while fetching cuisines: ", partnerId);
   try {
-    const response = await fetch("http://localhost:7023/api/getcuisines", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/getcuisines`, {
       headers: {
         "Content-Type": "application/json",
       },

@@ -12,7 +12,7 @@ const partnerRegistartion = async (fullName, email) => {
   };
 
   try {
-    const response = await fetch("/api/registeruser", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/registeruser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
