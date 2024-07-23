@@ -13,7 +13,7 @@ const updateCustomerDetails = async (task, customerId, data) => {
       }
     );
     console.log("response is: ", response);
-    if (response.modifiedCount
+    if (response.data.modifiedCount
       === 1) {
       return true;
     } else {
