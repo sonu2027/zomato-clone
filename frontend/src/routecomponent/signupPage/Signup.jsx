@@ -18,7 +18,7 @@ const Signup = () => {
     const [lastName, setLastname] = useState('');
     const [useremail, setUseremail] = useState('');
     const [userpassword, setUserpassword] = useState('')
-    const [verifyOtp, setVerifyOtp] = useState(true)
+    const [verifyOtp, setVerifyOtp] = useState(false)
     const [inputOtp, setInputOtp] = useState(Array.from({ length: 6 }, () => ""));
     const [otp, setOtp] = useState("")
     const [currentFocus, setCurrentFocus] = useState(0)
