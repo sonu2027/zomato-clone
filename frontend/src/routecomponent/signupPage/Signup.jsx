@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import "./SignUp.css"
+import React from 'react'
+import "./Signup.css"
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { sendEmailOtp } from '../../databaseCall/sendEmailOtp.js';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { setCustomerDetail } from '../../store/customerSlice.js';
 import { useDispatch } from 'react-redux';
 
-const SignUp = () => {
+const Signup = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -181,4 +181,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+export default Signup
