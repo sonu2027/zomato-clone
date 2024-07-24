@@ -5,7 +5,7 @@ const registerCustomer = async (req, res) => {
   console.log("reached here: ", req.body);
   try {
     const response = await Customer.create(req.body);
-    console.log("customer registered successfully");
+    console.log("customer registered successfully:", response);
     res.status(200).json(response);
   } catch (error) {
     console.log("error while registering customer: ", error);

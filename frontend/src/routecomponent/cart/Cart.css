@@ -34,10 +34,11 @@
   align-items: center;
 }
 .cart .cart-child1 .div24 button {
-  border: 1px solid rgb(255, 126, 139);
-  background-color: rgb(255, 238, 240);
+  border: none;
+  background-color: rgb(247, 86, 105);
   padding: 0.3rem 0;
   border-radius: 4px;
+  color: #fff;
 }
 
 .cart .cart-child1 .div24 button .icon {

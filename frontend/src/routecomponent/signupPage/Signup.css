@@ -1,0 +1,151 @@
+.Signup {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  border: 1px solid rgb(219, 219, 219);
+  padding: 2rem 4rem;
+  border-radius: 0.375rem;
+}
+
+.Signup .heading {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.Signup .form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.25rem;
+}
+
+.Signup .form .div {
+  display: flex;
+  flex-direction: column;
+}
+
+.Signup .form .div .input {
+  border: 1px solid rgb(197, 195, 195);
+  border-radius: 0.375rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  height: 1.4rem;
+}
+
+.Signup .form .div .input:focus {
+  outline: none;
+}
+
+.Signup .form .create-account-button {
+  background-color: rgb(239, 79, 95);
+  color: #fff;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  border: none;
+}
+
+.Signup .about-login {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.Signup .login-button {
+  margin-left: 0.5rem;
+  font-weight: 600;
+  border: none;
+  background-color: #fff;
+  font-size: 1rem;
+  color: rgb(239, 79, 95);
+}
+
+.Signup-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.Signup-parent .verifyOtp {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  border: 1px solid gray;
+  padding-top: 1.5rem;
+  padding-bottom: 2.75rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  border-radius: 0.75rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.Signup-parent .verifyOtp .heading {
+  text-align: center;
+  font-weight: 600;
+}
+
+.Signup-parent .verifyOtp .para .div1 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.Signup-parent .verifyOtp .para .div2 {
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+
+.Signup-parent .verifyOtp .form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  margin-left: 1rem;
+}
+
+.Signup-parent .verifyOtp .form-child {
+  display: flex;
+  column-gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.Signup-parent .verifyOtp .form-child .input {
+  border: 1px solid gray;
+  height: 2.5rem;
+  width: 2.25rem;
+  border-radius: 0.375rem;
+  text-align: center;
+}
+
+.Signup-parent .verifyOtp .form-child .input:focus {
+  outline: none;
+}
+
+.Signup-parent .verifyOtp .form .verify-button{
+    background-color: rgb(239, 79, 95);
+    color: #fff;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0;
+    margin-top: 2.5rem;
+    border: none;
+}
+
+@media screen and (max-width: 640px) {
+  .Signup .heading {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .Signup-parent .verifyOtp {
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+  }
+}

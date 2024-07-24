@@ -49,7 +49,7 @@ function LoginPage() {
         });
     }, [])
 
-    const goBack=()=>{
+    const goBack = () => {
         navigate(-1)
     }
 
@@ -59,7 +59,7 @@ function LoginPage() {
             <div id="login-form">
                 <div id="cross-icon">
                     <h3>Login</h3>
-                    <RxCross1 onClick={goBack}/>
+                    <RxCross1 onClick={goBack} />
                     {/* <Link to="/">
                         <RxCross1 />
                     </Link> */}
@@ -82,7 +82,9 @@ function LoginPage() {
                 </div>
                 <div className="line">
                     <div>New to zomato ? </div>
-                    <div className="create">Create account</div>
+                    <Link style={{textDecoration:"none"}} to="/signup">
+                        <div className="create">Create account</div>
+                    </Link>
                 </div>
                 <div className="line">
                     <div>Do you have restaurant?</div>
