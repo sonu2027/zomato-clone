@@ -24,6 +24,7 @@ function FilterOption(props) {
 
                 <div className="child-div-filter">
                     <h2>Filters</h2>
+                    <div>(Filter will not work please, go back)</div>
                     <RxCross1 className="cross-icon" onClick={props.setFilter} />
                 </div>
                 <hr style={{ overflow: "hidden", color: "yellow", width: "100%", border: "1px solid #fff" }} />

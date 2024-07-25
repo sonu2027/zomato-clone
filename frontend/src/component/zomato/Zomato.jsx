@@ -2,21 +2,39 @@ import { useState } from "react"
 import "./Zomato.css"
 import { MdPersonOutline } from "react-icons/md"
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { removeCustomerDetail } from "../../store/customerSlice.js";
+import { removeOrderDetail } from "../../store/orderSlice.js";
+import { removeCuisines } from "../../store/cuisinesSlice.js";
+import { useNavigate } from "react-router-dom";
 
 function Zomato(props) {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     console.log("status in zomato", props.status);
     const [getOption, setGetOption] = useState(false)
 
-    window.addEventListener("click", ()=>{
-        if(getOption){
+    const customer = useSelector((s) => s.customer.data)
+
+    window.addEventListener("click", () => {
+        if (getOption) {
             setGetOption(false)
         }
     })
 
+    const handleLogoutCustomer = (e) => {
+        dispatch(removeCustomerDetail())
+        dispatch(removeOrderDetail())
+        dispatch(removeCuisines())
+        navigate("/")
+    }
+
     return (
         <div id="zomato">
-            {props.status == 1 ? (
+            {customer ? (
                 <>
                     <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
                         <h2><i>Zomato</i></h2>
@@ -36,16 +54,14 @@ function Zomato(props) {
                                         <button className="make-border-radius-8px-top">Profile</button>
                                     </Link>
                                     <button>Notifications</button>
-                                    <Link to={`/login/loggedin/bookmark/${props.status}`}>
+                                    <Link to="/bookmark">
                                         <button>Bookmark</button>
                                     </Link>
                                     <button>Reviews</button>
                                     <button>Network</button>
                                     <button>Find Friends</button>
                                     <button>Setting</button>
-                                    <Link to={`/login/loggedin/${0}`}>
-                                        <button className="make-border-radius-8px-bottom">Log out</button>
-                                    </Link>
+                                    <button onClick={handleLogoutCustomer} className="make-border-radius-8px-bottom">Log out</button>
                                 </div>
                             </> :
                             <MdPersonOutline onClick={(e) => {

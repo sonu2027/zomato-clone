@@ -51,7 +51,7 @@ function Filter(props) {
                         </button>
                     </> :
                     <>
-                        <button style={{ padding: "9px 16px" }} onClick={(e) => {
+                        <button disabled style={{ padding: "9px 16px" }} onClick={(e) => {
                             e.stopPropagation()
                             props.setFilter(e)
                         }} className="filter">
@@ -63,21 +63,21 @@ function Filter(props) {
             {
                 rating[0] == true ?
                     <>
-                        <button onClick={handleRating} style={{ backgroundColor: "rgb(239, 79, 95)", color: "#fff" }} className="filter">
+                        <button disabled onClick={handleRating} style={{ backgroundColor: "rgb(239, 79, 95)", color: "#fff" }} className="filter">
                             Rating: {rating[1].toFixed(1)}+
                             <RxCross1 />
                         </button>
                     </> :
                     <>
-                        <button onClick={() => { handleRating2(), setApply(true) }} className="filter">
+                        <button disabled onClick={() => { handleRating2(), setApply(true) }} className="filter">
                             Rating: 4.0+
                         </button>
                     </>
             }
-            <button className="filter">
+            <button disabled className="filter">
                 Pure Veg
             </button>
-            <button className="filter">
+            <button disabled className="filter">
                 Cuisines
                 <select name="" id=""></select>
             </button>

@@ -42,7 +42,7 @@ function Overview(props) {
             <div style={{ fontSize: "1.3rem", margin: "1rem 0" }}>Menu</div>
             <img style={{ width: "20rem", height: "25rem", borderRadius: "6px" }} src={restaurant.restaurant_menu_URL} alt="Menu" />
             <div style={{ fontSize: "1.3rem", margin: "3rem 0 1rem 0" }}>Cuisines</div>
-            <div style={{ display: "flex", columnGap: "1rem", margin: "1rem 0" }} className="cuisines">
+            <div style={{ display: "flex", columnGap: "1rem", margin: "1rem 0", overflow:"scroll" }} className="cuisines">
                 {
                     props.arr.map((e) => <button style={{ color: "rgb(17, 145, 153)", padding: "8px 8px", borderRadius: "1rem", border: "1px solid rgb(139, 136, 136)" }} key={e}>{e}</button>)
                 }

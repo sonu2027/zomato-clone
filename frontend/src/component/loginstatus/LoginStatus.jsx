@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom"
 
 function LoginStatus(props) {
 
-    const dispatch=useDispatch()
-    const navigate=useNavigate()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const customerDetail = useSelector((s) => s.customer.data)
     console.log("customer detail is: ", customerDetail);
@@ -25,7 +25,7 @@ function LoginStatus(props) {
         }
     })
 
-    const handleLogoutCustomer=(e)=>{
+    const handleLogoutCustomer = (e) => {
         dispatch(removeCustomerDetail())
         dispatch(removeOrderDetail())
         dispatch(removeCuisines())
@@ -79,7 +79,8 @@ function LoginStatus(props) {
                     <>
                         <Link to="/login" style={{ color: "grey", textDecoration: "none" }}>Log in
                         </Link>
-                        <div style={{ color: "grey" }}>Sign up</div>
+                        <Link to="/signup" style={{ color: "grey", textDecoration: "none" }}>Sign up
+                        </Link>
                     </>
                 )
             }

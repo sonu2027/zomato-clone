@@ -9,12 +9,13 @@ import { useNavigate } from 'react-router-dom';
 function CuisinesItems({ Name, price, resId, cart = false }) {
 
     const dispatch = useDispatch()
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     const [showPopoupForOrderDone, setShowPopoupForOrderDone] = useState(false)
 
     const [itemCount, setItemCount] = useState(0)
     const order = useSelector((s) => s.order)
+    const customer = useSelector((s) => s.customer.data)
 
     useEffect(() => {
         order.data.map((e) => {
@@ -37,8 +38,8 @@ function CuisinesItems({ Name, price, resId, cart = false }) {
     const handleSubtractItems = () => {
         dispatch(setQuantity({ name: Name, price, quantity: itemCount - 1, resId }))
         setItemCount(itemCount - 1)
-        if(order.data.length===1){
-            navigate(-1) 
+        if (order.data.length === 1 && order.data[0].quantity === 1) {
+            navigate(-1)
         }
     }
 
@@ -64,13 +65,22 @@ function CuisinesItems({ Name, price, resId, cart = false }) {
                                 }
                                 {
                                     itemCount > 0 ? <span style={{ padding: "0 16px" }}>{itemCount}</span> : <div className='addIcon' onClick={(e) => {
-                                        handleAddItems()
                                         e.stopPropagation()
+                                        if (!customer)
+                                            navigate("/login")
+                                        else
+                                            handleAddItems()
                                     }
                                     } >ADD</div>
                                 }
                                 {
-                                    !order.orderedDone && <IoIosAdd className='icon' onClick={handleAddItems} />
+                                    !order.orderedDone && <IoIosAdd className='icon' onClick={() => {
+                                        if (!customer)
+                                            navigate("/login")
+                                        else
+                                            handleAddItems()
+                                    }
+                                    } />
                                 }
                             </button>
                             {
