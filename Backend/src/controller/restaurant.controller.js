@@ -81,7 +81,7 @@ const registerRestaurant = async (req, res) => {
 
     return res.status(200).json({ response });
   } catch (error) {
-    console.log("Error while registering partner restaurant");
+    console.log("Error while registering partner restaurant: ", error);
     return res.status(500).json({
       error: error,
       message: "Error while registering partner restaurant",
