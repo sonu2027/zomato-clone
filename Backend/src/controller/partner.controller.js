@@ -130,6 +130,8 @@ const updateProfilePicture = async (req, res) => {
   console.log("req.body: ", req.body);
   console.log("req.files: ", req.files);
 
+  const {profilePicture}=req.files
+
   try {
     const cloudinaryUploadRes = await uploadOnCloudinary(
       profilePicture[0].buffer,
