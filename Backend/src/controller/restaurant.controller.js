@@ -166,7 +166,10 @@ const updateRestaurant = async (req, res) => {
     }
 
     if (restaurant_food_image) {
-      image3 = await uploadOnCloudinary(restaurant_food_image[0].path);
+      image3 = await uploadOnCloudinary(
+        restaurant_food_image[0].buffer,
+        `${Date.now()}_${restaurant_food_image[0].originalname}`
+      );
       const del3Res = await deleteFromCloudinary(
         restaurant.restaurant_food_image__public_id
       );
@@ -320,5 +323,5 @@ export {
   addCuisines,
   getCuisines,
   getAllRes,
-  getAllCuisines
+  getAllCuisines,
 };
