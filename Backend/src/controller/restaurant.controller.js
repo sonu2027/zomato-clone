@@ -29,9 +29,23 @@ const registerRestaurant = async (req, res) => {
   console.log("typeof restaurant_hour: ", typeof restaurant_hour);
 
   try {
-    const image1 = await uploadOnCloudinary(restaurant_menu[0].path);
-    const image2 = await uploadOnCloudinary(restaurant_image[0].path);
-    const image3 = await uploadOnCloudinary(restaurant_food_image[0].path);
+    // const image1 = await uploadOnCloudinary(restaurant_menu[0].path);
+    // const image2 = await uploadOnCloudinary(restaurant_image[0].path);
+    // const image3 = await uploadOnCloudinary(restaurant_food_image[0].path);
+
+    const image1 = await uploadOnCloudinary(
+      restaurant_menu[0].buffer,
+      `${Date.now()}_${restaurant_menu[0].originalname}`
+    );
+    const image2 = await uploadOnCloudinary(
+      restaurant_image[0].buffer,
+      `${Date.now()}_${restaurant_image[0].originalname}`
+    );
+    const image3 = await uploadOnCloudinary(
+      restaurant_food_image[0].buffer,
+      `${Date.now()}_${restaurant_food_image[0].originalname}`
+    );
+
     console.log("Image1: ", image1);
     console.log("Image2: ", image2);
     console.log("Image3: ", image3);
@@ -150,7 +164,11 @@ const updateRestaurant = async (req, res) => {
 
   try {
     if (restaurant_menu) {
-      image1 = await uploadOnCloudinary(restaurant_menu[0].path);
+      // image1 = await uploadOnCloudinary(restaurant_menu[0].path);
+      image1 = await uploadOnCloudinary(
+        restaurant_menu[0].buffer,
+        `${Date.now()}_${restaurant_menu[0].originalname}`
+      );
       const del1Res = await deleteFromCloudinary(
         restaurant.restaurant_menu_public_id
       );
@@ -158,7 +176,10 @@ const updateRestaurant = async (req, res) => {
     }
 
     if (restaurant_image) {
-      image2 = await uploadOnCloudinary(restaurant_image[0].path);
+      image2 = await uploadOnCloudinary(
+        restaurant_image[0].buffer,
+        `${Date.now()}_${restaurant_image[0].originalname}`
+      );
       const del2Res = await deleteFromCloudinary(
         restaurant.restaurant_image_public_id
       );

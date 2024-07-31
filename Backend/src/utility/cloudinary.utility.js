@@ -42,6 +42,8 @@
 
 // export { uploadOnCloudinary, deleteFromCloudinary };
 
+
+
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
@@ -54,7 +56,7 @@ const uploadOnCloudinary = async (fileBuffer, filename) => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload_stream(
-        { resource_type: "auto", public_id: filename }, // Specify file type and optional public_id
+        { resource_type: "auto", public_id: filename }, 
         (error, result) => {
           if (error) {
             console.error("Error uploading file:", error);
@@ -65,13 +67,12 @@ const uploadOnCloudinary = async (fileBuffer, filename) => {
           }
         }
       )
-      .end(fileBuffer); // Pass the file buffer to the upload stream
+      .end(fileBuffer);
   });
 };
 
 const deleteFromCloudinary = async (public_id) => {
   return new Promise((resolve, reject) => {
-    // Delete the image from Cloudinary
     console.log("delete for cloudinary called");
     cloudinary.uploader.destroy(public_id, (error, result) => {
       if (error) {

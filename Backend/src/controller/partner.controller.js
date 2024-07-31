@@ -132,7 +132,8 @@ const updateProfilePicture = async (req, res) => {
 
   try {
     const cloudinaryUploadRes = await uploadOnCloudinary(
-      req.files.profilePicture[0].path
+      profilePicture[0].buffer,
+      `${Date.now()}_${profilePicture[0].originalname}`
     );
     console.log("cloudinaryUploadRes: ", cloudinaryUploadRes);
     const res1 = await Partner.updateOne(
