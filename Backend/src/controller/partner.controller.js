@@ -17,7 +17,7 @@ const sendEmail = async (req, res) => {
     service: "Gmail",
     auth: {
       user: "sonu.mondal.2027@gmail.com",
-      pass: "olpu rpqo rdcr gjdd",
+      pass: "fcie olgf ycsj kykh",
     },
   });
 
