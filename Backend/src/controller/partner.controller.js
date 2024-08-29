@@ -28,7 +28,7 @@ const sendEmail = async (req, res) => {
     from: "sonu.mondal.2027@gmail.com",
     to: email,
     subject: "Email Verification Code",
-    text: `Your verification code is: ${otp}`,
+    text: `Your verification code is: ${otp}. Enter this verification to proceed`,
   };
 
   console.log("mailOptions: ", mailOptions);
