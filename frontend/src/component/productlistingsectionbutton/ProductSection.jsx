@@ -37,9 +37,9 @@ function ProductSection(props) {
 
                 <button onClick={handleSection} className="productsection-orderonline"  >Order Online</button>
 
-                <button onClick={handleSection} className="productsection-reviews"  >Reviews</button>
+                {/* <button onClick={handleSection} className="productsection-reviews"  >Reviews</button>
 
-                <button onClick={handleSection} className="productsection-photos"  >Photos</button>
+                <button onClick={handleSection} className="productsection-photos"  >Photos</button> */}
 
                 <button onClick={handleSection} className="productsection-menu" >Menu</button>
 

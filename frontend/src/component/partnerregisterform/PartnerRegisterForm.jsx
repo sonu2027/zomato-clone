@@ -49,7 +49,7 @@ function PartnerRegisterForm({ setShowRegister, handleChecked, setOtpSent, agree
                     <input onChange={(e) => setEmail(e.target.value)} className="input" type="email" value={email} name="email" id="" placeholder="Email" />
                     <div className="check-box">
                         <input onChange={handleChecked} checked={agree} type="checkbox" name="" id="checkbox" />
-                        <label htmlFor="checkbox">&nbsp; I agree to Zomato's &nbsp;</label>{" "}
+                        <label htmlFor="checkbox">&nbsp; I agree to Food King's &nbsp;</label>{" "}
                         <span>Terms of Service</span>,<span>&nbsp; Privacy Policy &nbsp;</span>{" "}
                         <label htmlFor="checkbox">and &nbsp;</label>{" "}
                         <span>Content Policies</span>

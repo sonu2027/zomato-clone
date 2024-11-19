@@ -4,7 +4,6 @@ import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 import "./Profile.css"
 import { useEffect, useState } from "react"
 // importing custom hooks
-import Footer from "../../component/footer/Footer"
 import { useSelector } from "react-redux"
 import { FaRegEdit } from "react-icons/fa";
 
@@ -76,7 +75,6 @@ function Profile() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
     )
 }

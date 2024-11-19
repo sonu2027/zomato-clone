@@ -52,7 +52,7 @@ function PartnerLoginForm({ setShowRegister, setOtpSent, setOtp, setEmail, email
                 <div>Continue with email</div>
             </div>
             <div className="line">
-                <div>New to zomato ? </div>
+                <div>New to Food King ? </div>
                 <div onClick={() => navigate("/partner/register")} className="create">Create account</div>
             </div>
             {

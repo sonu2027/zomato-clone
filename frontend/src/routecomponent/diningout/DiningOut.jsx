@@ -6,8 +6,6 @@ import Header from "../../containercomponent/header/Header"
 import Section from "../../containercomponent/section/Section"
 import Restaurant from "../../containercomponent/restaurant/Restaurant"
 import Filter from "../../component/filters/Filter"
-import Footer from "../../component/footer/Footer"
-import DiscountImage from "../../component/discountimage/DiscountImage"
 import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
 // importing default hooks
@@ -86,9 +84,8 @@ function DiningOut() {
             {
                 filter && <FilterOption passing={"diningout"} setFilter={handleFilter} />
             }
-            <DiscountImage />
+
             <Restaurant status={status} rating={[4, 3, 2, 3, 5]} title={"Trending dining restaurants in Jagannath Nagar, Bangashree Pally, Maheshtala"} calling="dining-out" restaurant={filteredRestaurant} />
-            <Footer />
             {
                 order.data.length>0 && <OrderStatus />
             }

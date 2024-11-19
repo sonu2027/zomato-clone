@@ -75,9 +75,6 @@ function Filter(props) {
                     </>
             }
             <button disabled className="filter">
-                Pure Veg
-            </button>
-            <button disabled className="filter">
                 Cuisines
                 <select name="" id=""></select>
             </button>

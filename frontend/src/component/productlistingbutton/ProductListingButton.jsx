@@ -15,10 +15,10 @@ function ProductListingButton(props) {
 
     return (
         <div className="button">
-            <button>
+            {/* <button>
                 <MdOutlineDirections className="icon" />
                 <span>Direction</span>
-            </button>
+            </button> */}
             {customerDetails ?
                 <>
                     {props.bookmarked ?
@@ -43,10 +43,10 @@ function ProductListingButton(props) {
                         </button>
                     </Link>
                 </>}
-            <button>
+            {/* <button>
                 <PiShareFatLight className="icon" />
                 <span> Share</span>
-            </button>
+            </button> */}
         </div>
     )
 }

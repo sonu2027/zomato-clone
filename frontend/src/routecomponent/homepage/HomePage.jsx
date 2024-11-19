@@ -8,7 +8,6 @@ import TopBrand from "../../containercomponent/topbrands/TopBrand"
 import Restaurant from "../../containercomponent/restaurant/Restaurant"
 import Section from "../../containercomponent/section/Section"
 import Filter from "../../component/filters/Filter"
-import Footer from "../../component/footer/Footer"
 import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 import { useContext, useEffect, useState } from "react"
 
@@ -111,7 +110,6 @@ function HomePage() {
             }
 
             <Restaurant status={status || 0} title={"Best Restaurant in Kolkata"} rating={[4, 3, 2, 3, 5]} calling="delivery" restaurant={filteredRestaurant} />
-            <Footer />
             {
                 order.data.length>0 && <OrderStatus />
             }

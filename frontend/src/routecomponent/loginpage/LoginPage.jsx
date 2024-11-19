@@ -81,7 +81,7 @@ function LoginPage() {
                     <div>Continue with email</div>
                 </div>
                 <div className="line">
-                    <div>New to zomato ? </div>
+                    <div>New to Food king ? </div>
                     <Link style={{textDecoration:"none"}} to="/signup">
                         <div className="create">Create account</div>
                     </Link>

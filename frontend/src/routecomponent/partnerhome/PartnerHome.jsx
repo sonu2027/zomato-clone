@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import "./partnerhome.css"
 import ReceivedOrder from '../../component/receivedorder/ReceivedOrder';
-import AcceptedOrder from '../../component/acceptedorder/AcceptedOrder';
 import OrderCompleted from '../../component/ordercompleted/OrderCompleted';
 
 import PartnerHomeHeader from '../../component/partnerhomeheader/PartnerHomeHeader.jsx';

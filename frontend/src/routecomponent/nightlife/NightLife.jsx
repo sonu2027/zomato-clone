@@ -1,12 +1,10 @@
 import "./NightLife"
 import "../nightlife/NightLife.css"
-import DiscountImage from "../../component/discountimage/DiscountImage"
 
 // importing component
 import Header from "../../containercomponent/header/Header"
 import Section from "../../containercomponent/section/Section"
 import Filter from "../../component/filters/Filter"
-import Footer from "../../component/footer/Footer"
 import Restaurant from "../../containercomponent/restaurant/Restaurant"
 import SerachRestaurant from "../../component/searchrestaurant/SerachRestaurant"
 
@@ -82,9 +80,7 @@ function NightLife() {
             {
                 filter && <FilterOption passing={"nightlife"} setFilter={handleFilter} />
             }
-            <DiscountImage />
             <Restaurant status={status} rating={[4, 3, 2, 3, 5]} title={"Nightlife Restaurants in Behala"} calling="night-life" restaurant={filteredRestaurant} />
-            <Footer />
             {
                 order.data.length>0 && <OrderStatus />
             }

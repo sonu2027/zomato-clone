@@ -48,13 +48,13 @@ function PartnerRegister() {
       }
       <div className="PartnerRegister2">
         <div className="t1">
-          <img src={img1} alt="" />
+          {/* <img src={img1} alt="" /> */}
           <button onClick={() => navigate("/partner/login")}>Login</button>
         </div>
         <div className="body">
           <div className="body-child">
             <div className="t2">
-              <div>Partner with Zomato</div>
+              <div>Partner with Food King</div>
               <div className="div2">at 0% commission for the 1st month!</div>
             </div>
             <div className="t3">

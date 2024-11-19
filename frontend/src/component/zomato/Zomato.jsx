@@ -37,10 +37,10 @@ function Zomato(props) {
             {customer ? (
                 <>
                     <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
-                        <h2><i>Zomato</i></h2>
+                        <h2><i>Food King</i></h2>
                     </Link>
                     <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
-                        <h1><i>Zomato</i></h1>
+                        <h1><i>Food King</i></h1>
                     </Link>
                     {
                         getOption == true ?
@@ -74,10 +74,10 @@ function Zomato(props) {
                 (
                     <>
                         <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
-                            <h2><i>Zomato</i></h2>
+                            <h2><i>Food King</i></h2>
                         </Link>
                         <Link style={{ textDecoration: "none", color: "rgb(16, 15, 15)" }} to={`/delivery`}>
-                            <h1><i>Zomato</i></h1>
+                            <h1><i>Food King</i></h1>
                         </Link>
                         <Link to="/login">
                             <MdPersonOutline id="zomato-button" />

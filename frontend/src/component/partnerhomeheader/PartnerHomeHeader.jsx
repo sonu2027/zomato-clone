@@ -96,9 +96,10 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
     return (
         <div className='header-parent'>
             <div className="header">
-                <Link to="/partner/home">
-                    <img src={img1} alt="" />
-                </Link>
+                {/* <Link to="/partner/home"> */}
+                {/* <img src={img1} alt="" /> */}
+                <h2>Food King</h2>
+                {/* </Link> */}
                 <div className='profile'>
                     <img src={PartnerPP} alt="" />
                     <div>{PartnerName}</div>
@@ -119,6 +120,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
                         <div className='t1'>{PartnerName}</div>
                         <div className='t2'>{PartnerEmail}</div>
                         <div className='t3'>
+                            <button onClick={() => { navigate("/partner/home") }} >Home</button>
                             <button onClick={() => { navigate("/partner/profile") }} >Profile</button>
                             <button onClick={() => { navigate("/partner/home/restaurant") }} >Restaurant</button>
                             <button onClick={() => { navigate("/partner/register/create-your-restaurant") }}>Add Restaurant</button>
