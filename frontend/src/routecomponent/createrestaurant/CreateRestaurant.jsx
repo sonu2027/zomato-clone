@@ -206,184 +206,362 @@ function CreateRestaurant() {
       onSubmit={restaurantData ? handleUpdateRestaurant : handleRegistration}
       encType="multipart/form-data"
       className="CreateRestaurant"
+      style={{
+        maxWidth: "800px",
+        margin: "0 auto",
+        padding: "2rem",
+        backgroundColor: "#fff",
+        borderRadius: "12px",
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)"
+      }}
     >
-      <div className="res-dtl-title" style={{ marginTop: "1.5rem" }}>Restaurant Information</div>
-      <div className="res-dtl">
-        <input
-          type="text"
-          placeholder="Restaurant name"
-          name="restaurant_name"
-        />
-        <input
-          type="text"
-          placeholder="Restaurant complete address"
-          name="restaurant_complete_address"
-        />
-        <input
-          type="text"
-          placeholder="Restaurant location"
-          name="restaurant_location"
-        />
-        <input
-          type="text"
-          placeholder="Mobile number at restaurant"
-          name="mobile_number_at_restaurant"
-        />
-        <input
-          type="text"
-          placeholder="Landline number"
-          name="landline_number"
-        />
-      </div>
-      
-      <div className="res-type">Restaurant type and timing</div>
+      <h2 style={{
+        color: "#ef4f5f",
+        marginBottom: "2rem",
+        textAlign: "center",
+        fontSize: "1.8rem",
+        fontWeight: "600"
+      }}>
+        {restaurantData ? "Update Restaurant" : "Register Your Restaurant"}
+      </h2>
 
-      <div className="res-type-option">
-        {
-          restaurantTypes.map(e =>
-            <div key={e} className="item">
+      {/* Restaurant Information Section */}
+      <div style={{ marginBottom: "2rem" }}>
+        <h3 className="section-title" style={{
+          color: "#333",
+          fontSize: "1.3rem",
+          marginBottom: "1rem",
+          paddingBottom: "0.5rem",
+          borderBottom: "2px solid #ef4f5f"
+        }}>
+          Restaurant Information
+        </h3>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gap: "1rem"
+        }}>
+          {[
+            { placeholder: "Restaurant name", name: "restaurant_name" },
+            { placeholder: "Restaurant complete address", name: "restaurant_complete_address" },
+            { placeholder: "Restaurant location", name: "restaurant_location" },
+            { placeholder: "Mobile number at restaurant", name: "mobile_number_at_restaurant" },
+            { placeholder: "Landline number", name: "landline_number" }
+          ].map((field) => (
+            <input
+              defaultValue={restaurantData ? restaurantData.data[field.name] : ""}
+              key={field.name}
+              type="text"
+              placeholder={field.placeholder}
+              name={field.name}
+              style={{
+                padding: "0.8rem",
+                border: "1px solid #ddd",
+                borderRadius: "6px",
+                fontSize: "1rem",
+                transition: "border 0.3s",
+                outline: "none"
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Restaurant Type Section */}
+      <div style={{ marginBottom: "2rem" }}>
+        <h3 className="section-title" style={{
+          color: "#333",
+          fontSize: "1.3rem",
+          marginBottom: "1rem",
+          paddingBottom: "0.5rem",
+          borderBottom: "2px solid #ef4f5f"
+        }}>
+          Restaurant Type
+        </h3>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+          gap: "1rem"
+        }}>
+          {restaurantTypes.map(e => (
+            <div key={e} style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem"
+            }}>
               <input
+                defaultChecked={restaurantData ? restaurantData.data.restaurant_type.includes(e) : false}
                 onChange={handleResType}
                 type="checkbox"
                 id={`${e}`}
+                style={{
+                  width: "1.2rem",
+                  height: "1.2rem",
+                  accentColor: "#ef4f5f"
+                }}
               />
-              <label htmlFor={`${e}`}>{e}</label>
+              <label htmlFor={`${e}`} style={{ fontSize: "1rem" }}>{e}</label>
             </div>
-          )
-        }
-      </div>
-      
-      <div className="res-des">
-        Select option which best describe your restaurant
+          ))}
+        </div>
       </div>
 
-      <div className="res-des-option">
-        {
-          restaurantItemTypes.map(e =>
-            <div key={e} className="item">
+      {/* Restaurant Description Section */}
+      <div style={{ marginBottom: "2rem" }}>
+        <h3 className="section-title" style={{
+          color: "#333",
+          fontSize: "1.3rem",
+          marginBottom: "1rem",
+          paddingBottom: "0.5rem",
+          borderBottom: "2px solid #ef4f5f"
+        }}>
+          Describe Your Restaurant
+        </h3>
+        <p style={{ color: "#666", marginBottom: "1rem" }}>
+          Select option which best describe your restaurant
+        </p>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+          gap: "1rem"
+        }}>
+          {restaurantItemTypes.map(e => (
+            <div key={e} style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem"
+            }}>
               <input
+                defaultChecked={
+                  restaurantData?.data?.describe_restaurant?.[0]
+                    .split(",")
+                    .some(item => item.trim() === e.trim())
+                }
                 onChange={handleDescribeRestaurant}
                 type="checkbox"
-                name=""
                 id={`${e}`}
+                style={{
+                  width: "1.2rem",
+                  height: "1.2rem",
+                  accentColor: "#ef4f5f"
+                }}
               />
-              <label htmlFor={`${e}`}>{e}</label>
+              <label htmlFor={`${e}`} style={{ fontSize: "1rem" }}>{e}</label>
             </div>
-          )
-        }
+          ))}
+        </div>
       </div>
-      
-      <div className="cuisine-type">Types of cuisines</div>
-      <div className="cuisine-type-option">
-        {
-          cuisinesList.map(e =>
-            <div key={e} className="item">
+
+      {/* Cuisine Types Section */}
+      <div style={{ marginBottom: "2rem" }}>
+        <h3 className="section-title" style={{
+          color: "#333",
+          fontSize: "1.3rem",
+          marginBottom: "1rem",
+          paddingBottom: "0.5rem",
+          borderBottom: "2px solid #ef4f5f"
+        }}>
+          Types of Cuisines
+        </h3>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "1rem"
+        }}>
+          {cuisinesList.map(e => (
+            <div key={e} style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem"
+            }}>
               <input
+                defaultChecked={restaurantData?.data?.cuisines?.includes(e)}
                 onChange={handleCuisines}
                 type="checkbox"
-                name=""
                 id={`${e}`}
+                style={{
+                  width: "1.2rem",
+                  height: "1.2rem",
+                  accentColor: "#ef4f5f"
+                }}
               />
-              <label htmlFor={`${e}`}>{e}</label>
+              <label htmlFor={`${e}`} style={{ fontSize: "1rem" }}>{e}</label>
             </div>
-          )
-        }
-      </div>
-      
-      <div className="res-timing">Restaurant operarional hour</div>
-      {openingDayCount.map((e, i) => (
-        <div key={e}>
-          <input type="time" name="restaurant_hour" id="" />
-          <input type="time" name="restaurant_hour" id="" />
+          ))}
         </div>
-      ))}
-
-      <div className="restaurant-opening-day">
-        {
-          restaurantOpeningDay.map(e =>
-            <div key={e} className="item">
-              <input
-                onChange={handleOpeningDayCount}
-                type="checkbox"
-                name=""
-                id={`${e}`}
-              />
-              <label htmlFor={`${e}`}>{e}</label>
-            </div>
-          )
-        }
       </div>
-      
-      <div className="res-img">Upload images</div>
 
-      <label
-        className="CreateRestaurant restaurantImage"
-        style={{ border: "1px solid black", padding: "6px 12px", borderRadius: "4px", margin: "4px 0" }}
-        htmlFor="menuImage">
-        Upload menu
-      </label>
-      <input
-        onChange={(e) => {
-          document.getElementsByClassName("CreateRestaurant restaurantImage")[0].style.backgroundColor = "rgb(239, 79, 95)"
-          document.getElementsByClassName("CreateRestaurant restaurantImage")[0].style.color = "#fff"
-        }}
-        style={{ display: "none" }}
-        type="file"
-        id="menuImage"
-        name="restaurant_menu" />
+      {/* Operational Hours Section */}
+      <div style={{ marginBottom: "2rem" }}>
+        <h3 className="section-title" style={{
+          color: "#333",
+          fontSize: "1.3rem",
+          marginBottom: "1rem",
+          paddingBottom: "0.5rem",
+          borderBottom: "2px solid #ef4f5f"
+        }}>
+          Operational Hours
+        </h3>
+        <div style={{ marginBottom: "1rem" }}>
+          <p style={{ color: "#666", marginBottom: "1rem" }}>
+            Select days your restaurant is open:
+          </p>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+            gap: "1rem",
+            marginBottom: "1.5rem"
+          }}>
+            {restaurantOpeningDay.map(e => (
+              <div key={e} style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem"
+              }}>
+                <input
+                  onChange={handleOpeningDayCount}
+                  type="checkbox"
+                  id={`${e}`}
+                  style={{
+                    width: "1.2rem",
+                    height: "1.2rem",
+                    accentColor: "#ef4f5f"
+                  }}
+                />
+                <label htmlFor={`${e}`} style={{ fontSize: "1rem" }}>{e}</label>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gap: "1.5rem"
+        }}>
+          {openingDayCount.map((e, i) => (
+            <div key={e} style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1rem"
+            }}>
+              <input
+                type="time"
+                name="restaurant_hour"
+                style={{
+                  padding: "0.5rem",
+                  border: "1px solid #ddd",
+                  borderRadius: "6px",
+                  fontSize: "1rem"
+                }}
+              />
+              <span style={{ color: "#666" }}>to</span>
+              <input
+                type="time"
+                name="restaurant_hour"
+                style={{
+                  padding: "0.5rem",
+                  border: "1px solid #ddd",
+                  borderRadius: "6px",
+                  fontSize: "1rem"
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
-      <label
-        className="CreateRestaurant restaurantImage"
-        style={{ border: "1px solid black", padding: "6px 12px", borderRadius: "4px", margin: "4px 0" }}
-        htmlFor="foodImage">
-        Upload food Image
-      </label>
-      <input
-        onChange={(e) => {
-          document.getElementsByClassName("CreateRestaurant restaurantImage")[1].style.backgroundColor = "rgb(239, 79, 95)"
-          document.getElementsByClassName("CreateRestaurant restaurantImage")[1].style.color = "#fff"
-        }}
-        style={{ display: "none" }}
-        type="file"
-        id="foodImage"
-        name="restaurant_food_image" />
+      {/* Image Upload Section */}
+      <div style={{ marginBottom: "2rem" }}>
+        <h3 className="section-title" style={{
+          color: "#333",
+          fontSize: "1.3rem",
+          marginBottom: "1rem",
+          paddingBottom: "0.5rem",
+          borderBottom: "2px solid #ef4f5f"
+        }}>
+          Upload Images
+        </h3>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gap: "1rem"
+        }}>
+          {[
+            { id: "menuImage", label: "Upload Menu", name: "restaurant_menu", index: 0 },
+            { id: "foodImage", label: "Upload Food Image", name: "restaurant_food_image", index: 1 },
+            { id: "resImage", label: "Upload Restaurant Image", name: "restaurant_image", index: 2 }
+          ].map((file) => (
+            <div key={file.id}>
+              <label
+                className="CreateRestaurant restaurantImage"
+                htmlFor={file.id}
+                style={{
+                  display: "block",
+                  border: "2px dashed #ddd",
+                  padding: "1.5rem",
+                  borderRadius: "8px",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  transition: "all 0.3s",
+                  backgroundColor: "#f9f9f9"
+                }}
+              >
+                <div style={{ fontSize: "3rem", color: "#ccc", marginBottom: "0.5rem" }}>+</div>
+                <div style={{ color: "#666", fontWeight: "500" }}>{file.label}</div>
+              </label>
+              <input
+                onChange={(e) => {
+                  document.getElementsByClassName("CreateRestaurant restaurantImage")[file.index].style.backgroundColor = "#ef4f5f";
+                  document.getElementsByClassName("CreateRestaurant restaurantImage")[file.index].style.color = "#fff";
+                  document.getElementsByClassName("CreateRestaurant restaurantImage")[file.index].style.borderColor = "#ef4f5f";
+                }}
+                style={{ display: "none" }}
+                type="file"
+                id={file.id}
+                name={file.name}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
-      <label
-        className="CreateRestaurant restaurantImage"
-        style={{ border: "1px solid black", padding: "6px 12px", borderRadius: "4px", margin: "4px 0" }}
-        htmlFor="resImage">
-        Upload restaurant image
-      </label>
-      <input
-        onChange={(e) => {
-          document.getElementsByClassName("CreateRestaurant restaurantImage")[2].style.backgroundColor = "rgb(239, 79, 95)"
-          document.getElementsByClassName("CreateRestaurant restaurantImage")[2].style.color = "#fff"
-        }}
-        style={{ display: "none" }}
-        type="file"
-        id="resImage"
-        name="restaurant_image" />
-      
+      {/* Error Message */}
+      {!resRegStatus && (
+        <div style={{
+          color: "#ef4f5f",
+          backgroundColor: "#feecec",
+          padding: "1rem",
+          borderRadius: "6px",
+          marginBottom: "1.5rem",
+          textAlign: "center"
+        }}>
+          Something went wrong, please try again
+        </div>
+      )}
 
-      {
-        !resRegStatus && <div>Something went wrong, please try again</div>
-      }
-
-      {/* <div className="button">
-        <button onClick={(e) => {
-          setTrackSection(trackResSection - 1)
-          e.preventDefault()
-          e.stopPropagation()
-        }} disabled={trackResSection == 0}>Previous</button>
-        <button disabled={trackResSection == 5} onClick={(e) => {
-          setTrackSection(trackResSection + 1)
-          e.preventDefault()
-          e.stopPropagation()
-        }} style={{ backgroundColor: "rgb(239, 79, 95)", color: "#fff" }}>Next</button>
-      </div> */}
-
-      
-        <button style={{ padding: "8px 16px", margin: "1rem" }} type="submit">Submit</button>
+      {/* Submit Button */}
+      <div style={{ textAlign: "center" }}>
+        <button
+          type="submit"
+          style={{
+            padding: "0.8rem 2rem",
+            backgroundColor: "#ef4f5f",
+            color: "#fff",
+            border: "none",
+            borderRadius: "6px",
+            fontSize: "1rem",
+            fontWeight: "600",
+            cursor: "pointer",
+            transition: "background-color 0.3s",
+            width: "100%",
+            maxWidth: "300px"
+          }}
+          onMouseOver={(e) => e.target.style.backgroundColor = "#d84351"}
+          onMouseOut={(e) => e.target.style.backgroundColor = "#ef4f5f"}
+        >
+          {restaurantData ? "Update Restaurant" : "Register Restaurant"}
+        </button>
+      </div>
     </form>
   );
 }

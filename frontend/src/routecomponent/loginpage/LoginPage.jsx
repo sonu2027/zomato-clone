@@ -70,6 +70,13 @@ function LoginPage() {
                     <input value={password} onChange={(e) => setPassword(e.target.value)}
                         type="password" name="" id="" placeholder="Password" />
                     <button onClick={authenticateUser}>Log in</button>
+                    <button onClick={(e) => {
+                        setEmail("userguest@gmail.com")
+                        setPassword("userguest")
+                        authenticateUser(e)
+                    }}>
+                        Log in as guest user
+                    </button>
                 </form>
                 <div className="line">
                     <hr />
@@ -82,7 +89,7 @@ function LoginPage() {
                 </div>
                 <div className="line">
                     <div>New to Food king ? </div>
-                    <Link style={{textDecoration:"none"}} to="/signup">
+                    <Link style={{ textDecoration: "none" }} to="/signup">
                         <div className="create">Create account</div>
                     </Link>
                 </div>

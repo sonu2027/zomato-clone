@@ -32,16 +32,13 @@ function PartnerLogin() {
       {
         otpSent && <VerifyOtp task="loginUser" setOtpSent={setOtpSent} otp={otp} email={email} />
       }
-      {/* <div className="header">
-        <img src={img1} alt="" />
-      </div> */}
       <div className="body">
         {
           showRegister && <PartnerLoginForm setShowRegister={setShowRegister} setOtpSent={setOtpSent} setOtp={setOtp} email={email} setEmail={setEmail} />
         }
         <div className="body-child-div">
           <img src={img2} alt="" />
-          <div className="t1">Food King Restaurant Partner dashboard</div>
+          <div className="t1">ZomEats Restaurant Partner dashboard</div>
           <button onClick={showLoginTab} className="button button1">
             Login
           </button>

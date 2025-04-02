@@ -133,7 +133,7 @@ function PartnerRestaurant() {
                         {
                             (showResOption && currentElement === e) &&
                             <div onClick={(e) => e.stopPropagation()} className='restaurantOption'>
-                                <button onClick={() => navigate("/partner/register/edit-your-restaurant", { state: { data: e } })}>Edit</button>
+                                <button onClick={() => navigate(`/partner/register/edit-your-restaurant`, { state: { data: e } })}>Edit</button>
                                 <button onClick={(e) => {
                                     setShowDeleteRestaurantOption(true)
                                     setShowResOption(false)

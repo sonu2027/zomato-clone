@@ -63,7 +63,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
         let completedorder = 0
         partnerOrder.map((e) => {
             if (e.orderedDone == false) {
-                receivedOrder++
+                receivedorder++
             }
             else {
                 completedorder++
@@ -96,10 +96,7 @@ function PartnerHomeHeader({ orderSection, setOrderSection, prevOrderSection, se
     return (
         <div className='header-parent'>
             <div className="header">
-                {/* <Link to="/partner/home"> */}
-                {/* <img src={img1} alt="" /> */}
-                <h2>Food King</h2>
-                {/* </Link> */}
+                <h2>ZomEats</h2>
                 <div className='profile'>
                     <img src={PartnerPP} alt="" />
                     <div>{PartnerName}</div>

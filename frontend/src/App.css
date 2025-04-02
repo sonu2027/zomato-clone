@@ -10,3 +10,5 @@ body {
 /* .app .div1{
   display: flex;
 } */
+
+@import "tailwindcss";
