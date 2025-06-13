@@ -1,4 +1,4 @@
-.AddCuisine {
+/* .AddCuisine {
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -90,5 +90,141 @@
   }
   .AddCuisine .t1 {
     column-gap: 5rem;
+  }
+} */
+
+
+
+
+
+
+
+
+
+.AddCuisine {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.AddCuisine .box1 {
+  height: 80vh;
+  width: 90vw;
+  max-width: 600px;
+  overflow-y: auto;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+/* Cross section */
+.AddCuisine .cross {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.AddCuisine .cross-icon {
+  font-size: 22px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  color: #333;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.AddCuisine .cross-icon:hover {
+  transform: scale(1.1);
+  color: #e53e3e;
+}
+
+/* Title and Add icon */
+.AddCuisine .t1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Each Item Block */
+.AddCuisine .t2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+/* Top Row inside each item */
+.AddCuisine .t2t1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.AddCuisine input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  transition: border-color 0.3s;
+}
+.AddCuisine input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* Buttons */
+.AddCuisine .button2 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.AddCuisine .button2 button {
+  padding: 10px 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.AddCuisine .button2 button:hover {
+  background-color: #1e40af;
+}
+
+/* Responsive */
+@media screen and (max-width: 425px) {
+  .AddCuisine .box1 {
+    height: 100vh;
+    width: 100vw;
+    border-radius: 0;
   }
 }
